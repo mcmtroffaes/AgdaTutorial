@@ -84,7 +84,7 @@ data ℕ₂ : Set where
 *Interpretation:*
 
  - `ℕ⁺` ∈ `Set`, `ℕ⁺` = { `one`, `double one`, `double+1 one`, `double (double one)`, `double (double+1 one)`, ...}
- - `ℕ₂` ∈ `Set`, `ℕ₂` = { `zero`, `suc one`, `suc (double one)`, ...}
+ - `ℕ₂` ∈ `Set`, `ℕ₂` = { `zero`, `id one`, `id (double one)`, ...}
 
 
 *Exercise:* define the conversion function:
