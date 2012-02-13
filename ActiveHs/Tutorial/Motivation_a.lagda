@@ -1,63 +1,84 @@
 % Motivation
-% Péter Diviánszky
-% 2011. 05. 03.
+% Ambrus Kaposi
+% 2012. 02. 13.
 
 \begin{code}
 module Motivation_a where
 \end{code}
 
 
+
+Eliminating errors from programming
+===================================
+
+Method               Example
+-------------------  ----------------------------------------
+testing*             QuickCheck
+run-time monitoring  `Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException`
+model checking       NuSMV
+                     `state : {ready, busy}, request : boolean`
+                     `init(state) := ready`
+                     `next(state) := if state = ready & request = TRUE`
+                     `then busy else {ready, busy}`
+type systems         `4 : Int`
+                     `[1,2,4] : List Int`
+                     `(+) 4 : Int → Int`
+                     `(+) : Num a ⇒ a → a → a`
+formal verification* Fóthi, Horváth et al.
+                     B method, Hoare-logic, Coq
+
+*give examples
+
+Remark: we use `∷` as the list constructor
+
+
+
+Type systems
+============
+
+Problem:
+
+    +─────────────────────────+
+    |all programs             |
+    |        +─────────────+  |
+    |        |well-typed  ?|  |
+    |        |programs   ? |  |
+    |     +──+──────────+  |  |
+    |     |  |XXXXXXXXXX|  |  |
+    |     |  |XXXXXXXXXX|  |  |
+    |     |  ───────────+──+  |
+    |     |good programs|     |
+    |     +─────────────+     |
+    +─────────────────────────+
+
+Solution: more expressive and fine-grained type systems
+
+
+
+
+Examples of Haskell type system limits
+======================================
+
+[`Data.Word`](http://hackage.haskell.org/packages/archive/base/latest/doc/html/Data-Word.html)
+
+[`HaskellDB`](http://hackage.haskell.org/packages/archive/haskelldb/2.1.1/doc/html/Database-HaskellDB-BoundedList.html#t:N255)
+
+[Square matrices](http://www.eecs.usma.edu/webs/people/okasaki/icfp99.ps)
+
+More: types of fixed-length lists, sorted lists, balanced trees, numbers that are between 13 and 45 etc.
+
+Fixing Haskell 98: [MultiParamTypeClasses](http://hackage.haskell.org/trac/haskell-prime/wiki/MultiParamTypeClasses), [GADTs](http://hackage.haskell.org/trac/haskell-prime/wiki/GADTs), [FunctionalDependencies](http://hackage.haskell.org/trac/haskell-prime/wiki/FunctionalDependencies), [RankNTypes](http://hackage.haskell.org/trac/haskell-prime/wiki/RankNTypes), [KindAnnotations](http://hackage.haskell.org/trac/haskell-prime/wiki/KindAnnotations) etc.
+
+
+
+
+
 What is Agda?
 =============
 
-Agda is a programming language which is targeted to produce
-safe and fast code.
+Agda is a programming language with a type system so expressive that makes it a formal verification tool.
 
 
-How Agda Helps Safe Code
-========================
-
-Phases in which errors can be found during program development:
-
--   specification
--   implementation
--   testing
--   after deployment
-
-The sooner the cheaper!
-
---------------
-
-With Agda, it is possible to find the vast majority of errors in the specification and in the implementation phase.
-
-|In Agda, we don't try to prove that the implementation is safe.
-|We try to implement the specification instead.
-
-
-How Agda Helps Fast Code
-========================
-
-These activities can be done either in compile-time (once) or in runtime (many times):
-
--   Lexical and syntactic analysis, scope checking (during runtime for interpreted languages)
--   Type checking
--   Exceptions: Array boundary check, null-pointer check, divide-by-zero exception, ...
--   Termination check (cycle-in-spine and deadlock check in Haskell runtime)
--   Sanity check (for example: Is the input already sorted?)
--   Garbage collection, stack overflow check, memory and time limit checks, ...
-
-Better to do them at compile-time!
-
-------------
-
-In Agda, it is possible to do all but the last ones at compile-time.
-
-
-Most compilers are checking invariants on implementations and try to
-deduce information for optimization.
-
-In Agda we write specification, implementation and consistency proofs at the same time.  
-All these information are available for the compiler!
 
 
 About
@@ -71,7 +92,4 @@ Pressing key 'a' on the pages switch between slide and normal mode.
 Navigation is possible with left and right arrows.  
 In slide mode the remarks are not visible!
 
-The developers are Péter Diviánszky and Ambrus Kaposi.
-
-
-
+The developers are Péter Diviánszky and Ambrus Kaposi. Any comment is very much appreciated, please send them to [Ambrus](http://akaposi.web.elte.hu).
