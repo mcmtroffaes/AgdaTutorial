@@ -42,7 +42,9 @@ After installation
 
 You can download the Agda standard libraries from [here](http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Libraries.StandardLibrary).
 
-This is how to teach Agda see the standard libraries using the following commands in Emacs:
+This is how to teach Agda see the standard libraries using the following commands in Emacs.
+Note that it requires to [haskell-mode](http://projects.haskell.org/haskellmode-emacs/)
+to be installed first.
 
 1.  `M-x load-library` \<return\> `agda2-mode` \<return\>  
 1.  `M-x customize-group` \<return\> `agda2` \<return\>  
