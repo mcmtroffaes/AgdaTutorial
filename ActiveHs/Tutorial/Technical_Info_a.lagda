@@ -30,9 +30,10 @@ Windows
     1. put the cabal/bin folder into `%PATH%` (cmd: `set PATH=%PATH%;%APPDATA%\cabal\bin;`)
     1. cmd: `cabal update`
     1. cmd: `cabal install agda`
-    1. `agda-mode install` In case this fails, you have two opportunities:
-        1. put `(load-file "path_of_agda\share\Agda-2.3.0\emacs-mode\agda2.el")` into your .emacs file
-        1. after starting emacs, type `(load-file "path_of_agda\share\Agda-2.3.0\emacs-mode\agda2.el")` into the *scratch* buffer, select it with the mouse and type `M-x RETURN` `eval-region`
+    1. `agda-mode setup`  
+       If that fails, you have two opportunities:
+        1. put `(load-file (shell-command-to-string "agda-mode locate"))` into your .emacs file
+        1. after starting emacs, type `(load-file (shell-command-to-string ""agda-mode locate))` into the *scratch* buffer, select it with the mouse and type `M-x RETURN` `eval-region`
 1. If you neither have administrator access nor Haskell Platform installed: get administrator access!
 
 
