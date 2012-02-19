@@ -10,10 +10,10 @@ Installation
 
 General installation instruction can be found at the [Download](http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.Download) section of the Agda website.
 
-Linux
+Linux or FreeBSD
 ---------
 
-If you have Ubuntu / Debian / NixOS / some other decent Linux distro, you can safely install Agda from your package manager. Or you can use cabal-install as described below for the Windows version.
+If you have Ubuntu / Debian / NixOS / some other decent Linux distro or FreeBSD, you can safely install Agda from your package manager. Or you can use cabal-install as described below for the Windows version.
 
 After installation show Emacs where to find agda-mode by the following command:
 
