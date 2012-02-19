@@ -31,8 +31,8 @@ Windows
     1. cmd: `cabal update`
     1. cmd: `cabal install agda`
     1. `agda-mode install` In case this fails, you have two opportunities:
-        1. put `(load-file "path_of_agda\share\Agda-2.2.10\emacs-mode\agda2.el")` into your .emacs file
-        1. after starting emacs, type `(load-file "path_of_agda\share\Agda-2.2.10\emacs-mode\agda2.el")` into the *scratch* buffer, select it with the mouse and type `M-x RETURN` `eval-region`
+        1. put `(load-file "path_of_agda\share\Agda-2.3.0\emacs-mode\agda2.el")` into your .emacs file
+        1. after starting emacs, type `(load-file "path_of_agda\share\Agda-2.3.0\emacs-mode\agda2.el")` into the *scratch* buffer, select it with the mouse and type `M-x RETURN` `eval-region`
 1. If you neither have administrator access nor Haskell Platform installed: get administrator access!
 
 
@@ -47,7 +47,7 @@ This is how to teach Agda see the standard libraries using the following command
    (`M` stands for Meta which is labelled Alt on most computers)
 1.  Search for: `Agda2 Include dirs`
 1.  Type here the path of the Agda libraries something like  
-   `/home/divip/share/lib-0.5/src`
+   `/home/divip/share/lib-0.6/src`
 1.  On top of the buffer click on this button:
    `Save for future sessions`
 
