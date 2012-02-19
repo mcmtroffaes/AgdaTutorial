@@ -54,7 +54,7 @@ Exercises: `pred`, `_*_`, `_⊔_`, `_⊓_` and `⌊_/2⌋`
 Define the following functions:
 
 ~~~~~~~ {.haskell}
-pred  : ℕ → ℕ      -- predessor (pred 0 = 0)
+pred  : ℕ → ℕ      -- predecessor (pred 0 = 0)
 _∸_   : ℕ → ℕ → ℕ  -- subtraction
 _*_   : ℕ → ℕ → ℕ  -- multiplication
 _⊔_   : ℕ → ℕ → ℕ  -- maximum
