@@ -44,6 +44,7 @@ You can download the Agda standard libraries from [here](http://wiki.portal.chal
 
 This is how to teach Agda see the standard libraries using the following commands in Emacs:
 
+1.  `M-x load-library` \<return\> `agda2-mode` \<return\>  
 1.  `M-x customize-group` \<return\> `agda2` \<return\>  
    (`M` stands for Meta which is labelled Alt on most computers)
 1.  Search for: `Agda2 Include dirs`
