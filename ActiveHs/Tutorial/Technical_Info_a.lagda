@@ -17,7 +17,7 @@ If you have Ubuntu / Debian / NixOS / some other decent Linux distro or FreeBSD,
 
 After installation show Emacs where to find agda-mode by the following command:
 
-`agda-mode install`
+`agda-mode setup`
 
 Windows
 -----------
