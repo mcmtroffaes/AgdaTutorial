@@ -32,8 +32,9 @@ Windows
     1. cmd: `cabal install agda`
     1. `agda-mode setup`  
        If that fails, you have two opportunities:
-        1. put `(load-file (shell-command-to-string "agda-mode locate"))` into your .emacs file
-        1. after starting emacs, type `(load-file (shell-command-to-string "agda-mode locate"))` into the *scratch* buffer, select it with the mouse and type `M-x eval-region`
+        1. put `(load-file (let ((coding-system-for-read ‘utf-8)) (shell-command-to-string “agda-mode locate”)))` into your `.emacs` file
+        1. after starting emacs, type `(load-file (let ((coding-system-for-read ‘utf-8)) (shell-command-to-string “agda-mode locate”)))` into the *scratch* buffer, select it with the mouse and type `M-x eval-region`
+
 1. If you neither have administrator access nor Haskell Platform installed: get administrator access!
 
 
