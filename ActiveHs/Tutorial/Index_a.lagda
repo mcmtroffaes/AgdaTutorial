@@ -23,13 +23,6 @@ Algebraic Data Structures
 Coinduction
 [Logic](Logic_a.xml)
 
-\begin{code}
-a : Set1
-a = Set --
-\end{code}
-
-
-
 | talk about agda termination check, ack function,
 |   http://wiki.portal.chalmers.se/agda/pmwiki.php?n=ReferenceManual.TerminationChecker
 | lásd még proba.agda
