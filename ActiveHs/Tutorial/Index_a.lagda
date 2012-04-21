@@ -2,8 +2,6 @@
 
 \begin{code}
 module Index_a where
-
-a = Set --
 \end{code}
 
 
@@ -24,6 +22,11 @@ Algebraic Data Structures
 
 Coinduction
 [Logic](Logic_a.xml)
+
+\begin{code}
+a : Set1
+a = Set --
+\end{code}
 
 
 
