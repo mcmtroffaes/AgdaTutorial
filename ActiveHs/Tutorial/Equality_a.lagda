@@ -19,8 +19,8 @@ open import Function using (_$_; _∘_)
 \end{code}
 
 
-Equality on ℕ
-=============
+Equality on `ℕ`
+===============
 
 \begin{code}
 data _≡₁_ : ℕ → ℕ → Set where
@@ -104,7 +104,7 @@ General Equality: `_≡_`
 ================
 
 \begin{code}
-data  _≡_ {A : Set} (x : A) : → A → Set  where
+data  _≡_ {A : Set} (x : A) : A → Set  where
   refl : x ≡ x
 
 infix 4 _≡_
