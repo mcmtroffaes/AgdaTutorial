@@ -3,7 +3,7 @@
 % 2011. 05. 03.
 
 \begin{code}
-module DataSets_a where
+module Bool_a where
 \end{code}
 
 
@@ -27,11 +27,12 @@ data Bool : Set where
  * and there is nothing else in `Bool`
 
 It is because of the last point that the syntax of the definition doesn't look like this:
-\begin{code}
+
+~~~~~~~~~~~~~~~~~
 Bool  ∈ Set
 true  ∈ Bool
 false ∈ Bool
-\end{code}
+~~~~~~~~~~~~~~~~~
 
 --------------------
 
