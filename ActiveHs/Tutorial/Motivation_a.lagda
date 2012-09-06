@@ -92,4 +92,4 @@ Pressing key 'a' on the pages switch between slide and normal mode.
 Navigation is possible with left and right arrows.  
 In slide mode the remarks are not visible!
 
-The developers are Péter Diviánszky and Ambrus Kaposi. Any comment is very much appreciated, please send them to [Ambrus](http://akaposi.web.elte.hu).
+The developers are Péter Diviánszky and Ambrus Kaposi. Any comment is very much appreciated, please send them to [Péter](mailto:divipp@gmail.com).
