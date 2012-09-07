@@ -41,8 +41,7 @@ false ∈ Bool
 -   `:` is pronounced "is a" or "elem of", it has the same rule as '∈' in set theory.
 -   Indentation matters!
 -   Spaces are needed!
-
-| TODO: We call `true` and `false` _constructors_ of _data type_ `Bool` (and at the same time `true` and `false` are elements of set `Bool`)
+-   We call `true` and `false` _constructors_ of _data type_ `Bool` (and at the same time `true` and `false` are elements of set `Bool`)
 
 
 `not`, `_∧_`: Boolean Functions
