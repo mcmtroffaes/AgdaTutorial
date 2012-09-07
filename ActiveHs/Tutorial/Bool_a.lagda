@@ -82,16 +82,18 @@ Exercise: `_∨_`
 A) Define logical OR:
 
 \begin{code}
+infixr 5 _∨_
+
 _∨_   : Bool → Bool → Bool
 true  ∨ _ = true --
 false ∨ x = x --
-
-infixr 5 _∨_
 \end{code}
 
 B) Define logical OR with one alternative, with the help of `not` and `_∧_`!
 
 \begin{code}
+infixr 5 _∨₁_ --
+
 _∨₁_   : Bool → Bool → Bool --
 x ∨₁ y = not (not x ∧ not y) --
 \end{code}
@@ -118,3 +120,4 @@ If you have multiple elements of the same set you can define these in one line:
 data name : Set where
   elem1 elem2 elem3 : name
 \end{code}
+
