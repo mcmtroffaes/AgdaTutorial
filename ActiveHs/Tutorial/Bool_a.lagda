@@ -41,7 +41,8 @@ false ∈ Bool
 -   `:` is pronounced "is a" or "elem of", it has the same rule as '∈' in set theory.
 -   Indentation matters!
 -   Spaces are needed!
-| We call `true` and `false` _constructors_ of _data type_ `Bool` (and at the same time `true` and `false` are elements of set `Bool`)
+
+| TODO: We call `true` and `false` _constructors_ of _data type_ `Bool` (and at the same time `true` and `false` are elements of set `Bool`)
 
 
 `not`, `_∧_`: Boolean Functions
@@ -55,7 +56,7 @@ not true  = false
 not false = true
 \end{code}
 
-This is a function that has `Bool` as domain and `Bool` as range. We can pattern match (do a case distinction) on the elements that appear in set `Bool` namely `true` and `false` to define how the function works.
+This is a function that has `Bool` as domain and `Bool` as range. We can pattern match on the elements that appear in set `Bool` namely `true` and `false` to define how the function works.
 
 Logical AND:
 
@@ -80,14 +81,20 @@ Exercise: `_∨_`
 
 A) Define logical OR:
 
-~~~~~~ {.haskell}
+\begin{code}
 _∨_   : Bool → Bool → Bool
+true  ∨ _ = true --
+false ∨ x = x --
 
 infixr 5 _∨_
-~~~~~~
+\end{code}
 
 B) Define logical OR with one alternative, with the help of `not` and `_∧_`!
 
+\begin{code}
+_∨₁_   : Bool → Bool → Bool --
+x ∨₁ y = not (not x ∧ not y) --
+\end{code}
 
 Exercise
 =========
@@ -108,6 +115,6 @@ Define the functions `turnBack` and `turnRight` with the help of `turnLeft`! (By
 
 If you have multiple elements of the same set you can define these in one line:
 \begin{code}
-data name : set where
+data name : Set where
   elem1 elem2 elem3 : name
 \end{code}
