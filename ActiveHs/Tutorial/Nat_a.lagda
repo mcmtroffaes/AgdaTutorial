@@ -6,6 +6,14 @@
 module Nat_a where
 \end{code}
 
+Import List
+===========
+
+\begin{code}
+open import Data.Bool using (Bool; true; false)
+\end{code}
+
+This opens and imports `Data.Bool` from the standard library. Without `open` we could only refer to the functions imported with qualified name such as `Data.Bool.bool`.
 
 Definition of `ℕ`
 ==============
@@ -47,25 +55,83 @@ infixl 6 _+_
 \end{code}
 
 
-
 Exercises: `pred`, `_*_`, `_⊔_`, `_⊓_` and `⌊_/2⌋`
 =========
 
 Define the following functions:
 
-~~~~~~~ {.haskell}
+\begin{code}
 pred  : ℕ → ℕ      -- predecessor (pred 0 = 0)
-_∸_   : ℕ → ℕ → ℕ  -- subtraction
-_*_   : ℕ → ℕ → ℕ  -- multiplication
-_⊔_   : ℕ → ℕ → ℕ  -- maximum
-_⊓_   : ℕ → ℕ → ℕ  -- minimum
-⌊_/2⌋ : ℕ → ℕ      -- half (⌊ 1 /2⌋ = 0)
-odd   : ℕ → Bool   -- is odd
-even  : ℕ → Bool   -- is even
-_≡?_  : ℕ → ℕ → Bool  -- is equal
-_≤?_  : ℕ → ℕ → Bool  -- is less than or equal
-~~~~~~~
+pred zero    = zero --
+pred (suc n) = n --
+\end{code}
 
+\begin{code}
+infixl 6 _∸_
+_∸_   : ℕ → ℕ → ℕ  -- subtraction
+zero  ∸ _     = zero --
+suc n ∸ zero  = suc n --
+suc n ∸ suc m = n ∸ m --
+\end{code}
+
+\begin{code}
+infixl 7 _*_
+_*_   : ℕ → ℕ → ℕ  -- multiplication
+zero  * _ = zero --
+suc n * b = b + n * b --
+\end{code}
+
+\begin{code}
+infixl 6 _⊔_
+_⊔_   : ℕ → ℕ → ℕ  -- maximum
+zero  ⊔ b     = b --
+a     ⊔ zero  = a --
+suc a ⊔ suc b = suc (a ⊔ b) --
+\end{code}
+
+\begin{code}
+infixl 7 _⊓_
+_⊓_   : ℕ → ℕ → ℕ  -- minimum
+zero  ⊓ _     = zero --
+_     ⊓ zero  = zero --
+suc a ⊓ suc b = suc (a ⊓ b) --
+\end{code}
+
+\begin{code}
+⌊_/2⌋ : ℕ → ℕ      -- half (⌊ 1 /2⌋ = 0)
+⌊ zero /2⌋        = zero --
+⌊ suc zero /2⌋    = zero --
+⌊ suc (suc n) /2⌋ = suc ⌊ n /2⌋ --
+\end{code}
+
+\begin{code}
+odd   : ℕ → Bool   -- is odd
+odd zero          = false --
+odd (suc zero)    = true --
+odd (suc (suc n)) = odd n --
+\end{code}
+
+\begin{code}
+even  : ℕ → Bool   -- is even
+even zero          = true --
+even (suc zero)    = false --
+even (suc (suc n)) = even n --
+\end{code}
+
+\begin{code}
+_≡?_  : ℕ → ℕ → Bool  -- is equal
+zero  ≡? zero  = true --
+zero  ≡? suc _ = false --
+suc _ ≡? zero  = false --
+suc n ≡? suc m = n ≡? m --
+\end{code}
+
+\begin{code}
+_≤?_  : ℕ → ℕ → Bool  -- is less than or equal
+zero  ≤? _     = true --
+suc _ ≤? zero  = false --
+suc n ≤? suc m = n ≤? m --
+\end{code}
 
 Alternative Definition of `ℕ`
 ==============
@@ -91,12 +157,13 @@ data ℕ₂ : Set where
 
 \begin{code}
 from : ℕ₂ → ℕ  -- hint: use _*_
+from zero              = zero --
+from (id one)          = suc zero --
+from (id (double n))   = 2 * from (id n) --
+from (id (double+1 n)) = suc (2 * from (id n)) --
 \end{code}
 
-We will see how to define the conversion into the other direction later.
-
-| Now all other operations on ℕ₂ can be defined via conversion to
-| ℕ, but try to give faster definitions!
+We will see how to define the conversion to the other direction later.
 
 *Question*: why didn't we use one `data` definition with 4 constructors `zero`, `one`, `double`, `double+1`?
 

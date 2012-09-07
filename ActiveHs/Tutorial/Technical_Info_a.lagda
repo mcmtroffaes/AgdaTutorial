@@ -1,7 +1,7 @@
 % Technical Information
 
 \begin{code}
-module Technical_Info where
+module Technical_Info_a where
 \end{code}
 
 
@@ -25,6 +25,7 @@ Windows
 1. If you don't have Haskell platform and you have administrator access to the computer, try the [all-in-one Windows installer](http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.Windows).
 1. If you already have Haskell platform installed (and maybe don't have adminsitrator access), you need to go through the following steps:
 
+    1. Put GHC into `%PATH%` (cmd: `set PATH=%PATH%;"C:\Program Files\Haskell Platform\2011.2.0.1\bin";`)
     1. install [Emacs](http://www.gnu.org/software/emacs/)
     1. put Emacs into `%PATH%` (cmd: `set PATH=%PATH%;"c:\program files (x86)\emacs-23.3\bin";`)
     1. put the cabal/bin folder into `%PATH%` (cmd: `set PATH=%PATH%;%APPDATA%\cabal\bin;`)
@@ -32,7 +33,7 @@ Windows
     1. cmd: `cabal install agda`
     1. `agda-mode setup`  
        If that fails, you have two opportunities:
-        1. put `(load-file (let ((coding-system-for-read ‘utf-8)) (shell-command-to-string “agda-mode locate”)))` into your `.emacs` file
+        1. put `(load-file (let ((coding-system-for-read ‘utf-8)) (shell-command-to-string “agda-mode locate”)))` into your `.emacs` file (path is usually `Users/username/AppData/Roaming/.emacs`)
         1. after starting emacs, type `(load-file (let ((coding-system-for-read ‘utf-8)) (shell-command-to-string “agda-mode locate”)))` into the *scratch* buffer, select it with the mouse and type `M-x eval-region`
 
 1. If you neither have administrator access nor Haskell Platform installed: get administrator access!
@@ -79,7 +80,7 @@ C-`_`             undo
 C-`g`             cancel
 C-`w`             cut
 C-`y`             yank (paste)
-C-`u` C-`x` `=`   name of symbol under cursor
+C-`u` C-`x` `=`   name of symbol under cursor (available also from the Agda drop-down menu)
 ----------------- -----------------------------------------
 
 --------------

@@ -2,8 +2,14 @@
 % Ambrus Kaposi
 % 2011. 09. 15.
 
+
+
+Import List
+===========
+
 \begin{code}
 module List_a where
+open import Data.Nat
 \end{code}
 
 
@@ -50,9 +56,7 @@ infixr 5 _++_
 We want `_++_` to work with `List`s parametrised by arbitrary `Set`s. We call this parameter a polymorphic parameter and `_++_` a polymorphic function.
 Polymorphic parameters have to be named explicitly in beginning of the declaration of the function by putting them into curly braces:
 
-\begin{code}
-f : {A B C : Set} → ...
-\end{code}
+    f : {A B C : Set} → ...
 
 
 
@@ -62,22 +66,43 @@ Exercises: `head` and `tail` on Lists
 Try to define the following functions:
 
 \begin{code}
-head : {A : Set} → List A → A
-tail : {A : Set} → List A → List A
+head₀ : {A : Set} → List A → A
+head₀ []       = {!!} --
+head₀ (x ∷ xs) = x --
+\end{code}
+
+\begin{code}
+tail₀ : {A : Set} → List A → List A
+tail₀ []       = [] --
+tail₀ (x ∷ xs) = xs --
 \end{code}
 
 Define the following functions:
 
 \begin{code}
-head : List ℕ → ℕ
-tail : List ℕ → List ℕ
+head₁ : List ℕ → ℕ
+head₁ []       = 0 --
+head₁ (x ∷ xs) = x --
+\end{code}
+
+\begin{code}
+tail₁ : List ℕ → List ℕ
+tail₁ []       = [] --
+tail₁ (x ∷ xs) = xs --
 \end{code}
 
 Define the following functions (`head` should return `[]` for empty lists and a singleton list for non-empty lists):
 
 \begin{code}
-head : {A : Set} → List A → List A
-tail : {A : Set} → List A → List (List A)
+head₂ : {A : Set} → List A → List A
+head₂ []       = [] --
+head₂ (x ∷ xs) = x ∷ [] --
+\end{code}
+
+\begin{code}
+tail₂ : {A : Set} → List A → List (List A)
+tail₂ []       = [] --
+tail₂ (x ∷ xs) = xs ∷ [] --
 \end{code}
 
 Define a `Maybe` set and `head` and `tail` functions for the polymorphic `List` type with the help of `Maybe`.
@@ -90,13 +115,20 @@ Define the following functions on lists:
 
 \begin{code}
 map  : {A B : Set} → (A → B)      → List A → List B -- regular map
+map f []       = [] --
+map f (x ∷ xs) = f x ∷ map f xs --
+
 maps : {A B : Set} → List (A → B) → List A → List B -- pairwise map
+maps []       _        = [] --
+maps _        []       = [] --
+maps (f ∷ fs) (x ∷ xs) = f x ∷ (maps fs xs) --
 \end{code}
 
 Define the singleton list function:
 
 \begin{code}
 [_] : {A : Set} → A → List A
+[ a ] = a ∷ [] --
 \end{code}
 
 
@@ -122,8 +154,8 @@ We gave a name (`A`) to the first parameter which has to be in `Set`. We can ref
 Usage:
 
 \begin{code}
-aNumber₀ = id ℕ (suc zero)
-aNumber₁ = id _ (suc zero)
+aNumber₀ = id₀ ℕ (suc zero)
+aNumber₁ = id₀ _ (suc zero)
 \end{code}
 
 In the second case we let Agda guess the value of the first parameter.

@@ -47,4 +47,6 @@ Define the eliminator function for disjoint union:
 
 \begin{code}
 [_,_] : {A B C : Set} → (A → C) → (B → C) → (A ⊎ B → C)
+[_,_] f g (inj₁ a) = f a --
+[_,_] f g (inj₂ b) = g b --
 \end{code}

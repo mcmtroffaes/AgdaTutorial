@@ -2,8 +2,16 @@
 % Ambrus Kaposi
 % 2011. 09. 15.
 
+
+Import List
+===========
+
 \begin{code}
 module Product_a where
+
+open import Data.Bool
+open import Data.List
+open import Data.Nat
 \end{code}
 
 
@@ -55,7 +63,9 @@ Define the following functions:
 
 \begin{code}
 proj₁ : {A B : Set} → A × B → A
+proj₁ (a , _) = a --
 proj₂ : {A B : Set} → A × B → B
+proj₂ (_ , b) = b --
 \end{code}
 
 
@@ -66,7 +76,11 @@ Define the following functions:
 
 \begin{code}
 fromList : List ⊤ → ℕ
+fromList []        = zero --
+fromList (tt ∷ xs) = suc (fromList xs) --
 toList   : ℕ → List ⊤
+toList zero    = [] --
+toList (suc n) = tt ∷ toList n --
 \end{code}
 
-Show on a sheet of paper that the `fromList` function is a bijection and it preserves the `_+_` and `_++_` operations (that is, `∀ a, b ∈ List ⊤ . fromList (a ++ b) = fromList a + fromList b`).
+Show on a sheet of paper with equational reasoning that the `fromList` function is a bijection and it preserves the `_+_` and `_++_` operations (that is, `∀ a, b ∈ List ⊤ . fromList (a ++ b) = fromList a + fromList b`).
