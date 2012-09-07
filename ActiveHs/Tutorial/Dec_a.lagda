@@ -64,12 +64,6 @@ suc n ≟ suc m with n ≟ m --
 suc n ≟ suc m | yes p = yes $ cong suc p --
 suc n ≟ suc m | no  p = no (help-≟ p) --
 
-{-
-data _≤_ : Rel ℕ Level.zero where
-  z≤n : ∀ {n}                 → zero  ≤ n
-  s≤s : ∀ {m n} (m≤n : m ≤ n) → suc m ≤ suc n
--}
-
 help-≤? : {n m : ℕ} → (n ≤ m → ⊥) → suc n ≤ suc m → ⊥ --
 help-≤? p (s≤s q) = p q --
 

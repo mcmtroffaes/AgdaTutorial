@@ -20,10 +20,12 @@ Views
 Algebraic Data Structures
 :   Group | Ring | ...
 
-Coinduction | [Logic (Haskell)](Logic_Haskell_a.xml) | [Logic (Agda)](Logic_Agda_a.xml) | [Example](Example_a.xml)
+Coinduction | [Logic (Haskell)](Logic_Haskell_a.xml) | [Logic (Agda)](Logic_Agda_a.xml)
 
 | TODO
 | ----
+|
+| Example_a.lagda
 | 
 | talk about agda termination check, ack function,
 |   http://wiki.portal.chalmers.se/agda/pmwiki.php?n=ReferenceManual.TerminationChecker
