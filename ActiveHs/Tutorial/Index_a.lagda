@@ -20,28 +20,16 @@ Views
 Algebraic Data Structures
 :   Group | Ring | ...
 
-Coinduction
-[Logic](Logic_a.xml)
+Coinduction | [Logic (Haskell)](Logic_Haskell_a.xml) | [Logic (Agda)](Logic_Agda_a.xml) | [Example](Example_a.xml)
 
+| TODO
+| ----
+| 
 | talk about agda termination check, ack function,
 |   http://wiki.portal.chalmers.se/agda/pmwiki.php?n=ReferenceManual.TerminationChecker
-| lásd még proba.agda
 | szép példa az osztás Andreas Abel levelében (irrelevant params)
-
+| 
 | recordok nagyon jól jönnének _≡_-nél, megmutatni, hogy milyen szép struktúrába lehet rendezni a dolgokat
-
-| beadandók: pl. egész számokat szépen kidolgozni (Agda stdlib nélkül) bebiz. gyűrű
-|                modulo n maradékosztályok
-|                ORSI modellezése
-|                monad law-kat betartó monad implementáció
-|                type checker for lambda calculus
-|                power of pi-ben levő adatbázisos/másik példa kidolgozása Agdában
-|                konstruktiv vs indirekt bizonyitas peldat kidolgozni, pl. sqrt(2)^sqrt(2) irrac.
-|                JS backenddel valamit
-|                parser, alge3brai kif.
-|                racionális számok, valós számok valamely alakja
-|                polinomok
-|
 | data Negyzetgyok : ℕ -> ℕ -> Set where
 |   c : {n : ℕ} -> n -> Negyzetgyok n (n * n)
 | primitív rekurzió?
@@ -53,19 +41,25 @@ Coinduction
 | Peti txt-jét beegyesíteni
 | így kell lefordítani Agda programokat: "If you set the include path manually, then the current directory is not"
 | SortedList: http://wiki.portal.chalmers.se/agda/pmwiki.php?n=ReferenceManual.Irrelevance
-
-| dependent type-ok előtt egy újabb motiváció ezekről, logikai bevezetővel kb. ami Motivation2-ben van
-
 | binaris szamokat unarissa konvertalni stb
 | ffi konyvtarban ki kell adni egy cabal installt az FFI mukodesehez
 | motivationben "Program Analysis"-t megemliteni (wikipedian info)
 | coinduction innét: http://www.cse.chalmers.se/~nad/publications/danielsson-altenkirch-subtyping.html
-
-| leírásba: ghc-t path-ba (C:\Program Files\Haskell Platform\2011.2.0.1\bin) + .emacs-ot lehet, hogy nem olvassa be az emacs, ezt kideríteni + haskell-mode-ot telepíteni, fileokat site-lisp-be (C:\Program Files\Emacs\site-lisp)
+|         meg innét: http://www.cs.nott.ac.uk/~txa/g53cfr/
 | russel-paradoxont posztulálni, belátni bármit
-| windowsba fontok
-| coinduction material: http://www.cs.nott.ac.uk/~txa/g53cfr/
-| .emacs file helye: Users/usernév/AppData/Roaming/.emacs
-| normalize és deduce type bill.kombinációja
-|
 
+| BEADANDÓ ÖTLETEK
+| ----------------
+| 
+| egész számokat szépen kidolgozni (Agda stdlib nélkül) bebiz. gyűrű
+| modulo n maradékosztályok
+| ORSI modellezése
+| monad law-kat betartó monad implementáció
+| type checker for lambda calculus
+| power of pi-ben levő adatbázisos/másik példa kidolgozása Agdában
+| konstruktiv vs indirekt bizonyitas peldat kidolgozni, pl. sqrt(2)^sqrt(2) irrac.
+| JS backenddel valamit
+| parser, alge3brai kif.
+| racionális számok, valós számok valamely alakja
+| polinomok, gyöktényezős alak stb., többhatározatlanú polinomok
+| bebiz., hogy x és diszj.unió gyűrűt alkotnak
