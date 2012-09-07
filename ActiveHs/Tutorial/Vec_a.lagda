@@ -50,6 +50,8 @@ _++_ : ∀ {n m}{A : Set} → Vec A n → Vec A m → Vec A (n + m)
 
 *Question:* how does Agda know that the indices of the types should be simply added?
 
+| C-nel (no check) biztonsagosabb, Java-nal (runtime check) gyorsabb
+
 
 Exercises
 ==========
@@ -58,9 +60,9 @@ Define head and tail functions for `Vec`s! Hint: they should only work for vecto
 
 \begin{code}
 head : ∀ {n}{A : Set} → Vec A (suc n) → A
-| head (a ∷ as) = a
+head (a ∷ as) = a --
 tail : ∀ {n}{A : Set} → Vec A (suc n) → Vec A n
-| tail (a ∷ as) = as
+tail (a ∷ as) = as --
 \end{code}
 
 The simple map is safer than the map for `List`s because we know that that the size of the vector remains the same after mapping a function over it:
@@ -75,42 +77,42 @@ Define elementwise map:
 
 \begin{code}
 maps : ∀ {n}{A B : Set} → Vec (A → B) n → Vec A n → Vec B n
-| maps [] [] = []
-| maps (f ∷ fs) (a ∷ as) = f a ∷ maps fs as
+maps [] [] = [] --
+maps (f ∷ fs) (a ∷ as) = f a ∷ maps fs as --
 \end{code}
 
 Define the safe lookup function:
 
 \begin{code}
 _!_[_] : ∀ {n}{A : Set} → Vec A n → (m : ℕ) → m < n → A
-| []       ! zero  [ ()      ]
-| []       ! suc _ [ ()      ]
-| (a ∷ as) ! zero  [ _       ] = a
-| (a ∷ as) ! suc m [ s≤s m≤n ] = as ! m [ m≤n ]
+[]       ! zero  [ ()      ] --
+[]       ! suc _ [ ()      ] --
+(a ∷ as) ! zero  [ _       ] = a --
+(a ∷ as) ! suc m [ s≤s m≤n ] = as ! m [ m≤n ] --
 \end{code}
 
 Define the following functions:
 
 \begin{code}
 replicate : ∀ {n}{A : Set} → A → Vec A n
-| replicate {zero}  a = []
-| replicate {suc n} a = a ∷ replicate a
+replicate {zero}  a = [] --
+replicate {suc n} a = a ∷ replicate a --
 
 zip : ∀ {n}{A B : Set} → Vec A n → Vec B n → Vec (A × B) n
-| zip []       []       = []
-| zip (a ∷ as) (b ∷ bs) = (a , b) ∷ zip as bs
+zip []       []       = [] --
+zip (a ∷ as) (b ∷ bs) = (a , b) ∷ zip as bs --
 
 foldl₀ : ∀ {n}{A B : Set} → (B → A → B) → B → Vec A n → B
-| foldl₀ _⊕_ b []       = b
-| foldl₀ _⊕_ b (a ∷ as) = foldl₀ _⊕_ (b ⊕ a) as
+foldl₀ _⊕_ b []       = b --
+foldl₀ _⊕_ b (a ∷ as) = foldl₀ _⊕_ (b ⊕ a) as --
 
 foldl : ∀ {A : Set} (B : ℕ → Set) {m} →
         (∀ {n} → B n → A → B (suc n)) →
         B zero → Vec A m → B m
-| foldl B _⊕_ b []       = b
-| foldl B _⊕_ b (a ∷ as) = foldl (λ n → B (suc n)) _⊕_ (b ⊕ a) as
+foldl B _⊕_ b []       = b --
+foldl B _⊕_ b (a ∷ as) = foldl (λ n → B (suc n)) _⊕_ (b ⊕ a) as --
 
 foldr₀ : ∀ {n}{A B : Set} → (A → B → B)→ B → Vec A n → B
-| foldr₀ _⊕_ b []       = b
-| foldr₀ _⊕_ b (a ∷ as) = a ⊕ foldr₀ _⊕_ b as
+foldr₀ _⊕_ b []       = b --
+foldr₀ _⊕_ b (a ∷ as) = a ⊕ foldr₀ _⊕_ b as --
 \end{code}

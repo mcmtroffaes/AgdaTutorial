@@ -15,9 +15,9 @@ open import Data.Nat   using (ℕ; zero; suc; pred; _+_; _≤_; s≤s; z≤n; _<
 open import Data.Bool  using (Bool; true; false; if_then_else_; not)
 open import Data.Unit  using (⊤; tt)
 open import Data.Empty using (⊥)
-open import Function   using (const)
+open import Function   using (const; _$_)
 open import Relation.Nullary using (¬_)
-open import Relation.Binary.PropositionalEquality using (_≡_; refl; subst)
+open import Relation.Binary.PropositionalEquality using (_≡_; refl; subst; cong)
 \end{code}
 
 
@@ -36,15 +36,15 @@ This is a view over decidable properties: `Dec A` has an element either if `A` i
 
 \begin{code}
 1<2 : Dec (1 < 2)
-| 1<2 = yes (s≤s (s≤s z≤n))
+1<2 = yes (s≤s (s≤s z≤n)) --
 1≡1 : Dec (1 ≡ 1)
-| 1≡1 = yes refl
+1≡1 = yes refl --
 1≡2 : Dec (1 ≡ 2)
-| 1≡2 = no (λ ())
+1≡2 = no (λ ()) --
 1>2 : Dec (1 > 2)
-| 1>2 = no f where
-|   f : ¬ (1 > 2)
-|   f (s≤s ())
+1>2 = no f where --
+  f : ¬ (1 > 2) --
+  f (s≤s ()) --
 \end{code}
 
 The view function has to be defined independently for each `A`.
@@ -52,11 +52,33 @@ The view function has to be defined independently for each `A`.
 *Exercise:* define the following view functions:
 
 \begin{code}
+
+help-≟ : {n m : ℕ} → (n ≡ m → ⊥) → suc n ≡ suc m → ⊥ --
+help-≟ p refl = p refl --
+
 _≟_ : (a b : ℕ) → Dec (a ≡ b)
-| _≟_ = {!!}
+zero  ≟ zero  = yes refl --
+zero  ≟ suc n = no (λ ()) --
+suc n ≟ zero  = no (λ ()) --
+suc n ≟ suc m with n ≟ m --
+suc n ≟ suc m | yes p = yes $ cong suc p --
+suc n ≟ suc m | no  p = no (help-≟ p) --
+
+{-
+data _≤_ : Rel ℕ Level.zero where
+  z≤n : ∀ {n}                 → zero  ≤ n
+  s≤s : ∀ {m n} (m≤n : m ≤ n) → suc m ≤ suc n
+-}
+
+help-≤? : {n m : ℕ} → (n ≤ m → ⊥) → suc n ≤ suc m → ⊥ --
+help-≤? p (s≤s q) = p q --
 
 _≤?_ : (a b : ℕ) → Dec (a ≤ b)
-| _≤?_ = {!!}
+zero  ≤? _     = yes z≤n --
+suc _ ≤? zero  = no (λ ()) --
+suc n ≤? suc m with n ≤? m --
+suc n ≤? suc m | yes p = yes (s≤s p) --
+suc n ≤? suc m | no  p = no $ help-≤? p --
 \end{code}
 
 \begin{code}

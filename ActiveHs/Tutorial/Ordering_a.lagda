@@ -43,14 +43,8 @@ Compare this with the Haskell datatype `Ordering`:
 
     data Ordering = LT | EQ | GT
 
-| TODO: divip diáiról info
-
 Example
 =======
-
-| TODO
-
-Remember our motivating example from `≤`?
 
 \begin{code}
 _≤?_ : ℕ → ℕ → Bool
@@ -77,5 +71,3 @@ plus' x y with compare x zero
 plus' .0        y | equal   .0    = y
 plus' .(suc px) y | greater .0 px = plus' px y
 \end{code}
-
-

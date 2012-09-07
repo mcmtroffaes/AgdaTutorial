@@ -71,8 +71,8 @@ Fin' : ℕ → Set
 Fin' n = Σ ℕ (λ x → x < n)
 
 toFin : ∀ {n} → Fin' n → Fin n
-| toFin (zero  , s≤s m≤n) = zero
-| toFin (suc n , s≤s m≤n) = suc (toFin (n , m≤n))
+toFin (zero  , s≤s m≤n) = zero --
+toFin (suc n , s≤s m≤n) = suc (toFin (n , m≤n)) --
 \end{code}
 
 Sigma is very handy when a function needs to return a value and a proof that the value has some property. Example:
@@ -127,30 +127,7 @@ from-injection {tt ∷ xs} {tt ∷ ys} p = cong (_∷_ tt) $ from-injection {xs}
 
 \begin{code}
 from-surjection : ∀ (n : ℕ) → Σ (List ⊤) (_≡_ n ∘ fromList)
-| from-surjection zero = [] , refl
-| from-surjection (suc n) with from-surjection n
-| from-surjection (suc n) | l , p = tt ∷ l , cong suc p
+from-surjection zero = [] , refl --
+from-surjection (suc n) with from-surjection n --
+from-surjection (suc n) | l , p = tt ∷ l , cong suc p --
 \end{code}
-
-| Zero-order logic
-| ================
-| 
-| Haskell's type system incorporates zero-order (contructive) logic.
-| 
-| Examples.
-| 
-| Connection to first order logic
-| =================================
-| 
-| Agda: first order logic.
-| 
-| | ha már ez megvan, minden matematikai állítást ki tudunk fejezni, írjuk át őket szépen Agdába: és, vagy, ∃, ∀, ezek kombinálva stb.
-| 
-| \begin{code}
-| p6 : {A : Set} → ⊥ → ⊥ × A
-| p6 ()
-| 
-| p6' : {A : Set} → ⊥ × A → ⊥
-| p6' (bot , a) = bot
-| 
-| \end{code}

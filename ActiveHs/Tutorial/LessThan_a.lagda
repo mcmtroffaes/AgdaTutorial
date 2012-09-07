@@ -2,47 +2,18 @@
 % Péter Diviánszky and Ambrus Kaposi
 % 2011. 05. 03.
 
-\begin{code}
-module LessThan_a where
-\end{code}
-
-
-Motivation
-===========
-
-Let's define the following function:
-
-`_≤?_ : ℕ → ℕ → Bool`
-
-We call this a *question*. `n ≤ m` is `false` or `true` depending on the value of `n` and `m`. Booleans do not carry information about *what* and *why*.
-
-Example of losing information when using a boolean:
-
-\begin{code}
-plus : ℕ → ℕ → ℕ
-plus x y = if x ≤? zero then y else suc (plus (pred x) y)
-\end{code}
-
-| plus x y = case x of
-|              zero  -> y
-|              suc n -> suc (plus x y)
-| 
-
-*********************
-
-More on "boolean blindness": [http://existentialtype.wordpress.com/2011/03/15/boolean-blindness](http://existentialtype.wordpress.com/2011/03/15/boolean-blindness)
-
 
 Imports
 ========
 
 \begin{code}
-module Ordering where
+module LessThan_a where
 
 open import Data.Nat using (ℕ; zero; suc; _+_)
 open import Data.Sum using (_⊎_; inj₁; inj₂; [_,_]′)
 open import Function using (flip; _$_; _∘_)
 \end{code}
+
 
 
 `_≤_`: Less-Or-Equal Predicate
@@ -94,8 +65,11 @@ Define the following convenience functions:
 
 \begin{code}
 _<_ : ℕ → ℕ → Set
+a < b = suc a ≤ b --
 _≥_ : ℕ → ℕ → Set
+_≥_ = flip _≤_ --
 _>_ : ℕ → ℕ → Set
+_>_ = flip _<_ --
 
 infix 4 _<_ _≥_ _>_
 \end{code}
@@ -110,31 +84,31 @@ Define the following functions (prove these properties):
 
 \begin{code}
 ≤-refl       : ∀ {n} → n ≤ n
-| ≤-refl {zero}  = z≤n zero
-| ≤-refl {suc n} = s≤s $ ≤-refl {n}
+≤-refl {zero}  = z≤n zero --
+≤-refl {suc n} = s≤s $ ≤-refl {n} --
 ≤-trans      : ∀ {m n o} → m ≤ n → n ≤ o → m ≤ o
-| ≤-trans (z≤n _)   n≤o       = z≤n _
-| ≤-trans (s≤s m≤n) (s≤s n≤o) = s≤s $ ≤-trans m≤n n≤o
+≤-trans (z≤n _)   n≤o       = z≤n _ --
+≤-trans (s≤s m≤n) (s≤s n≤o) = s≤s $ ≤-trans m≤n n≤o --
 -- antisym   : ∀ {m n} → m ≤ n → n ≤ m → m ≡ n
---   (only after we defined equality)
-total        : ∀ m n → m ≤ n ⊎ n ≤ m -- use [_,_]′
-| total zero    _       = inj₁ $ z≤n _
-| total _       zero    = inj₂ $ z≤n _
-| total (suc m) (suc n) 
-|    = [_,_]′
-|        (λ m≤n → inj₁ (s≤s m≤n)) 
-|        (λ n≤m → inj₂ (s≤s n≤m)) 
-|        (total m n)
+--   (we will only define this after we have defined equality)
+total        : ∀ m n → m ≤ n ⊎ n ≤ m -- hint: use [_,_]′
+total zero    _       = inj₁ $ z≤n _ --
+total _       zero    = inj₂ $ z≤n _ --
+total (suc m) (suc n)  --
+   = [_,_]′ --
+       (λ m≤n → inj₁ (s≤s m≤n)) --
+       (λ n≤m → inj₂ (s≤s n≤m)) --
+       (total m n) --
 \end{code}
 
 From the 4 above properties follows that `_≤_` is a total order on `ℕ`. (We can look at `_≤_` as a relation over `ℕ`.)
 
 \begin{code}
 ≤-pred  : ∀ {m n} → suc m ≤ suc n → m ≤ n
-| ≤-pred (s≤s m≤n) = m≤n
+≤-pred (s≤s m≤n) = m≤n --
 ≤-mono  : ∀ {m n k} → n ≤ m → k + n ≤ k + m
-| ≤-mono {k = zero}  n≤m = n≤m
-| ≤-mono {k = suc k} n≤m = s≤s $ ≤-mono {k = k} n≤m
+≤-mono {k = zero}  n≤m = n≤m --
+≤-mono {k = suc k} n≤m = s≤s $ ≤-mono {k = k} n≤m --
 
 \end{code}
 
@@ -173,12 +147,18 @@ Define the following functions:
 
 \begin{code}
 3≤5  : 3 ≤ 5
+3≤5 = s≤s (s≤s (s≤s (z≤n (suc (suc zero))))) --
 3≤′5 : 3 ≤′ 5
+3≤′5 = ≤′-step (≤′-step ≤′-refl) --
 3≤″5 : 3 ≤″ 5
+3≤″5 = diff (suc (suc (suc zero))) (suc (suc zero)) --
 
 4≤4  : 4 ≤ 4
+4≤4 = s≤s (s≤s (s≤s (s≤s (z≤n zero)))) --
 4≤′4 : 4 ≤′ 4
+4≤′4 = ≤′-refl --
 4≤″4 : 4 ≤″ 4
+4≤″4 = diff (suc (suc (suc (suc zero)))) zero --
 \end{code}
 
 
@@ -186,16 +166,16 @@ Define safe substraction:
 
 \begin{code}
 _∸_if_ : (a b : ℕ) → b ≤ a → ℕ
-| zero ∸ .0     if z≤n .0       = 0
-| suc a ∸ zero  if z≤n .(suc a) = suc a
-| suc a ∸ suc b if s≤s p        = a ∸ b if p
+zero ∸ .0     if z≤n .0       = 0 --
+suc a ∸ zero  if z≤n .(suc a) = suc a --
+suc a ∸ suc b if s≤s p        = a ∸ b if p --
 \end{code}
 
 Let's define it for the third version:
 
 \begin{code}
 _∸_if″_ : (a b : ℕ) → b ≤″ a → ℕ
-| .(j + b) ∸ b if″ diff .b j = j
+.(j + b) ∸ b if″ diff .b j = j --
 \end{code}
 
 
@@ -207,19 +187,19 @@ Define the following (helper and) conversion functions:
 
 \begin{code}
 ≤-step : ∀ {m n} → m ≤ n → m ≤ 1 + n
-| ≤-step (z≤n _)   = z≤n (suc _)
-| ≤-step (s≤s m≤n) = s≤s (≤-step m≤n)
+≤-step (z≤n _)   = z≤n (suc _) --
+≤-step (s≤s m≤n) = s≤s (≤-step m≤n) --
 ≤′⇒≤ : ∀ {a b} → a ≤′ b → a ≤ b
-| ≤′⇒≤ ≤′-refl        = ≤-refl
-| ≤′⇒≤ (≤′-step m≤′n) = ≤-step $ ≤′⇒≤ m≤′n
+≤′⇒≤ ≤′-refl        = ≤-refl --
+≤′⇒≤ (≤′-step m≤′n) = ≤-step $ ≤′⇒≤ m≤′n --
 
 z≤′n : ∀ {n} → zero ≤′ n
-| z≤′n {zero}  = ≤′-refl
-| z≤′n {suc n} = ≤′-step z≤′n
+z≤′n {zero}  = ≤′-refl --
+z≤′n {suc n} = ≤′-step z≤′n --
 s≤′s : ∀ {m n} → m ≤′ n → suc m ≤′ suc n
-| s≤′s ≤′-refl        = ≤′-refl
-| s≤′s (≤′-step m≤′n) = ≤′-step (s≤′s m≤′n)
+s≤′s ≤′-refl        = ≤′-refl --
+s≤′s (≤′-step m≤′n) = ≤′-step (s≤′s m≤′n) --
 ≤⇒≤′ : ∀ {a b} → a ≤ b → a ≤′ b
-| ≤⇒≤′ (z≤n _)   = z≤′n
-| ≤⇒≤′ (s≤s a≤b) = s≤′s $ ≤⇒≤′ a≤b
+≤⇒≤′ (z≤n _)   = z≤′n --
+≤⇒≤′ (s≤s a≤b) = s≤′s $ ≤⇒≤′ a≤b --
 \end{code}

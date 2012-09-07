@@ -20,7 +20,7 @@ open import Data.Sum  using (_⊎_; inj₁; inj₂)
 Parity View
 ===========
 
-Predicates were sets with one (if a proof existed) or zero (if no proof existed) element. Views are sets with exactly one element.
+Predicates are sets with one (if a proof existed) or zero (if no proof existed) element. Views are sets with exactly one element.
 
 \begin{code}
 data Parity : ℕ → Set where
@@ -61,10 +61,10 @@ data Odd' : ℕ → Set where
 
 \begin{code}
 parity' : (n : ℕ) → Even' n ⊎ Odd' n
-| parity' zero    = inj₁ (even 0)
-| parity' (suc n) with parity' n
-| parity' (suc .(k * 2))       | inj₁ (even k) = inj₂ (odd k)
-| parity' (suc .(suc (k * 2))) | inj₂ (odd  k) = inj₁ (even (suc k))
+parity' zero    = inj₁ (even 0) --
+parity' (suc n) with parity' n --
+parity' (suc .(k * 2))       | inj₁ (even k) = inj₂ (odd k) --
+parity' (suc .(suc (k * 2))) | inj₂ (odd  k) = inj₁ (even (suc k)) --
 \end{code}
 
 *Question:* what is the exact definition of the view that this view function gives? (Hint: use `Σ`.)
@@ -92,10 +92,10 @@ even+1 z      = o
 even+1 (ss n) = ss (even+1 n)
 
 parity2 : (n : ℕ) → Even n ⊎ Odd n
-| parity2 zero    = inj₁ z
-| parity2 (suc n) with parity2 n
-| parity2 (suc n) | inj₁ pe = inj₂ (even+1 pe)
-| parity2 (suc n) | inj₂ po = inj₁ (odd+1  po)
+parity2 zero    = inj₁ z --
+parity2 (suc n) with parity2 n --
+parity2 (suc n) | inj₁ pe = inj₂ (even+1 pe) --
+parity2 (suc n) | inj₂ po = inj₁ (odd+1  po) --
 \end{code}
 
 `parity2` gives a probably less useful proof on the parity of the number (because `Even` and `Odd` were originally not very useful).
@@ -104,11 +104,9 @@ Define division by 2 with the help of `Parity`:
 
 \begin{code}
 ⌊_/2⌋ : ℕ → ℕ      -- half (⌊ 1 /2⌋ = 0)
-| ⌊ n /2⌋ with parity n
-| ⌊ .(k * 2) /2⌋       | even k = k
-| ⌊ .(suc (k * 2)) /2⌋ | odd  k = k
+⌊ n /2⌋ with parity n --
+⌊ .(k * 2) /2⌋       | even k = k --
+⌊ .(suc (k * 2)) /2⌋ | odd  k = k --
 \end{code}
 
-Define residue classes of 4 as a view on natural numbers! Hint: use `Parity` when implementing the view function.
-
-| TODO
+Define congruence classes of 4 as a view on natural numbers! Hint: use `Parity` when implementing the view function.

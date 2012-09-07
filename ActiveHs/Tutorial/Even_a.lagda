@@ -32,11 +32,11 @@ data Odd : ℕ → Set where
 
 \begin{code}
 0even : Even 0
-| 0even = z
+0even = z --
 5odd : Odd 5
-| 5odd = ss (ss o)
+5odd = ss (ss o) --
 6even : Even 6
-| 6even = ss (ss (ss z))
+6even = ss (ss (ss z)) --
 \end{code}
 
 
@@ -48,18 +48,23 @@ Show these simple properties:
 
 \begin{code}
 odd+1    : {n : ℕ} → Odd  n → Even (suc n)
-| odd+1 o      = ss z
-| odd+1 (ss n) = ss (odd+1 n)
+odd+1 o      = ss z --
+odd+1 (ss n) = ss (odd+1 n) --
 even+1   : {n : ℕ} → Even n → Odd (suc n)
-| even+1 z      = o
-| even+1 (ss n) = ss (even+1 n)
+even+1 z      = o --
+even+1 (ss n) = ss (even+1 n) --
 odd+even : {n m : ℕ} → Odd  n → Even m → Odd (n + m)
-| odd+even o      m = even+1 m
-| odd+even (ss n) m = ss (odd+even n m)
+odd+even o      m = even+1 m --
+odd+even (ss n) m = ss (odd+even n m) --
 odd+odd  : {n m : ℕ} → Odd  n → Odd  m → Even (n + m)
-| odd+odd o      m = odd+1 m
-| odd+odd (ss n) m = ss (odd+odd n m)
+odd+odd o      m = odd+1 m --
+odd+odd (ss n) m = ss (odd+odd n m) --
 odd*even : {n m : ℕ} → Even n → Odd  m → Even (n * m)
-| odd*even z m = z
-| odd*even (ss n) m = odd+odd m (odd+even m (odd*even n m))
+odd*even z m = z --
+odd*even (ss n) m = odd+odd m (odd+even m (odd*even n m)) --
 \end{code}
+
+Exercise
+========
+
+Give a simpler definition of even and odd (with less constructors).

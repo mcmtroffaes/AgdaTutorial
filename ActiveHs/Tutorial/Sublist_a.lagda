@@ -39,9 +39,9 @@ You can type `⊆` as `\sub=`.
 
 \begin{code}
 e0 : 1 ∷ [] ⊆ 1 ∷ []
-|e0 = keep stop
+e0 = keep stop --
 e1 : 1 ∷ 2 ∷ [] ⊆ 1 ∷ 2 ∷ 3 ∷ []
-|e1 =  keep $ keep $ drop stop
+e1 =  keep $ keep $ drop stop --
 \end{code}
 
 
@@ -84,10 +84,10 @@ Prove that the result of filtering a list will be sublist of the original list:
 
 \begin{code}
 lem-filter : {A : Set} → (p : A -> Bool) → (xs : List A) → filter p xs ⊆ xs
-| lem-filter p [] = stop
-| lem-filter p (x ∷ xs) with p x
-| ... | true  = keep (lem-filter p xs)
-| ... | false = drop (lem-filter p xs)
+lem-filter p [] = stop --
+lem-filter p (x ∷ xs) with p x --
+... | true  = keep (lem-filter p xs) --
+... | false = drop (lem-filter p xs) --
 \end{code}
 
 
@@ -99,21 +99,21 @@ lem-filter : {A : Set} → (p : A -> Bool) → (xs : List A) → filter p xs ⊆
 
 \begin{code}
 ⊆-refl  : ∀ {A}(xs : List A) → xs ⊆ xs
-| ⊆-refl []       = stop
-| ⊆-refl (x ∷ xs) = keep (⊆-refl xs)
+⊆-refl []       = stop --
+⊆-refl (x ∷ xs) = keep (⊆-refl xs) --
 ⊆-trans : {A : Set}{xs ys zs : List A} → xs ⊆ ys → ys ⊆ zs → xs ⊆ zs
-| ⊆-trans stop     q        = q
-| ⊆-trans p        (drop q) = drop $ ⊆-trans p q
-| ⊆-trans (drop p) (keep q) = drop $ ⊆-trans p q
-| ⊆-trans (keep p) (keep q) = keep $ ⊆-trans p q
+⊆-trans stop     q        = q --
+⊆-trans p        (drop q) = drop $ ⊆-trans p q --
+⊆-trans (drop p) (keep q) = drop $ ⊆-trans p q --
+⊆-trans (keep p) (keep q) = keep $ ⊆-trans p q --
 \end{code}
 
 *Exercise*: show that this simple property holds:
 
 \begin{code}
 ⊆-drop : ∀ {A}{x : A}{xs ys} → x ∷ xs ⊆ ys → xs ⊆ ys
-| ⊆-drop (drop p) = drop $ ⊆-drop p
-| ⊆-drop (keep q) = drop q
+⊆-drop (drop p) = drop $ ⊆-drop p --
+⊆-drop (keep q) = drop q --
 \end{code}
 
 What about the other direction?
@@ -128,7 +128,7 @@ Another definition where the base case of the recursion is explicit:
 
 \begin{code}
 ⊆-antidrop' : ∀ {A}(x : A)(xs : List A) → x ∷ xs ⊆ xs → ⊥
-⊆-antidrop' x [] ()
+⊆-antidrop' x   []        ()
 ⊆-antidrop' x   (x' ∷ xs) (drop p) = ⊆-antidrop' x' xs (⊆-drop p) 
 ⊆-antidrop' .x' (x' ∷ xs) (keep p) = ⊆-antidrop' x' xs p
 \end{code}
