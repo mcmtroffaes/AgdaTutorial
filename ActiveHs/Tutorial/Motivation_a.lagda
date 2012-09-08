@@ -27,6 +27,8 @@ type systems         `4 : Int`
 formal verification* Fóthi, Horváth et al.
                      B method, Hoare-logic, Coq
 
+-------------------------
+
 *give examples
 
 Remark: we use `:` as the type-of predicate and `∷` as the list constructor
@@ -78,6 +80,36 @@ What is Agda?
 
 Agda is a programming language with a type system so expressive that makes it a formal verification tool.
 
+
+
+Scope of Agda correctness
+===================
+
+Good programs
+
+1.  No runtime errors.
+    - no type errors
+    - no division by zero etc.
+    - no pointer errors (null-pointer exception, array index out)
+    - empty stack is not popped etc.
+2.  The program is productive (reacts to user input / terminates without error).
+3.  It gives correct result.
+4.  It uses bounded resources (fast enough, predictable memory usage)
+
+Agda guarantees 1-2.*
+
+With Agda one can get as close as necessary to 3.**
+
+There is not much research in 4. with Agda.***
+
+-------------------
+
+*The program is checked in compile-time once not in run-time many times
+so the compiled code can be faster theoretically than in other high-level languages.
+
+**A good programming methodology is needed.
+
+***Also good for more efficient programs: compile-time garbage-collection etc.
 
 
 
