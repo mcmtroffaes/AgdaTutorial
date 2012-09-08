@@ -100,7 +100,7 @@ Agda guarantees 1-2.*
 
 With Agda one can get as close as necessary to 3.**
 
-There is not much research in 4. with Agda.***
+There is not much research in 4. with Agda.\***
 
 -------------------
 
@@ -109,7 +109,7 @@ so the compiled code can be faster theoretically than in other high-level langua
 
 **A good programming methodology is needed.
 
-***Also good for more efficient programs: compile-time garbage-collection etc.
+\***Also good for more efficient programs: compile-time garbage-collection etc.
 
 
 
