@@ -13,8 +13,8 @@ Eliminating errors from programming
 
 Method               Example
 -------------------  ----------------------------------------
-testing              `quickCheck ((\s → s == s) : List Char → Bool)`
 run-time monitoring  `Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException`
+testing              `quickCheck ((\s → s == s) : List Char → Bool)`
 model checking       NuSMV
                      `state : {ready, busy}, request : boolean`
                      `init(state) := ready`
