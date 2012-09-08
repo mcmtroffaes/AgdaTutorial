@@ -13,7 +13,7 @@ Eliminating errors from programming
 
 Method               Example
 -------------------  ----------------------------------------
-testing*             `quickCheck ((\s -> s == s) :: [Char] -> Bool)`
+testing              `quickCheck ((\s -> s == s) :: [Char] -> Bool)`
 run-time monitoring  `Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException`
 model checking       NuSMV
                      `state : {ready, busy}, request : boolean`
@@ -26,8 +26,6 @@ type systems         `4 : Int`
                      `(+) : Num a ⇒ a → a → a`
 formal verification* Fóthi, Horváth et al.
                      B method, Hoare-logic, Coq
-
-*give examples
 
 Remark: we use `∷` as the list constructor
 
