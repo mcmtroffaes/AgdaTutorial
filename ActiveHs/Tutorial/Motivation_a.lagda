@@ -100,7 +100,7 @@ Agda guarantees 1-2.*
 
 With Agda one can get as close as necessary to 3.**
 
-There is not much research in 4. with Agda.\***
+There is not yet much research in 4. with Agda.\***
 
 -------------------
 
