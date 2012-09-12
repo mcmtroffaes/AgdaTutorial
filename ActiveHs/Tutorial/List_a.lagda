@@ -40,147 +40,253 @@ infixr 5 _∷_
     ...
 
 
-`_++_` : Concatenation on Lists
-===========================
 
-Definition of concatenation:
+
+
+
+| `_++_` : Concatenation on Lists
+| ===========================
+| 
+| Definition of concatenation:
+| 
+| \begin{code}
+| _++_ : {A : Set} → List A → List A → List A
+| []       ++ ys = ys
+| (x ∷ xs) ++ ys = x ∷ (xs ++ ys)
+| 
+| infixr 5 _++_
+| \end{code}
+| 
+| We want `_++_` to work with `List`s parametrised by arbitrary `Set`s. We call this parameter a polymorphic  parameter and `_++_` a polymorphic function.
+| Polymorphic parameters have to be named explicitly in beginning of the declaration of the function by putting them into curly braces:
+| 
+|     f : {A B C : Set} → ...
+| 
+| 
+| 
+| Exercises: `head` and `tail` on Lists
+| ====================================
+| 
+| Try to define the following functions:
+| 
+| \begin{code}
+| head₀ : {A : Set} → List A → A
+| head₀ []       = {!!} --
+| head₀ (x ∷ xs) = x --
+| \end{code}
+| 
+| \begin{code}
+| tail₀ : {A : Set} → List A → List A
+| tail₀ []       = [] --
+| tail₀ (x ∷ xs) = xs --
+| \end{code}
+| 
+| Define the following functions:
+| 
+| \begin{code}
+| head₁ : List ℕ → ℕ
+| head₁ []       = 0 --
+| head₁ (x ∷ xs) = x --
+| \end{code}
+| 
+| \begin{code}
+| tail₁ : List ℕ → List ℕ
+| tail₁ []       = [] --
+| tail₁ (x ∷ xs) = xs --
+| \end{code}
+| 
+| Define the following functions (`head` should return `[]` for empty lists and a singleton list for non-empty lists):
+| 
+| \begin{code}
+| head₂ : {A : Set} → List A → List A
+| head₂ []       = [] --
+| head₂ (x ∷ xs) = x ∷ [] --
+| \end{code}
+| 
+| \begin{code}
+| tail₂ : {A : Set} → List A → List (List A)
+| tail₂ []       = [] --
+| tail₂ (x ∷ xs) = xs ∷ [] --
+| \end{code}
+| 
+
+Exercises
+=========
+
+* What is the connection between `List ⊤` and `ℕ`?
+* Define a `Maybe` set (lists with 0 or 1 elements)!
+| and `head` and `tail` functions for the polymorphic `List` type with the help of `Maybe`.
+* Define paramteric trees (various sorts)!
+
+
+
+`_×_`: Cartesian Product
+========================
+
+The definition of Cartesian product:
 
 \begin{code}
-_++_ : {A : Set} → List A → List A → List A
-[]       ++ ys = ys
-(x ∷ xs) ++ ys = x ∷ (xs ++ ys)
+data _×_ (A B : Set) : Set where
+  _,_ : A → B → A × B
 
-infixr 5 _++_
+infixr 4 _,_
+infixr 2 _×_
 \end{code}
 
-We want `_++_` to work with `List`s parametrised by arbitrary `Set`s. We call this parameter a polymorphic parameter and `_++_` a polymorphic function.
-Polymorphic parameters have to be named explicitly in beginning of the declaration of the function by putting them into curly braces:
+`(A B : Set)` is the way of specifying a set that is parameterised by two sets.
 
-    f : {A B C : Set} → ...
+*Example:*  
+Elements of `Bool × Bool` (the extra space is needed before the comma):
 
-
-
-Exercises: `head` and `tail` on Lists
-====================================
-
-Try to define the following functions:
-
-\begin{code}
-head₀ : {A : Set} → List A → A
-head₀ []       = {!!} --
-head₀ (x ∷ xs) = x --
-\end{code}
-
-\begin{code}
-tail₀ : {A : Set} → List A → List A
-tail₀ []       = [] --
-tail₀ (x ∷ xs) = xs --
-\end{code}
-
-Define the following functions:
-
-\begin{code}
-head₁ : List ℕ → ℕ
-head₁ []       = 0 --
-head₁ (x ∷ xs) = x --
-\end{code}
-
-\begin{code}
-tail₁ : List ℕ → List ℕ
-tail₁ []       = [] --
-tail₁ (x ∷ xs) = xs --
-\end{code}
-
-Define the following functions (`head` should return `[]` for empty lists and a singleton list for non-empty lists):
-
-\begin{code}
-head₂ : {A : Set} → List A → List A
-head₂ []       = [] --
-head₂ (x ∷ xs) = x ∷ [] --
-\end{code}
-
-\begin{code}
-tail₂ : {A : Set} → List A → List (List A)
-tail₂ []       = [] --
-tail₂ (x ∷ xs) = xs ∷ [] --
-\end{code}
-
-Define a `Maybe` set and `head` and `tail` functions for the polymorphic `List` type with the help of `Maybe`.
+     true , true 
+     true , false
+     false , true
+     false , false
 
 
 Exercises
 =========
 
-Define the following functions on lists:
+ * How many elements are there in `⊤ × ⊤`, `⊤ × ⊥`, `⊥ × ⊤` and `⊥ × ⊥`?
+ * How should we define `Top` so that ∀ A : Set. `Top × A` would be isomorphic to `A` (neutral element of `_×_`)?
+
+
+`_⊎_`: Disjoint Union (Sum)
+===================================
+
+Definition:
 
 \begin{code}
-map  : {A B : Set} → (A → B)      → List A → List B -- regular map
-map f []       = [] --
-map f (x ∷ xs) = f x ∷ map f xs --
+data _⊎_ (A B : Set) : Set where
+  inj₁ : A → A ⊎ B
+  inj₂ : B → A ⊎ B
 
-maps : {A B : Set} → List (A → B) → List A → List B -- pairwise map
-maps []       _        = [] --
-maps _        []       = [] --
-maps (f ∷ fs) (x ∷ xs) = f x ∷ (maps fs xs) --
-\end{code}
-
-Define the singleton list function:
-
-\begin{code}
-[_] : {A : Set} → A → List A
-[ a ] = a ∷ [] --
+infixr 1 _⊎_
 \end{code}
 
 
-Polymorphic `id` function
+Exercises
+=========
+
+ * What are the elements of `Bool ⊎ ⊤`?
+ * What are the elements of ⊤ ⊎ (⊤ ⊎ ⊤)?
+ * Name an already learned isomorphic type to `⊤ ⊎ ⊤`!
+ * How should we define `Bottom` so that ∀ A : Set. `Bottom ⊎ A` would be isomorphic to `A` (Neutral element of `_⊎_`)?
+ * Give an isomorphic definition of `Maybe A` with the help of `_⊎_` and `⊤`!
+
+
+Mutually recursive sets
+=======================
+
+`List₁` and `List₂` are mutually recursive sets:
+
+\begin{code}
+mutual
+  data List₁ (A B : Set) : Set  where
+    []  :                 List₁ A B
+    _∷_ : A → List₂ A B → List₁ A B
+
+  data List₂ (A B : Set) : Set  where
+    _∷_ : B → List₁ A B → List₂ A B
+\end{code}
+
+*Exercise:* list the smallest first 5 elements of `List₁ ⊤ Bool`!
+
+
+Non-regular recursive set
 =========================
 
-Let's define an id function on Natural numbers:
+List the first smallest 4 (+4) elements of the following dataset (let A = ⊤ and B = Bool and reversed):
 
 \begin{code}
-idℕ : ℕ → ℕ
-idℕ n = n
+data AlterList (A B : Set) : Set  where
+  []  :                     AlterList A B
+  _∷_ : A → AlterList B A → AlterList A B
 \end{code}
 
-This is the way we can make it polymorphic:
 
-\begin{code}
-id₀ : (A : Set) → A → A
-id₀ _ a = a
-\end{code}
+Nested set
+==========
 
-We gave a name (`A`) to the first parameter which has to be in `Set`. We can refer to named parameters in the sets which define later parameters.
+TODO
 
-Usage:
 
-\begin{code}
-aNumber₀ = id₀ ℕ (suc zero)
-aNumber₁ = id₀ _ (suc zero)
-\end{code}
+| 
+| Exercises
+| =========
+| 
+| Define the following functions on lists:
+| 
+| \begin{code}
+| map  : {A B : Set} → (A → B)      → List A → List B -- regular map
+| map f []       = [] --
+| map f (x ∷ xs) = f x ∷ map f xs --
+| 
+| maps : {A B : Set} → List (A → B) → List A → List B -- pairwise map
+| maps []       _        = [] --
+| maps _        []       = [] --
+| maps (f ∷ fs) (x ∷ xs) = f x ∷ (maps fs xs) --
+| \end{code}
+| 
+| Define the singleton list function:
+| 
+| \begin{code}
+| [_] : {A : Set} → A → List A
+| [ a ] = a ∷ [] --
+| \end{code}
+| 
+| 
+| Polymorphic `id` function
+| =========================
+| 
+| Let's define an id function on Natural numbers:
+| 
+| \begin{code}
+| idℕ : ℕ → ℕ
+| idℕ n = n
+| \end{code}
+| 
+| This is the way we can make it polymorphic:
+| 
+| \begin{code}
+| id₀ : (A : Set) → A → A
+| id₀ _ a = a
+| \end{code}
+| 
+| We gave a name (`A`) to the first parameter which has to be in `Set`. We can refer to named parameters in the sets which define later parameters.
+| 
+| Usage:
+| 
+| \begin{code}
+| aNumber₀ = id₀ ℕ (suc zero)
+| aNumber₁ = id₀ _ (suc zero)
+| \end{code}
+| 
+| In the second case we let Agda guess the value of the first parameter.
+| 
+| **************
+| 
+| In Agda, polymorphic parameters are explicit, in Haskell they are implicit.
+| 
+| Polymorphic `id` function with implicit parameter
+| =================================================
+| 
+| If we tend to put an `_` in place of a parameter it probably means that it can be made implicit, that is, we could rely on Agda to guess the value. We can do this putting the parameter in curly braces:
+| 
+| \begin{code}
+| id : {A : Set} → A → A
+| id a = a
+| \end{code}
+| 
+| If we want, we can still specify it manually in curly braces:
+| 
+| \begin{code}
+| aNumber = id {ℕ} (suc zero)
+| \end{code}
+| 
+| Exercise
+| ========
+| 
+| Define the polymorphic const function!
 
-In the second case we let Agda guess the value of the first parameter.
 
-**************
-
-In Agda, polymorphic parameters are explicit, in Haskell they are implicit.
-
-Polymorphic `id` function with implicit parameter
-=================================================
-
-If we tend to put an `_` in place of a parameter it probably means that it can be made implicit, that is, we could rely on Agda to guess the value. We can do this putting the parameter in curly braces:
-
-\begin{code}
-id : {A : Set} → A → A
-id a = a
-\end{code}
-
-If we want, we can still specify it manually in curly braces:
-
-\begin{code}
-aNumber = id {ℕ} (suc zero)
-\end{code}
-
-Exercise
-========
-
-Define the polymorphic const function!
