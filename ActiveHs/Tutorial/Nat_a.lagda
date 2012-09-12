@@ -196,6 +196,21 @@ Soon we will prove in Agda that `ℕ` and `ℕ₂` are isomorphic with the follo
 
 
 
+Rationale behind different representations
+==========================================
+
+Each representation has its merit.
+
+*Exercise:* Guess which representation (ℕ or ℕ₂) is better for the following tasks!
+
+ * Computing n * 2.
+ * Computing ⌊n / 2⌋.
+ * Deciding whether the number is odd.
+ * Computing n + m.
+ * Computing n * m.
+ * Proving that n + m = m + n for all m and n.
+ * Storing the number.
+
 
 Exercises
 =========
