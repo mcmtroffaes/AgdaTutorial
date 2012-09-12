@@ -10,7 +10,8 @@ module Index_a where
 [Technical Information](Technical_Info_a.xml)
 
 Data Sets
-:   [Bool](Bool_a.xml) | [ℕ](Nat_a.xml) | [List](List_a.xml) | [Product](Product_a.xml) | [Union](Union_a.xml) | [Exercises](DataSetsExercises_a.xml)
+:   [Bool](Bool_a.xml) | [ℕ](Nat_a.xml) | [List](List_a.xml)
+| [Product](Product_a.xml) | [Union](Union_a.xml) | [Exercises](DataSetsExercises_a.xml)
 Predicates 
 :   [≤](LessThan_a.xml) | [Equality](Equality_a.xml) | [Even, Odd](Even_a.xml) | [Elem](Elem_a.xml) | [Sublist](Sublist_a.xml)
 Subsets
