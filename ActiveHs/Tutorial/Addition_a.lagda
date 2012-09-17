@@ -161,9 +161,29 @@ Exercises
 *   Define `_*_≡_ : ℕ → ℕ → Set` with the help of `_+_≡_`!
     *   Prove that `3 * 3 ≡ 9` is non-empty!
     *   Prove that `3 * 3 ≡ 8` is empty!
-*   Define `_≈_ : ℕ → ℕ₂ → Set` which represents the (canonical) isomorphism between `ℕ` and `ℕ₂`!*
+*   Define `_≈_ : ℕ → ℕ⁺ → Set` which represents the (canonical) isomorphism between `ℕ` and `ℕ⁺`!*
     *   Prove that `5 ≈ double+1 (double one)` is non-empty!
     *   Prove that `4 ≈ double+1 (double one)` is empty!
+
+\begin{code}
+data ℕ⁺ : Set where  --
+  one    : ℕ⁺  --
+  double : ℕ⁺ → ℕ⁺ --
+  double+1 : ℕ⁺ → ℕ⁺ --
+
+module ℕ≈ℕ⁺ where --
+
+  data _≈_ : ℕ → ℕ⁺ → Set where --
+    one : suc zero ≈ one --
+    double : ∀ {k 2k m} → k + k ≡ 2k → k ≈ m → 2k ≈ double m  --
+    +1 : ∀ {n m} →  n ≈ double m  →  suc n ≈ double+1 m --
+
+  5≈5 : 5 ≈ double+1 (double one) --
+  5≈5 = +1 (double (sns (sns znn)) (double (sns znn) one)) --
+
+  4≉5 : 4 ≈ double+1 (double one)  → ⊥ --
+  4≉5 (+1 (double (sns (sns (sns ()))) y)) --
+\end{code}
 
 *****************
 
