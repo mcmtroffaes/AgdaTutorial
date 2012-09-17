@@ -169,7 +169,7 @@ Exercises
 =========
 
  * What are the elements of `Bool ⊎ ⊤`?
- * What are the elements of ⊤ ⊎ (⊤ ⊎ ⊤)?
+ * What are the elements of `⊤ ⊎ (⊤ ⊎ ⊤)`?
  * Name an already learned isomorphic type to `⊤ ⊎ ⊤`!
  * How should we define `Bottom` so that ∀ A : Set. `Bottom ⊎ A` would be isomorphic to `A` (Neutral element of `_⊎_`)?
  * Give an isomorphic definition of `Maybe A` with the help of `_⊎_` and `⊤`!
@@ -196,7 +196,7 @@ mutual
 Non-regular recursive set
 =========================
 
-List the first smallest 4 (+4) elements of the following dataset (let A = ⊤ and B = Bool and reversed):
+List the first smallest 4 (+4) elements of the following dataset (let `A` = `⊤` and `B` = `Bool` and reversed):
 
 \begin{code}
 data AlterList (A B : Set) : Set  where

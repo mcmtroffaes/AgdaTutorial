@@ -153,3 +153,11 @@ Codes for some Unicode symbols
 `\lfloor`, `\rfloor`    `⌊`, `⌋`
 ----------------------- -------------------
 
+| Typing exercises
+| ----------------
+
+
+
+
+
+

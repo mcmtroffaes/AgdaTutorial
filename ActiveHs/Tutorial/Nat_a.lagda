@@ -15,10 +15,27 @@ open import Data.Bool using (Bool; true; false)
 
 This opens and imports `Data.Bool` from the standard library. Without `open` we could only refer to the functions imported with qualified name such as `Data.Bool.bool`.
 
+
+Peano representation
+============================
+
+We are looking for a representation natural numbers i.e.
+a set which has as many elements as ℕ.  
+The simplest choice is the *Peano representation* which corresponds to the unary numeral system:
+
+term                    interpretation in decimal form
+----------------------- --------------------------
+`zero`                  0
+`suc zero`              1
+`suc (suc zero)`        2
+`suc (suc (suc zero))`  3
+...                     ...
+
+
 Definition of `ℕ`
 ==============
 
-Definition of `ℕ`:
+In Agda the definition
 
 \begin{code}
 data ℕ : Set where
@@ -26,7 +43,19 @@ data ℕ : Set where
   suc  : ℕ → ℕ
 \end{code}
 
-*Interpretation:* `ℕ` ∈ `Set`, `ℕ` = { `zero` ~ 0, `suc zero` ~ 1, `suc (suc zero)` ~ 2, ... }
+yields the infinite set of statements
+
+~~~~~~~~~~~~~~~~~ {.haskell}
+ℕ : Set
+zero : ℕ
+suc zero : ℕ
+suc (suc zero) : ℕ
+suc (suc (suc zero)) : ℕ
+...
+~~~~~~~~~~~~~~~~~
+
+
+| *Interpretation:* `ℕ` ∈ `Set`, `ℕ` = { `zero` ~ 0, `suc zero` ~ 1, `suc (suc zero)` ~ 2, ... }
 
 We may use `0`, `1`, `2`, ... instead of `zero`, `suc zero`, ...*
 
@@ -148,7 +177,7 @@ The type signature is optional.
 | suc n ≤? suc m = n ≤? m --
 | \end{code}
 
-Alternative Definition of `ℕ`
+Binary representation of `ℕ`
 ==============
 
 \begin{code}
@@ -156,18 +185,49 @@ data ℕ⁺ : Set where
   one      :      ℕ⁺
   double   : ℕ⁺ → ℕ⁺
   double+1 : ℕ⁺ → ℕ⁺
+\end{code}
 
+yields (without ordering)
+
+~~~~~~~~~~~~~~~~~ {.haskell}
+ℕ⁺ : Set
+one : ℕ⁺
+double one : ℕ⁺
+double+1 one : ℕ⁺
+double (double one) : ℕ⁺
+double+1 (double one) : ℕ⁺
+double (double+1 one) : ℕ⁺
+double+1 (double+1 one) : ℕ⁺
+double (double (double one)) : ℕ⁺
+...
+~~~~~~~~~~~~~~~~~
+
+And
+
+\begin{code}
 data ℕ₂ : Set where
   zero :      ℕ₂
   id   : ℕ⁺ → ℕ₂
 \end{code}
 
-*Interpretation:*
+yields
 
- - `ℕ⁺` ∈ `Set`, `ℕ⁺` = { `one` ~ 1, `double one` ~ 2, `double+1 one` ~ 3, `double (double one)` ~ 4, `double (double+1 one)` ~ 5, ...}
- - `ℕ₂` ∈ `Set`, `ℕ₂` = { `zero` ~ 0, `id one` ~ 1, `id (double one)` ~ 2, ...}
+~~~~~~~~~~~~~~~~~ {.haskell}
+ℕ₂ : Set
+zero : ℕ₂
+id one : ℕ₂
+id (double one) : ℕ₂
+id (double+1 one) : ℕ₂
+id (double (double one)) : ℕ₂
+id (double+1 (double one)) : ℕ₂
+...
+~~~~~~~~~~~~~~~~~
 
-*Exercise:* define `nine : ℕ₂`!
+
+| *Interpretation:*
+| 
+|  - `ℕ⁺` ∈ `Set`, `ℕ⁺` = { `one` ~ 1, `double one` ~ 2, `double+1 one` ~ 3, `double (double one)` ~ 4, `double (double+1 one)` ~ 5, ...}
+|  - `ℕ₂` ∈ `Set`, `ℕ₂` = { `zero` ~ 0, `id one` ~ 1, `id (double one)` ~ 2, ...}
 
 
 | *Exercise:* define the conversion function:
@@ -182,8 +242,6 @@ data ℕ₂ : Set where
 | 
 | We will see how to define the conversion to the other direction later.
 
-*Question*: why didn't we use one `data` definition with 4 constructors `zero`, `one`, `double`, `double+1`?
-
 
 Soon we will prove in Agda that `ℕ` and `ℕ₂` are isomorphic with the following relation:
 
@@ -192,7 +250,12 @@ Soon we will prove in Agda that `ℕ` and `ℕ₂` are isomorphic with the follo
 `zero`                  `zero`
 `suc zero`              `id one`
 `suc (suc zero)`        `id (double one)`
-`suc (suc (suc zero)`   `id (double+1 one)`
+`suc (suc (suc zero))`  `id (double+1 one)`
+...                     ...
+
+*Exercise:* define `nine : ℕ₂`!
+
+*Question*: why didn't we use one `data` definition with 4 constructors `zero`, `one`, `double`, `double+1`?
 
 
 
@@ -201,24 +264,28 @@ Rationale behind different representations
 
 Each representation has its merit.
 
-*Exercise:* Guess which representation (ℕ or ℕ₂) is better for the following tasks!
+*Exercise:* Guess which representation (`ℕ` or `ℕ₂`) is better for the following tasks!
 
- * Computing n * 2.
- * Computing ⌊n / 2⌋.
+ * Computing `n * 2`.
+ * Computing `⌊n / 2⌋`.
  * Deciding whether the number is odd.
- * Computing n + m.
- * Computing n * m.
- * Proving that n + m = m + n for all m and n.
+ * Computing `n + m`.
+ * Computing `n * m`.
+ * Proving that `n + m` = `m + n` for all `m` and `n`.
  * Storing the number.
+
+*****************
+
+A good strategy is choose the right representation for each task
+and give the isomorphisms between the representations.
 
 
 Exercises
 =========
 
-A) Define `ℤ`!
+ * Define `ℤ`!
 |  and some operations on it (at least `_+_`, `_-_`, `_*_`)!
-
-B) Define `ℚ`!
+ * Define `ℚ`!
 
 (Several solutions are possible.)
 
@@ -226,13 +293,26 @@ B) Define `ℚ`!
 Binary trees
 =========
 
-The set of binary trees (just the shapes without data):
-
 \begin{code}
 data BinTree : Set where
   leaf : BinTree
   node : BinTree → BinTree → BinTree
 \end{code}
+
+yields
+
+~~~~~~~~~~~~~~~~~ {.haskell}
+BinTree : Set
+leaf : BinTree
+node leaf leaf : BinTree
+node (node leaf leaf) leaf : BinTree
+node leaf (node leaf leaf) : BinTree
+node (node leaf leaf) (node leaf leaf) : BinTree
+...
+~~~~~~~~~~~~~~~~~
+
+`BinTree` elements are good for representing binary trees (just the shapes without data).
+
 
 *Exercise:* define binary trees according to the following shapes!
 
@@ -258,16 +338,23 @@ x3 -> x3v
 Infix notation
 ==============
 
-
-
 \begin{code}
 data BinTree' : Set where
   x : BinTree'
   _+_ : BinTree' → BinTree' → BinTree'
-
-t : BinTree'
-t = (x + x) + (x + x)
 \end{code}
+
+yields
+
+~~~~~~~~~~~~~~~~~ {.haskell}
+BinTree' : Set
+x : BinTree'
+x + x : BinTree'
+(x + x) + x : BinTree'
+x + (x + x) : BinTree'
+(x + x) + (x + x) : BinTree'
+...
+~~~~~~~~~~~~~~~~~
 
 Underscores in names like `_+_` denote the space for the operands.  
 
@@ -275,28 +362,33 @@ One can give the precedence with `infix`, `infixl` or `infixr`:
 
 \begin{code}
 infixr 3 _+_
-
-t' : BinTree'
-t' = (x + x) + x + x
 \end{code}
 
+yields
 
+~~~~~~~~~~~~~~~~~ {.haskell}
+BinTree' : Set
+x : BinTree'
+x + x : BinTree'
+(x + x) + x : BinTree'
+x + x + x : BinTree'
+(x + x) + x + x : BinTree'
+...
+~~~~~~~~~~~~~~~~~
+
+(so `_+_` has right precedence)
 
 
 Exercises
 =========
 
-A) Define binary trees
-
--   with natural number data attached to the leafs
--   with natural number data attached to the nodes
--   with Booleans in the nodes and natural numbers in the leafs
-
-B) Define the lists of natural numbers! Use `_∷_` as list consructor with right precedence!
-
-C) Define the non-empty lists of natural numbers!
-
-D) Define trees with nodes with finite children (0, 1, 2, ...)!
+*   Define binary trees
+    -   with natural number data attached to the leafs
+    -   with natural number data attached to the nodes
+    -   with Booleans in the nodes and natural numbers in the leafs
+*   Define the lists of natural numbers! Use `_∷_` as list consructor with right precedence!
+*   Define the non-empty lists of natural numbers!
+*   Define trees with nodes with finite children (0, 1, 2, ...)!
 
 
 Mutual definitions

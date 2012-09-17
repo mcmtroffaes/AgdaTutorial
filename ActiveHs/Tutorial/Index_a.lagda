@@ -13,7 +13,12 @@ Data Sets
 :   [Bool](Bool_a.xml) | [ℕ](Nat_a.xml) | [List](List_a.xml)
 | [Product](Product_a.xml) | [Union](Union_a.xml) | [Exercises](DataSetsExercises_a.xml)
 Predicates 
-:   [≤](LessThan_a.xml) | [Equality](Equality_a.xml) | [Even, Odd](Even_a.xml) | [Elem](Elem_a.xml) | [Sublist](Sublist_a.xml)
+:   [≤](LessThan_a.xml) | [Addition](Addition_a.xml) | [Parameters vs. indices](Equality_a.xml)
+
+*******
+
+*Lecture notes under revisition:*
+
 Subsets
 :   [Vec](Vec_a.xml) | [Fin](Fin_a.xml) | [Sigma](Sigma_a.xml)
 Views

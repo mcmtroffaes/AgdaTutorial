@@ -7,6 +7,22 @@ module Bool_a where
 \end{code}
 
 
+First Agda module
+==============
+
+Our first Agda module contains no definition just a *module header*:
+
+~~~~~~~ {.haskell}
+module Bool where
+~~~~~~~
+
+ * `module` and `where` are keywords
+ * The module name after `module` should correspond to the file name.  
+   In this case the file name is `Bool.agda`.
+ * Syntax highlighting is added by loading the module with C-`c` C-`l`.
+
+The following definitions are added one-by-one to the file.
+
 
 The `Bool` set
 ==============
@@ -21,27 +37,30 @@ data Bool : Set where
 
 *Interpretation:*
 
- * `Bool`  ∈ `Set`
- * `true`  ∈ `Bool`
- * `false` ∈ `Bool`
- * and there is nothing else in `Bool`
+ * `Bool`  is a `Set`
+ * `true`  is a `Bool`
+ * `false` is a `Bool`
+ * there is nothing else which is `Bool`
+ * `true` and `false` are different
 
-It is because of the last point that the syntax of the definition doesn't look like this:
+It is because of the last two point that the syntax of the definition doesn't look like this:
 
+~~~~~~~~~~~~~~~~~ {.haskell}
+Bool  : Set
+true  : Bool
+false : Bool
 ~~~~~~~~~~~~~~~~~
-Bool  ∈ Set
-true  ∈ Bool
-false ∈ Bool
-~~~~~~~~~~~~~~~~~
+
 
 --------------------
 
 -   `data` and `where` are keywords
 -   `Set` is the set of sets (a constant)
--   `:` is pronounced "is a" or "elem of", it has the same rule as '∈' in set theory.
+-   ':' is pronounced "is a" or "type of", it has similar rule as '∈' in set theory.  
+    We do not use the '∈' symbol because ':' and '∈' have different behaviour which will be highlighted later.
 -   Indentation matters!
 -   Spaces are needed!
--   We call `true` and `false` _constructors_ of _data type_ `Bool` (and at the same time `true` and `false` are elements of set `Bool`)
+-   We call `true` and `false` _constructors_ of _data type_ `Bool` (more explanations of constructors come later)
 
 
 | `not`, `_∧_`: Boolean Functions
@@ -163,12 +182,16 @@ data ⊤ : Set where
   tt : ⊤
 \end{code}
 
-`⊥` and `⊤` will have a special role; see later.
+We will use `⊥` as the empty set and `⊤` as the one-element set.  
+(These have special roles as you will see.)
 
 
 ---------------
 
 `tt` stands for trivially true.
+
+If we define two empty sets they will be different, unlike in set theory.  
+(Type theory differs from set theory; we prefer type theory for several reasons.)
 
 
 Syntactic abbreviation
