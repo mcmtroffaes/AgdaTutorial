@@ -1,5 +1,5 @@
-% Equality
-% Ambrus Kaposi
+% Parameters vs. indices
+% Ambrus Kaposi & Peter Divianszky
 % 2011. 10. 05.
 
 \begin{code}
