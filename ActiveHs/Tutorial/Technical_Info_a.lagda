@@ -39,7 +39,7 @@ Windows
 1. If you neither have administrator access nor Haskell Platform installed: get administrator access!
 
 
-After installation
+Installation / Standard library
 ==================
 
 You can download the Agda standard libraries from [here](http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Libraries.StandardLibrary).
@@ -103,8 +103,7 @@ C-`x` C-`w`       save as
 Emacs Agda-mode commands
 ========================
 
-General
--------
+This section is only for reference.
 
 ----------------- -----------------------------------------
 C-`c` C-`l`       load (type checking)
@@ -134,8 +133,8 @@ C-`c` C-`a`       auto (try to find a solution)
 See also the context-sensitive menu when right-clicking inside a hole
 
 
-Codes for some Unicode symbols
------------------------------
+Emacs Agda-mode unicode symbols
+===========================
 
 ----------------------- -------------------
 `\->`                   `→`
