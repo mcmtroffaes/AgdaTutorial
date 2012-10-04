@@ -28,6 +28,9 @@ Algebraic Data Structures
 
 Coinduction | [Logic (Haskell)](Logic_Haskell_a.xml) | [Logic (Agda)](Logic_Agda_a.xml)
 
+
+[About](About_a.xml)
+
 | TODO
 | ----
 |
