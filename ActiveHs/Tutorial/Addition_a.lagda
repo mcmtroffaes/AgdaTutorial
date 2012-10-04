@@ -187,6 +187,6 @@ module ℕ≈ℕ⁺ where --
 
 *****************
 
-*There are lots of isomorphism between `ℕ` and `ℕ₂`, we mean here the most natural one.
+*There are lots of isomorphism between `ℕ` and `ℕ⁺`, we mean here the most natural one.
 
 
