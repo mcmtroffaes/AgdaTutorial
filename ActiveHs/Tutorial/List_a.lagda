@@ -208,7 +208,44 @@ data AlterList (A B : Set) : Set  where
 Nested set
 ==========
 
-TODO
+`Square`, the set of square matrices with 2^n^ rows, is nested, because at least
+one of its constructors refers to the set defined with more complex
+parameter(s):
+
+
+\begin{code}
+data T4 (A : Set) : Set where
+  quad : A → A → A → A → T4 A
+
+data Square (A : Set) : Set where
+  zero :            A  → Square A   -- 2^0 rows
+  suc  : Square (T4 A) → Square A   -- 2^(n+1) rows
+\end{code}
+
+
+*Example:*
+
+Set                     1st,                           2nd,                                 3rd,     ...
+----------------------- ------------------------------ ------------------------------------ -------- ---
+`Square ℕ` = {          `zero 3`; `zero 16`; ...;      `suc (zero (t4 1 2 3 4))`; ...;      `x`;...; ...
+`Square (T4 ℕ)`= {      `zero (t4 1 2 3 4)`; ...;      `suc (zero (t4 (t4 ...) ...))`; ...; ...;     ...
+`Square (T4 (T4 ℕ))`= { `zero (t4 (t4 ...) ...)`; ...; ...;                                 ...;     ...
+...                     ...                            ...                                  ...      ...
+
+`x : Square ℕ`  
+`x = suc (suc (zero (t4 (t4 1 2 3 4) (t4 5 6 7 8) (t4 9 10 11 12) (t4 13 14 15 16))))`
+
+~~~~~~~ {.latex}
+\left(\begin{array}{cccc}1&2&5&6\\3&4&7&8\\9&10&13&14\\11&12&15&16\end{array}\right)
+~~~~~~~
+
+***************
+
+Nested are special non-regular sets.  
+Nested sets can be translated to mutually recursive regular sets.
+
+
+
 
 
 | 
