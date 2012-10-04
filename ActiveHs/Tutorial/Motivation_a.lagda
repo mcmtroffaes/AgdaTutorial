@@ -1,5 +1,5 @@
 % Motivation
-% Ambrus Kaposi
+% Ambrus Kaposi, Peter Divianszky
 % 2012. 02. 13.
 
 \begin{code}
@@ -110,6 +110,31 @@ so the compiled code can be faster theoretically than in other high-level langua
 **A good programming methodology is needed.
 
 \***Also good for more efficient programs: compile-time garbage-collection etc.
+
+
+Benefits
+==========
+
+-   use Agda directly
+    -   write formal proofs
+    -   write high-assuarance code (future option)
+-   learn other programming languages easier
+    -   most Haskell type system extensions are just special cases
+        -   Haskell is practical general-purpose programming language also used in industry
+    -   Coq is quite close
+        -   write formal proofs in Coq (more mainstream)
+    -   learn Idris in a week  
+        (not so future option to write high-assuarance code?)
+-   have a better programming style in any other programming language
+-   learn theory easier (will be more familiar for you)
+    -   constuctive mathematics
+    -   category theory
+    -   type theory
+        -   dependent types
+    -   semantics of programming languages
+        -   λ-calculus
+
+
 
 
 
