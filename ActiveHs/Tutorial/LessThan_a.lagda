@@ -69,7 +69,7 @@ The idea to represent true statements with non-empty sets and false statements w
 empty sets turns out to be extremely useful as the examples will show.
 
 
-Defintion of `_≤_`
+Definition of `_≤_`
 ==========
 
 `_≤_` is an *indexed* set with two natural number indices and with two constructors:
@@ -168,7 +168,7 @@ how can this chain of inference be given in Agda:*
 
 *Exercise:* prove that `4 ≤ 2` is empty!
 
-We can use an emptiness proofs in another emptiness proof:
+We can use an emptiness proof in another emptiness proof:
 
 \begin{code}
 8≰4 : 8 ≤ 4 → ⊥
@@ -198,11 +198,11 @@ Exercises
     *   Prove that `8 isDoubleOf 4` is non-empty!
     *   Prove that `9 isDoubleOf 4` is empty!
 *   Define an indexed set `Odd : ℕ → Set` such that `odd n` is non-empty iff `n` is odd!
-    *   Prove that `Odd 8` is non-empty!
-    *   Prove that `Odd 9` is empty!
+    *   Prove that `Odd 9` is non-empty!
+    *   Prove that `Odd 8` is empty!
 *   Define `Even : ℕ → Set` and `Odd : ℕ → Set` mutually!
-*   Define equlity `_≡_ : ℕ → ℕ → Set`!
-*   Define non-equlity `_≠_ : ℕ → ℕ → Set`!
+*   Define equality `_≡_ : ℕ → ℕ → Set`!
+*   Define non-equality `_≠_ : ℕ → ℕ → Set`!
 
 
 | Equality on `ℕ`
