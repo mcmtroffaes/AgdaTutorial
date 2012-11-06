@@ -9,11 +9,16 @@ module Index_a where
 
 [Technical Information](Technical_Info_a.xml)
 
-Data Sets
-:   [Bool](Bool_a.xml) | [ℕ](Nat_a.xml) | [List](List_a.xml)
-| [Product](Product_a.xml) | [Union](Union_a.xml) | [Exercises](DataSetsExercises_a.xml)
-Predicates 
-:   [≤](LessThan_a.xml) | [Addition](Addition_a.xml) | [Parameters vs. indices](Equality_a.xml)
+Sets
+:   [Enumeration](Bool_a.xml) | [Recursion](Nat_a.xml) | [Parameters](List_a.xml)  
+    [Indices](LessThan_a.xml) | [Indices (2)](Addition_a.xml) | [Parameters vs. indices](Equality_a.xml)
+Functions
+:   [Patterns](Patterns_a.xml) | [Recursion](Recursion_a.xml) | [Polymorphism](Polymorphism_a.xml) | [Set result](Large_a.xml)  
+    [Proofs](Proofs_a.xml) | ...
+| [Proofs (2)] | [Safe functions]
+Specifications
+:   ...
+
 
 *******
 

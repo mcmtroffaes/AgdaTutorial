@@ -63,75 +63,14 @@ false : Bool
 -   We call `true` and `false` _constructors_ of _data type_ `Bool` (more explanations of constructors come later)
 
 
-| `not`, `_∧_`: Boolean Functions
-| ===============================
-| 
-| Negation:
-| 
-| \begin{code}
-| not : Bool → Bool
-| not true  = false
-| not false = true
-| \end{code}
-| 
-| This is a function that has `Bool` as domain and `Bool` as range. We can pattern match on the elements | that appear in set `Bool` namely `true` and `false` to define how the function works.
-| 
-| Logical AND:
-| 
-| \begin{code}
-| _∧_   : Bool → Bool → Bool
-| true  ∧ x = x
-| false ∧ x = false
-| 
-| infixr 6 _∧_
-| \end{code}
-| 
-| ---------------
-| 
-| -   Underscores in names like `_∧_` denote the space for the operands.
-| -   `infixr` ...
-| -   Logical AND could be defined with four alternatives.
-| 
-| 
-| Exercise: `_∨_`
-| =========
-| 
-| 
-| A) Define logical OR:
-| 
-| \begin{code}
-| infixr 5 _∨_
-| 
-| _∨_   : Bool → Bool → Bool
-| true  ∨ _ = true --
-| false ∨ x = x --
-| \end{code}
-| 
-| B) Define logical OR with one alternative, with the help of `not` and `_∧_`!
-| 
-| \begin{code}
-| infixr 5 _∨₁_ --
-| 
-| _∨₁_   : Bool → Bool → Bool --
-| x ∨₁ y = not (not x ∧ not y) --
-| \end{code}
  
 Exercises
 =========
 
 A) Define a set named `Answer` with three elements, `yes`, `no` and `maybe`.
 
-| Define logical operations on `Answer`!
-| 
-| 
-| Exercise
-| =========
-
 B) Define a set named `Quarter` with four elements, `east`, `west`, `north` and `south`.
 
-| Define a function `turnLeft : Quarter → Quarter`.
-| 
-| Define the functions `turnBack` and `turnRight` with the help of `turnLeft`! (By either pattern matching | | or defining specific function composition function.)
 
 
 Question
@@ -157,15 +96,27 @@ Isomorphic sets
 Two sets are isomorphic if there is an isomorphism between them i.e.
 a one-to-one relation between the elements.**
 
-Both `Bool` and `Bool'` may represent the Booleans; it is the choice
-of the programmer which one to use (or group of programmers in collaboration).
-
 ------------
 
 *Taking the constructor names into account they are even *canonically isomorphic*
 i.e. there is a canonical isomorphism between them.
 
 **We define the formal notion of isomorphism later in Agda.
+
+
+Representations and interpretations
+===============
+
+
+TODO: figure
+
+
+
+Both `Bool` and `Bool'` may represent the Booleans; it is the choice
+of the programmer which one to use (or group of programmers in collaboration).
+
+
+
 
 
 Special finite sets

@@ -334,61 +334,7 @@ Note that `z≤n` is different in `z≤n : 0 ≤ 0` and in `z≤n : 0 ≤ 1` bec
 | 
 | `_≤_ : ℕ → ℕ → Set` is a statement or *assertion*. If `q : n ≤ m` then
 | n ≤ m.
-| 
-| 
-| Exercise
-| ==========
-| 
-| Define the following convenience functions:
-| 
-| \begin{code}
-| _<_ : ℕ → ℕ → Set
-| a < b = suc a ≤ b --
-| _≥_ : ℕ → ℕ → Set
-| _≥_ = flip _≤_ --
-| _>_ : ℕ → ℕ → Set
-| _>_ = flip _<_ --
-| 
-| infix 4 _<_ _≥_ _>_
-| \end{code}
-| 
-| 
-| 
-| 
-| Proofs
-| ======
-| 
-| Define the following functions (prove these properties):
-| 
-| \begin{code}
-| ≤-refl       : ∀ {n} → n ≤ n
-| ≤-refl {zero}  = z≤n zero --
-| ≤-refl {suc n} = s≤s $ ≤-refl {n} --
-| ≤-trans      : ∀ {m n o} → m ≤ n → n ≤ o → m ≤ o
-| ≤-trans (z≤n _)   n≤o       = z≤n _ --
-| ≤-trans (s≤s m≤n) (s≤s n≤o) = s≤s $ ≤-trans m≤n n≤o --
-| -- antisym   : ∀ {m n} → m ≤ n → n ≤ m → m ≡ n
-| --   (we will only define this after we have defined equality)
-| total        : ∀ m n → m ≤ n ⊎ n ≤ m -- hint: use [_,_]′
-| total zero    _       = inj₁ $ z≤n _ --
-| total _       zero    = inj₂ $ z≤n _ --
-| total (suc m) (suc n)  --
-|    = [_,_]′ --
-|        (λ m≤n → inj₁ (s≤s m≤n)) --
-|        (λ n≤m → inj₂ (s≤s n≤m)) --
-|        (total m n) --
-| \end{code}
-| 
-| From the 4 above properties follows that `_≤_` is a total order on `ℕ`. (We can look at `_≤_` as a relation over `ℕ`.)
-| 
-| \begin{code}
-| ≤-pred  : ∀ {m n} → suc m ≤ suc n → m ≤ n
-| ≤-pred (s≤s m≤n) = m≤n --
-| ≤-mono  : ∀ {m n k} → n ≤ m → k + n ≤ k + m
-| ≤-mono {k = zero}  n≤m = n≤m --
-| ≤-mono {k = suc k} n≤m = s≤s $ ≤-mono {k = k} n≤m --
-| 
-| \end{code}
+
 
 
 

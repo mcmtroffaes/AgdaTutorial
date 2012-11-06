@@ -85,97 +85,6 @@ The type signature is optional.
 
 
 
-| `_+_`: Addition
-| ==================
-| 
-| Definition of addition:
-| 
-| \begin{code}
-| _+_ : ℕ → ℕ → ℕ
-| zero  + n = n
-| suc m + n = suc (m + n)
-| 
-| infixl 6 _+_
-| \end{code}
-| 
-| 
-| Exercises: `pred`, `_*_`, `_⊔_`, `_⊓_` and `⌊_/2⌋`
-| =========
-| 
-| Define the following functions:
-| 
-| \begin{code}
-| pred  : ℕ → ℕ      -- predecessor (pred 0 = 0)
-| pred zero    = zero --
-| pred (suc n) = n --
-| \end{code}
-| 
-| \begin{code}
-| infixl 6 _∸_
-| _∸_   : ℕ → ℕ → ℕ  -- subtraction
-| zero  ∸ _     = zero --
-| suc n ∸ zero  = suc n --
-| suc n ∸ suc m = n ∸ m --
-| \end{code}
-| 
-| \begin{code}
-| infixl 7 _*_
-| _*_   : ℕ → ℕ → ℕ  -- multiplication
-| zero  * _ = zero --
-| suc n * b = b + n * b --
-| \end{code}
-| 
-| \begin{code}
-| infixl 6 _⊔_
-| _⊔_   : ℕ → ℕ → ℕ  -- maximum
-| zero  ⊔ b     = b --
-| a     ⊔ zero  = a --
-| suc a ⊔ suc b = suc (a ⊔ b) --
-| \end{code}
-| 
-| \begin{code}
-| infixl 7 _⊓_
-| _⊓_   : ℕ → ℕ → ℕ  -- minimum
-| zero  ⊓ _     = zero --
-| _     ⊓ zero  = zero --
-| suc a ⊓ suc b = suc (a ⊓ b) --
-| \end{code}
-| 
-| \begin{code}
-| ⌊_/2⌋ : ℕ → ℕ      -- half (⌊ 1 /2⌋ = 0)
-| ⌊ zero /2⌋        = zero --
-| ⌊ suc zero /2⌋    = zero --
-| ⌊ suc (suc n) /2⌋ = suc ⌊ n /2⌋ --
-| \end{code}
-| 
-| \begin{code}
-| odd   : ℕ → Bool   -- is odd
-| odd zero          = false --
-| odd (suc zero)    = true --
-| odd (suc (suc n)) = odd n --
-| \end{code}
-| 
-| \begin{code}
-| even  : ℕ → Bool   -- is even
-| even zero          = true --
-| even (suc zero)    = false --
-| even (suc (suc n)) = even n --
-| \end{code}
-| 
-| \begin{code}
-| _≡?_  : ℕ → ℕ → Bool  -- is equal
-| zero  ≡? zero  = true --
-| zero  ≡? suc _ = false --
-| suc _ ≡? zero  = false --
-| suc n ≡? suc m = n ≡? m --
-| \end{code}
-| 
-| \begin{code}
-| _≤?_  : ℕ → ℕ → Bool  -- is less than or equal
-| zero  ≤? _     = true --
-| suc _ ≤? zero  = false --
-| suc n ≤? suc m = n ≤? m --
-| \end{code}
 
 Binary representation of `ℕ`
 ==============
@@ -230,18 +139,6 @@ id (double+1 (double one)) : ℕ₂
 |  - `ℕ₂` ∈ `Set`, `ℕ₂` = { `zero` ~ 0, `id one` ~ 1, `id (double one)` ~ 2, ...}
 
 
-| *Exercise:* define the conversion function:
-| 
-| \begin{code}
-| from : ℕ₂ → ℕ  -- hint: use _*_
-| from zero              = zero --
-| from (id one)          = suc zero --
-| from (id (double n))   = 2 * from (id n) --
-| from (id (double+1 n)) = suc (2 * from (id n)) --
-| \end{code}
-| 
-| We will see how to define the conversion to the other direction later.
-
 
 Soon we will prove in Agda that `ℕ` and `ℕ₂` are isomorphic with the following relation:
 
@@ -284,7 +181,6 @@ Exercises
 =========
 
  * Define `ℤ`!
-|  and some operations on it (at least `_+_`, `_-_`, `_*_`)!
  * Define `ℚ`!
 
 (Several solutions are possible.)
