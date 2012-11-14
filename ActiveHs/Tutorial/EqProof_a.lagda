@@ -328,7 +328,7 @@ n*0≡0 (suc n) = n*0≡0 n --
   ∎ --
 \end{code}
 
-Browse and read the Agda standard libraries: [http://www.cse.chalmers.se/\~nad/listings/lib-0.5/](http://www.cse.chalmers.se/~nad/listings/lib-0.5/)
+| Browse and read the Agda standard libraries: [http://www.cse.chalmers.se/\~nad/listings/lib-0.5/](http://www.cse.chalmers.se/~nad/listings/lib-0.5/)
 
 
 Semiring solver
