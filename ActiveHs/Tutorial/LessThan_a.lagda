@@ -1,43 +1,132 @@
-% ≤ predicate on ℕ
+% Propositions
 % Péter Diviánszky and Ambrus Kaposi
-% 2011. 05. 03.
+% 2011. 05. 03., 2013. 01.
 
 
 Imports
 ========
 
 \begin{code}
-module LessThan_a where
-
-open import Data.Nat using (ℕ; zero; suc)
+module LessThan_a where --
 open import Data.Empty using (⊥)
+open import Data.Sum using (_⊎_; inj₁; inj₂)
+open import Data.Nat using (ℕ; zero; suc)
 \end{code}
-| open import Data.Sum using (_⊎_; inj₁; inj₂; [_,_]′)
 | open import Function using (flip; _$_; _∘_)
+
+
+Proofs as data
+==============
+
+It is beneficial to represent proofs as ordinary data;
+we can manipulate them like natural numbers.  
+The proofs of each proposition will have a distinct type.
+
+We represent the proofs of the **true proposition** by the type `⊤`.  
+The true proposition has a trivial proof: `tt` (trivially true).
+
+\begin{code}
+data ⊤ : Set where
+  tt : ⊤
+\end{code}
+
+We represent the proofs of the **false proposition** by the type `⊥`.  
+The false proposition has no proofs (it cannot be proven).
+
+\begin{code}
+data ⊥ : Set where
+\end{code}
+
+We represent the proofs of the **conjunction** of two propositions `A` and `B` by the type `A × B`.  
+`A × B` has proofs of form `a , b` where `a` is a proof of `A` and `b` is a proof of `B`.
+
+\begin{code}
+data _×_ (A B : Set) : Set where
+  _,_ : A → B → A × B
+
+infixr 4 _,_
+infixr 2 _×_
+\end{code}
+
+We represent the proofs of the **disjunction** of two propositions `A` and `B` by the type `A ⊎ B`.  
+`A ⊎ B` has two different kind of proofs:
+
+*   `inj₁ a`, where `a` is proof of `A`,
+*   `inj₂ b`, where `b` is proof of `B`.
+
+\begin{code}
+data _⊎_ (A B : Set) : Set where
+  inj₁ : A → A ⊎ B
+  inj₂ : B → A ⊎ B
+
+infixr 1 _⊎_
+\end{code}
+
+
+Exercises
+=========
+
+Construct one proof for each proposition if possible:  
+
+-   `⊤ × ⊤`
+-   `⊤ × ⊥`
+-   `⊥ × ⊥`
+-   `⊤ ⊎ ⊤`
+-   `⊤ ⊎ ⊥`
+-   `⊥ ⊎ ⊥`
+-   `⊥ ⊎ ⊤ ⊎ ⊤ × (⊥ ⊎ ⊥) ⊎ ⊤`
+
+Example:
+
+\begin{code}
+⊤×⊤ : ⊤ × ⊤
+⊤×⊤ = tt , tt
+\end{code}
+
+
+Remarks
+=======
+
+We represent implication, negation, universal and existential quantification later.
+
+`_⊎_` represents *constructive* disjunction,
+we represent classical disjunction later and compare them.
+
 
 
 `_≤_`: Less-or-equal predicate
 ==========
 
-We wish to give a definition which
-yields the infinite set of statements
+We wish to represent proofs of propositions n ≤ m (n, m = 0, 1, ...).  
+For this we define a set indexed with two natural numbers:
 
+\begin{code}
+data  _≤_ : ℕ → ℕ → Set where
+  z≤n : {n : ℕ} →                       zero  ≤ n
+  s≤s : {m : ℕ} → {n : ℕ} →   m ≤ n  →  suc m ≤ suc n
 
-| ~~~~~~~~~~~~~~~~~ {.haskell}
-| zero ≤ zero
-| zero ≤ suc zero
-| zero ≤ suc (suc zero)
-| ...
-| suc zero ≤ suc zero
-| suc zero ≤ suc (suc zero)
-| suc zero ≤ suc (suc (suc zero))
-| ...
-| suc (suc zero) ≤ suc (suc zero)
-| suc (suc zero) ≤ suc (suc (suc zero))
-| suc (suc zero) ≤ suc (suc (suc (suc zero)))
-| ...
-| ...
-| ~~~~~~~~~~~~~~~~~
+infix 4 _≤_
+\end{code}
+
+This yields the statements
+
+~~~~~~~~~~~~~~~~~ {.haskell}
+z≤n {0} : 0 ≤ 0
+z≤n {1} : 0 ≤ 1
+z≤n {2} : 0 ≤ 2
+...
+s≤s (z≤n {0}) : 1 ≤ 1
+s≤s (z≤n {1}) : 1 ≤ 2
+s≤s (z≤n {2}) : 1 ≤ 3
+...
+s≤s (s≤s (z≤n {0})) : 2 ≤ 2
+s≤s (s≤s (z≤n {1})) : 2 ≤ 3
+s≤s (s≤s (z≤n {2})) : 2 ≤ 4
+...
+...
+~~~~~~~~~~~~~~~~~
+
+which means that the following propositions have proofs:
 
 ~~~~~~~~~~~~~~~~~ {.haskell}
 0 ≤ 0
@@ -48,82 +137,11 @@ yields the infinite set of statements
 ~~~~~~~~~~~~~~~~~
 
 
-
-The outline of the solution:
-
-~~~~~~~~~~~~~~~~~ {.haskell}
-(n : ℕ)                     zero  ≤ n         -- yields the first column of statements
-(n : ℕ) (m : ℕ)   n ≤ m  →  suc n ≤ suc m     -- yields the successive columns of statements
-~~~~~~~~~~~~~~~~~
-
-Technical details of the solution:
-
-*   We define the *set* `n ≤ m` for each `n : ℕ` and `m : ℕ`.  
-    (`1 ≤ 0` is a valid set too.)
-*   The set `n ≤ m` will be non-empty iff `n` ≤ `m`.  
-    (`0 ≤ 1` is non-empty, `1 ≤ 0` is empty.)
-
-*********************************
-
-The idea to represent true statements with non-empty sets and false statements with
-empty sets turns out to be extremely useful as the examples will show.
-
-
-Definition of `_≤_`
-==========
-
-`_≤_` is an *indexed* set with two natural number indices and with two constructors:
-
-\begin{code}
-data  _≤_ : ℕ → ℕ → Set where
-  z≤n : (n : ℕ) →                       zero  ≤ n
-  s≤s : (m : ℕ) → (n : ℕ) →   m ≤ n  →  suc m ≤ suc n
-
-infix 4 _≤_
-\end{code}
-
-which yields the statements
-
-
-| ~~~~~~~~~~~~~~~~~ {.haskell}
-| z≤n zero : zero ≤ zero
-| z≤n (suc zero) : zero ≤ suc zero
-| z≤n (suc (suc zero)) : zero ≤ suc (suc zero)
-| ...
-| s≤s zero zero (z≤n zero) : suc zero ≤ suc zero
-| s≤s zero (suc zero) (z≤n (suc zero)) : suc zero ≤ suc (suc zero)
-| s≤s zero (suc (suc zero)) (z≤n (suc (suc zero))) : suc zero ≤ suc (suc (suc zero))
-| ...
-| s≤s (suc zero) (suc zero) (s≤s zero zero (z≤n zero)) : suc (suc zero) ≤ suc (suc zero)
-| s≤s (suc zero) (suc (suc zero)) (s≤s zero (suc zero) (z≤n (suc zero))) : suc (suc zero) ≤ suc (suc (suc zero))
-| s≤s (suc zero) (suc (suc (suc zero))) (s≤s zero (suc (suc zero)) (z≤n (suc (suc zero)))) : suc (suc zero) ≤|  suc (suc (suc (suc zero)))
-| ...
-| ...
-| ~~~~~~~~~~~~~~~~~
-| 
-| The same with decimal literals:
-
-~~~~~~~~~~~~~~~~~ {.haskell}
-z≤n 0 : 0 ≤ 0
-z≤n 1 : 0 ≤ 1
-z≤n 2 : 0 ≤ 2
-...
-s≤s 0 0 (z≤n 0) : 1 ≤ 1
-s≤s 0 1 (z≤n 1) : 1 ≤ 2
-s≤s 0 2 (z≤n 2) : 1 ≤ 3
-...
-s≤s 1 1 (s≤s 0 0 (z≤n 0)) : 2 ≤ 2
-s≤s 1 2 (s≤s 0 1 (z≤n 1)) : 2 ≤ 3
-s≤s 1 3 (s≤s 0 2 (z≤n 2)) : 2 ≤ 4
-...
-...
-~~~~~~~~~~~~~~~~~
-
 Notes
 
-*   The actual structure of the elements of `m ≤ n` are not as important as the fact that these elements exist.
+*   The `z≤n` constructor yields the first column of statements.
+*   The `s≤s` constructor yields the successive columns of statements.
 *   `1 ≤ 0` is also a valid expression which denotes an empty set.
-*   `s≤s 1 0 (z≤n 0)` would be an invalid expression. (*Exercise*: why?)
 
 
 Proving non-emptiness
@@ -134,7 +152,7 @@ We can prove that a set is non-empty by giving an element
 
 \begin{code}
 0≤1 : 1 ≤ 10
-0≤1 = s≤s 0 9 (z≤n 9)
+0≤1 = s≤s z≤n
 \end{code}
 
 *Exercise:* Prove that 3 ≤ 7!
@@ -145,25 +163,24 @@ Proving emptiness
 
 How can we prove that a set like `7 ≤ 3` is empty?
 
-1.  If `7 ≤ 3` would be non-empty, all its elements would look like `s≤s 6 2 x` where `x : 6 ≤ 2`.
-    *   `z≤n n` yields an element in `0 ≤ n` and `0` ≠ `7`.
-1.  If `6 ≤ 2` would be non-empty, all its elements would look like `s≤s 5 1 x` where `x : 5 ≤ 1`.
-    *   `z≤n n` yields an element in `0 ≤ n` and `0` ≠ `6`.
-1.  If `5 ≤ 1` would be non-empty, all its elements would look like `s≤s 4 0 x` where `x : 4 ≤ 0`.
-    *   `z≤n n` yields an element in `0 ≤ n` and `0` ≠ `5`.
+1.  If `7 ≤ 3` would be non-empty, all its elements would look like `s≤s x` where `x : 6 ≤ 2`.
+    *   `z≤n` yields an element in `0 ≤ n` and `0` ≠ `7`.
+1.  If `6 ≤ 2` would be non-empty, all its elements would look like `s≤s x` where `x : 5 ≤ 1`.
+    *   `z≤n` yields an element in `0 ≤ n` and `0` ≠ `6`.
+1.  If `5 ≤ 1` would be non-empty, all its elements would look like `s≤s x` where `x : 4 ≤ 0`.
+    *   `z≤n` yields an element in `0 ≤ n` and `0` ≠ `5`.
 1.  `4 ≤ 0` is empty.
-    *   `z≤n n` yields an element in `0 ≤ n` and `0` ≠ `4`.
-    *   `s≤s m n` yields an element in `suc m ≤ suc n` and `suc n` ≠ `0`.
+    *   `z≤n` yields an element in `0 ≤ n` and `0` ≠ `4`.
+    *   `s≤s` yields an element in `suc m ≤ suc n` and `suc n` ≠ `0`.
 
 Although we will discuss all the details later here we have a look at
 how can this chain of inference be given in Agda:*
 
 \begin{code}
 7≰3 : 7 ≤ 3 → ⊥
-7≰3 (s≤s .6 .2 (s≤s .5 .1 (s≤s .4 .0 ())))
+7≰3 (s≤s (s≤s (s≤s ())))
 \end{code}
 
-*   In emptiness proofs, values which are unambiguous should be dotted.**
 *   `()` denotes a value in a trivially empty set.
 
 *Exercise:* prove that `4 ≤ 2` is empty!
@@ -172,7 +189,7 @@ We can use an emptiness proof in another emptiness proof:
 
 \begin{code}
 8≰4 : 8 ≤ 4 → ⊥
-8≰4 (s≤s .7 .3 x) = 7≰3 x
+8≰4 (s≤s x) = 7≰3 x
 \end{code}
 
 *   `x` is an arbitrary variable name.
@@ -186,9 +203,6 @@ We can use an emptiness proof in another emptiness proof:
 `7 ≤ 3` is empty by giving a function which maps `7 ≤ 3` to a trivially empty set.  
 During the function definition we show that `7 ≤ 3` has no element so the function is defined.  
 We discuss functions in detail later.
-
-**Not just in emptiness proofs, this rule holds for patterns in general. We discuss patterns in detail later.
-
 
 
 Exercises
@@ -269,73 +283,6 @@ data _isDoubleOf_ : ℕ → ℕ → Set where  --
 9isDoubleOf4 : 9 isDoubleOf 4 → ⊥ --
 9isDoubleOf4 (s .7 .3 (s .5 .2 (s .3 .1 (s .1 .0 ()))))  --
 \end{code}
-
-
-Implicit parameters
-==========
-
-We are not interested in the parameters of constructors which usually *can be inferred*.  
-Agda makes possible to hide these parameters (note the curly brackets):
-
-~~~~~~~~~~~ {.haskell}
-data  _≤_ : ℕ → ℕ → Set where
-  z≤n : {n : ℕ} →                       zero  ≤ n
-  s≤s : {m : ℕ} → {n : ℕ} →   m ≤ n  →  suc m ≤ suc n
-
-infix 4 _≤_
-~~~~~~~~~~~
-
-which yields the statements
-
-~~~~~~~~~~~~~~~~~ {.haskell}
-z≤n : 0 ≤ 0
-z≤n : 0 ≤ 1
-z≤n : 0 ≤ 2
-...
-s≤s z≤n : 1 ≤ 1
-s≤s z≤n : 1 ≤ 2
-s≤s z≤n : 1 ≤ 3
-...
-s≤s (s≤s z≤n) : 2 ≤ 2
-s≤s (s≤s z≤n) : 2 ≤ 3
-s≤s (s≤s z≤n) : 2 ≤ 4
-...
-...
-~~~~~~~~~~~~~~~~~
-
-Note that `z≤n` is different in `z≤n : 0 ≤ 0` and in `z≤n : 0 ≤ 1` because of the hidden parameter!
-
-
-
-| `m ≤ n` has exactly one element if `m` less than or equal to `n`:
-| 
-| Set           1st,      2nd,            3rd,                   ...
-| ------------- --------- --------------- ---------------------- ---
-| `0 ≤ 0` = {   `z≤n 0` }
-| `0 ≤ 1` = {   `z≤n 1` }
-| `0 ≤ 2` = {   `z≤n 2` }
-| ...           ...       
-| `1 ≤ 0` = { } 
-| `1 ≤ 1` = {             `s≤s (z≤n 0)` }
-| `1 ≤ 2` = {             `s≤s (z≤n 1)` }
-| ...                     ...             
-| `2 ≤ 0` = { } 
-| `2 ≤ 1` = { }
-| `2 ≤ 2` = {                             `s≤s (s≤s (z≤n 1))` }
-| ...                                     ...                    
-| ...           ...       ...             ...                    ...
-| 
-| 
-| `z≤n` and `s≤s` can be seen as the generators of the sets.
-| 
-| 
-| `_≤?_ : ℕ → ℕ → Bool` is a *question*. `n ≤ m` is `false` or `true`
-| depending on the value of `n` and `m`.
-| 
-| `_≤_ : ℕ → ℕ → Set` is a statement or *assertion*. If `q : n ≤ m` then
-| n ≤ m.
-
-
 
 
 Alternative representation
@@ -509,5 +456,177 @@ data  _≤_ : ℕ → ℕ → Set where
   z≤n : ∀ {n} →               zero  ≤ n
   s≤s : ∀ {m n} →   m ≤ n  →  suc m ≤ suc n
 ~~~~~~~~~~~
+
+
+`_+_≡_`: Addition predicate
+==========
+
+We wish to give a definition which
+yields the infinite set of true propostions
+
+~~~~~~~~~~~~~~~~~ {.haskell}
+0 + 0 ≡ 0,  1 + 0 ≡ 1,  2 + 0 ≡ 2,  ...
+0 + 1 ≡ 1,  1 + 1 ≡ 2,  2 + 1 ≡ 3,  ...
+0 + 2 ≡ 2,  1 + 2 ≡ 3,  2 + 2 ≡ 4,  ...
+...
+~~~~~~~~~~~~~~~~~
+
+The outline of the solution:
+
+~~~~~~~~~~~~~~~~~ {.haskell}
+(n : ℕ)                        zero  + n ≡ n     -- yields the first column of statements
+(m : ℕ) (n : ℕ)  m + n ≡ k  →  suc m + n ≡ suc k -- yields the successive columns of statements
+~~~~~~~~~~~~~~~~~
+
+Technical details of the solution  
+(nothing new but better to repeat):
+
+*   We define the *set* `n + m ≡ k` for each `n : ℕ`, `m : ℕ` and `k : ℕ`.  
+    (`2 + 2 ≡ 5` is a valid set too.)
+*   The set `n + m ≡ k` will be non-empty iff `n` + `m` = `k`.  
+    (`2 + 2 ≡ 4` is non-empty, `2 + 2 ≡ 5` is empty.)
+
+
+Definition of `_+_≡_`
+==========
+
+`_+_̄≡_` is an indexed set with three natural number indices and with two constructors:*
+
+\begin{code}
+data _+_≡_ : ℕ → ℕ → ℕ → Set where
+  znn : ∀ {n} → zero + n ≡ n
+  sns : ∀ {m n k} → m + n ≡ k → suc m + n ≡ suc k
+\end{code}
+
+which yields the statements
+
+~~~~~~~ {.haskell}
+znn : 0 + 0 ≡ 0
+znn : 0 + 1 ≡ 1
+znn : 0 + 2 ≡ 2
+...
+sns znn : 1 + 0 ≡ 1
+sns znn : 1 + 1 ≡ 2
+sns znn : 1 + 2 ≡ 3
+...
+sns (sns znn) : 2 + 0 ≡ 2
+sns (sns znn) : 2 + 1 ≡ 3
+sns (sns znn) : 2 + 2 ≡ 4
+...
+...
+~~~~~~~
+
+Notes
+
+*   Underscores in `_+_≡_` denote the space for the operands (mixfix notation).
+
+
+*******************
+
+*this is the same as
+
+~~~~~~~ {.haskell}
+data _+_≡_ : ℕ → ℕ → ℕ → Set where
+  znn : {n : ℕ} → zero + n ≡ n
+  sns : {m : ℕ} → {n : ℕ} → m + n ≡ k → suc m + n ≡ suc k
+~~~~~~~
+
+Exercises
+========
+
+*   Prove that 5 + 5 = 10!
+*   Prove that 2 + 2 ≠ 5!
+
+\begin{code}
+5+5≡10 : 5 + 5 ≡ 10  --
+5+5≡10 = sns (sns (sns (sns (sns znn))))  --
+
+2+2≢5 : 2 + 2 ≡ 5 → ⊥ --
+2+2≢5 (sns (sns ())) --
+\end{code}
+
+
+Exercises
+=========
+
+*   Define `_⊓_ : ℕ → ℕ → Set` such that `n ⊓ m ≡ k` iff `k` is the minimum of `n` and `m`!
+    *   Prove that `3 ⊓ 5 ≡ 3` is non-empty!
+    *   Prove that `3 ⊓ 5 ≡ 5` is empty!
+*   Define `_⊔_ : ℕ → ℕ → Set` such that `n ⊔ m ≡ k` iff `k` is the maximum of `n` and `m`!
+    *   Prove that `3 ⊔ 5 ≡ 5` is non-empty!
+    *   Prove that `3 ⊔ 5 ≡ 3` is empty!
+
+
+
+Definition reuse
+================
+
+Another definition of `_≤_`:
+
+\begin{code}
+data _≤″_ : ℕ → ℕ → Set where
+  ≤+ : ∀ {m n k} → m + n ≡ k → m ≤″ k
+\end{code}
+
+which yields
+
+~~~~~~~~~ {.haskell}
+≤+ znn : 0 ≤″ 0
+≤+ znn : 0 ≤″ 1
+≤+ znn : 0 ≤″ 2
+...
+≤+ (sns znn) : 1 ≤″ 1
+≤+ (sns znn) : 1 ≤″ 2
+≤+ (sns znn) : 1 ≤″ 3
+...
+≤+ (sns (sns znn)) : 2 ≤″ 2
+≤+ (sns (sns znn)) : 2 ≤″ 3
+≤+ (sns (sns znn)) : 2 ≤″ 4
+...
+...
+~~~~~~~~~
+
+Notes
+
+ * This representation of less-than-or-equal is similar to `_≤_`.
+ * If we write `≤+ : ∀ {m n k} → m + n ≡ k → n ≤″ k` (use `n` instead of `m` at the end) we get a representation of less-than-or-equal similar to `_≤′_` on the previous slides.
+
+
+Exercises
+=========
+
+*   Define `_isDoubleOf_ : ℕ → ℕ → Set` on top of `_+_≡_`!
+    *   Prove that `8 isDoubleOf 4` is non-empty!
+    *   Prove that `9 isDoubleOf 4` is empty!
+*   Define `_*_≡_ : ℕ → ℕ → Set` with the help of `_+_≡_`!
+    *   Prove that `3 * 3 ≡ 9` is non-empty!
+    *   Prove that `3 * 3 ≡ 8` is empty!
+*   Define `_≈_ : ℕ → ℕ⁺ → Set` which represents the (canonical) isomorphism between `ℕ` and `ℕ⁺`!*
+    *   Prove that `5 ≈ double+1 (double one)` is non-empty!
+    *   Prove that `4 ≈ double+1 (double one)` is empty!
+
+\begin{code}
+data ℕ⁺ : Set where  --
+  one    : ℕ⁺  --
+  double : ℕ⁺ → ℕ⁺ --
+  double+1 : ℕ⁺ → ℕ⁺ --
+
+module ℕ≈ℕ⁺ where --
+
+  data _≈_ : ℕ → ℕ⁺ → Set where --
+    one : suc zero ≈ one --
+    double : ∀ {k 2k m} → k + k ≡ 2k → k ≈ m → 2k ≈ double m  --
+    +1 : ∀ {n m} →  n ≈ double m  →  suc n ≈ double+1 m --
+
+  5≈5 : 5 ≈ double+1 (double one) --
+  5≈5 = +1 (double (sns (sns znn)) (double (sns znn) one)) --
+
+  4≉5 : 4 ≈ double+1 (double one)  → ⊥ --
+  4≉5 (+1 (double (sns (sns (sns ()))) y)) --
+\end{code}
+
+*****************
+
+*There are lots of isomorphism between `ℕ` and `ℕ⁺`, we mean here the most natural one.
 
 
