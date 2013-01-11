@@ -91,9 +91,9 @@ Proofs
     In this way algorithms can be used during proofs.
 -   automatic proof checking
 
-Agda tools
+Additional features
 
--   automatic filling of paramters, hidden parameters
+-   inferred terms, implicit arguments
 -   holes, interactive development
 -   unicode characters, misfix operators
 
