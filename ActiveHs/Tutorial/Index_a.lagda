@@ -10,10 +10,10 @@ module Index_a where
 [Technical Information](Technical_Info_a.xml)
 
 Sets
-:   [Enumeration](Bool_a.xml) | [Recursion](Nat_a.xml) | [Parameters](List_a.xml)  
-    [Indices](LessThan_a.xml) | [Indices (2)](Addition_a.xml) | [Parameters vs. indices](Equality_a.xml)
+:   [Enumeration](Bool_a.xml) | [Recursion](Nat_a.xml) | [Parameters](List_a.xml) |  
+    [Indices](Indices_a.xml) | [Term inference](Inference_a.xml) | [Propositions](LessThan_a.xml) | [Parameters vs. indices](Equality_a.xml)
 Functions
-:   [Patterns](Patterns_a.xml) | [Recursion](Recursion_a.xml) | [Polymorphism](Polymorphism_a.xml) | [Set result](Large_a.xml)  
+:   [Patterns](Patterns_a.xml) | [Recursion](Recursion_a.xml) | [Polymorphism](Polymorphism_a.xml) | [Set result](Large_a.xml) |  
     [Proofs](Proofs_a.xml) | [Equality proofs](EqProof_a.xml) | ...
 | [Proofs (2)] | [Safe functions]
 Specifications
