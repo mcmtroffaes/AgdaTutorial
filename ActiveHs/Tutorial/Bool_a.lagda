@@ -2,19 +2,15 @@
 % Péter Diviánszky
 % 2011. 05. 03.
 
-\begin{code}
-module Bool_a where
-\end{code}
-
 
 First Agda module
 ==============
 
 Our first Agda module contains no definition just a *module header*:
 
-~~~~~~~ {.haskell}
-module Bool where
-~~~~~~~
+\begin{code}
+module Bool_a where
+\end{code}
 
  * `module` and `where` are keywords
  * The module name after `module` should correspond to the file name.  
