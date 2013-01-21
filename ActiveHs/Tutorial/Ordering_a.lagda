@@ -3,6 +3,7 @@
 % 2011. 12. 01.
 
 \begin{code}
+{-# OPTIONS --no-termination-check #-}
 module Ordering_a where
 \end{code}
 

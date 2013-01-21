@@ -171,13 +171,13 @@ fin≤′ : ∀ {n : ℕ}(m : Fin n) → (toℕ m) <′ n -- hint: use s≤′s
 fin≤′ (zero {zero})  = ≤′-refl --
 fin≤′ (zero {suc n}) = ≤′-step $ fin≤′ zero  --
 fin≤′ (suc {n} m)    = s≤′s $ fin≤′ m --
-
--- TODO --
-from∘to′ : ∀ (n : ℕ) (m : Fin n) → fromℕ≤′ {toℕ m} {n} (fin≤′ m) ≡ m --
-from∘to′ .(suc zero)    (zero {zero})  = refl --
-from∘to′ .(suc (suc n)) (zero {suc n}) = cong typSuc $ from∘to′ (suc n) zero --
-from∘to′ (suc n)        (suc m)        = {!!} --
 \end{code}
+
+|-- TODO --
+|from∘to′ : ∀ (n : ℕ) (m : Fin n) → fromℕ≤′ {toℕ m} {n} (fin≤′ m) ≡ m --
+|from∘to′ .(suc zero)    (zero {zero})  = refl --
+|from∘to′ .(suc (suc n)) (zero {suc n}) = cong typSuc $ from∘to′ (suc n) zero --
+|from∘to′ (suc n)        (suc m)        = {!!} --
 
 
 Alternative definition

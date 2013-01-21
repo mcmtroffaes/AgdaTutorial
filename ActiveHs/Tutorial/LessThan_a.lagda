@@ -8,8 +8,8 @@ Imports
 
 \begin{code}
 module LessThan_a where --
-open import Data.Empty using (⊥)
-open import Data.Sum using (_⊎_; inj₁; inj₂)
+--open import Data.Empty using (⊥)
+--open import Data.Sum using (_⊎_; inj₁; inj₂)
 open import Data.Nat using (ℕ; zero; suc)
 \end{code}
 | open import Function using (flip; _$_; _∘_)

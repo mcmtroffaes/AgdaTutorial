@@ -8,6 +8,7 @@ Import list
 \begin{code}
 module Polymorphism_a where
 open import Data.Nat
+open import Data.Unit using (⊤; tt)
 \end{code}
 
 

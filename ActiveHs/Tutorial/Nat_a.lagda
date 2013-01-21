@@ -64,9 +64,9 @@ We may use `0`, `1`, `2`, ... instead of `zero`, `suc zero`, ...*
 *\ Decimal natural number literals can be used if we bind our `ℕ` set to the Agda internals with the following three declarations:
 
 \begin{code}
-{-# BUILTIN NATURAL ℕ    #-}
-{-# BUILTIN ZERO    zero #-}
-{-# BUILTIN SUC     suc  #-}
+-- {-# BUILTIN NATURAL ℕ    #-}
+-- {-# BUILTIN ZERO    zero #-}
+-- {-# BUILTIN SUC     suc  #-}
 \end{code}
 
 

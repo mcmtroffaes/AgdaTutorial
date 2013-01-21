@@ -31,9 +31,9 @@ We may use `0`, `1`, `2`, ... instead of `zero`, `suc zero`, ... if
 we declare
 
 \begin{code}
-{-# BUILTIN NATURAL ℕ    #-}
-{-# BUILTIN ZERO    zero #-}
-{-# BUILTIN SUC     suc  #-}
+-- {-# BUILTIN NATURAL ℕ    #-}
+-- {-# BUILTIN ZERO    zero #-}
+-- {-# BUILTIN SUC     suc  #-}
 \end{code}
 
 
@@ -183,8 +183,8 @@ data ℕ₂ : Set where
 from : ℕ₂ → ℕ  -- hint: use _*_
 from zero              = zero --
 from (id one)          = suc zero --
-from (id (double n))   = 2 * from (id n) --
-from (id (double+1 n)) = suc (2 * from (id n)) --
+from (id (double n))   = suc (suc zero) * from (id n) --
+from (id (double+1 n)) = suc (suc (suc zero) * from (id n)) --
 \end{code}
 
 `from` should define the backward function of the following isomorphism between `ℕ` and `ℕ₂`
