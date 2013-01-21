@@ -1,40 +1,67 @@
 % Introduction to Agda
 
+
+Introduction
+------------
+
 \begin{code}
 module Index_a where
+
+import Motivation_a
+import Technical_Info_a
+\end{code}
+
+Sets
+----
+
+\begin{code}
+import Bool_a       -- Enumeration
+import Nat_a        -- Recursion
+import List_a       -- Parameter
+import Indices_a    -- Indices
+import Inference_a  -- Term inference
+import LessThan_a   -- Propositions
+import Equality_a   -- Parameters vs. indices
 \end{code}
 
 
-[Motivation](Motivation_a.xml)
-
-[Technical Information](Technical_Info_a.xml)
-
-Sets
-:   [Enumeration](Bool_a.xml) | [Recursion](Nat_a.xml) | [Parameters](List_a.xml) |  
-    [Indices](Indices_a.xml) | [Term inference](Inference_a.xml) | [Propositions](LessThan_a.xml) | [Parameters vs. indices](Equality_a.xml)
 Functions
-:   [Patterns](Patterns_a.xml) | [Recursion](Recursion_a.xml) | [Polymorphism](Polymorphism_a.xml) | [Set result](Large_a.xml) |  
-    [Proofs](Proofs_a.xml) | [Equality proofs](EqProof_a.xml) | ...
-| [Proofs (2)] | [Safe functions]
-Specifications
-:   ...
+---------
+
+\begin{code}
+import Patterns_a
+import Recursion_a
+import Polymorphism_a
+import Large_a          -- Set result
+import Proofs_a
+import EqProof_a        -- Equality proofs
+\end{code}
+
+Other
+-----
+
+[Presentation for mathematicians](http://people.inf.elte.hu/divip/Agda.pdf)
+
+\begin{code}
+import About_a
+\end{code}
 
 
-*******
+Lecture notes under revisition
+------------------------------
 
-*Lecture notes under revisition:*
+\begin{code}
+import Vec_a
+import Fin_a
+import Sigma_a
+import Parity_a
+import Ordering_a
+import Dec_a
+import Logic_Agda_a
+\end{code}
 
-Subsets
-:   [Vec](Vec_a.xml) | [Fin](Fin_a.xml) | [Sigma](Sigma_a.xml)
-Views
-:   [Parity](Parity_a.xml) | [Ordering](Ordering_a.xml) | [Dec](Dec_a.xml)
-Algebraic Data Structures
-:   Group | Ring | ...
+[Logic_Haskell_a.lhs](Logic_Haskell_a.lhs)
 
-Coinduction | [Logic (Haskell)](Logic_Haskell_a.xml) | [Logic (Agda)](Logic_Agda_a.xml)
-
-
-[About](About_a.xml)
 
 | TODO
 | ----
