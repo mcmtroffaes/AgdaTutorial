@@ -2,14 +2,12 @@
 % Péter Diviánszky
 % 2011. 05. 03.
 
-\begin{code}
-module Nat_a where
-\end{code}
-
 Import List
 ===========
 
 \begin{code}
+module Nat_a where
+
 open import Data.Bool using (Bool; true; false)
 \end{code}
 
