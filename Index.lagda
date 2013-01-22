@@ -14,8 +14,11 @@ module Index where
 
 \begin{code}
 import Motivation
+
 import Installation
+
 import Emacs_Usage
+import Modules.Basic
 \end{code}
 
 Sets

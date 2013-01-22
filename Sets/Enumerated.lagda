@@ -2,22 +2,11 @@
 % Péter Diviánszky
 % 2011. 05. 03.
 
-
-First Agda module
-==============
-
-Our first Agda module contains no definition just a *module header*:
-
+<!--
 \begin{code}
 module Sets.Enumerated where
 \end{code}
-
- * `module` and `where` are keywords
- * The module name after `module` should correspond to the file name.  
-   In this case the file name is `Bool.agda`.
- * Syntax highlighting is added by loading the module with C-`c` C-`l`.
-
-The following definitions are added one-by-one to the file.
+-->
 
 
 The `Bool` set
