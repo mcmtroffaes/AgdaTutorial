@@ -118,7 +118,7 @@ State of art
 Demo
 ========
 
-[We visit the current tutorial.](Index_a.xml)
+[We visit the current tutorial.](Index_a.html)
 
 
 

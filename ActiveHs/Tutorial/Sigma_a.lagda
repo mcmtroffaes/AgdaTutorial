@@ -102,7 +102,7 @@ lookup (_ ∷ _)  (later p) | n , q = suc n , q
 How to express bijection
 ========================
 
-We haven't finished the [proof](Equality_a.xml#list-ℕ) of the isomorphism of `ℕ` and `List ⊤` because we were not able to define surjection without `Σ`.
+We haven't finished the [proof](Equality_a.html#list-ℕ) of the isomorphism of `ℕ` and `List ⊤` because we were not able to define surjection without `Σ`.
 
 \begin{code}
 fromList : List ⊤ → ℕ
