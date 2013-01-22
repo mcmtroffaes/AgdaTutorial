@@ -22,14 +22,6 @@ Features
 - slides: 1/3 examples, 1/3 explanation, 1/3 exercises
 - only (part of) secondary school mathematics is required
 
-----------------
-
-Pressing key 'a' on the pages switch between slide and normal mode.  
-Navigation is possible with left and right arrows.  
-In slide mode the remarks are not visible!
-
-The developers are Péter Diviánszky and Ambrus Kaposi. Any comment is very much appreciated, please send them to Péter (divipp at gmail).
-
 [*More about the tutorial*](About.html)
 
 
