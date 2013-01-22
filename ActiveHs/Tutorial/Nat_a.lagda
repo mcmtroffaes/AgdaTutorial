@@ -54,8 +54,9 @@ suc (suc (suc zero)) : ℕ
 ...
 ~~~~~~~~~~~~~~~~~
 
-
+<!--
 | *Interpretation:* `ℕ` ∈ `Set`, `ℕ` = { `zero` ~ 0, `suc zero` ~ 1, `suc (suc zero)` ~ 2, ... }
+-->
 
 We may use `0`, `1`, `2`, ... instead of `zero`, `suc zero`, ...*
 
@@ -132,12 +133,12 @@ id (double+1 (double one)) : ℕ₂
 ...
 ~~~~~~~~~~~~~~~~~
 
-
+<!--
 | *Interpretation:*
 | 
 |  - `ℕ⁺` ∈ `Set`, `ℕ⁺` = { `one` ~ 1, `double one` ~ 2, `double+1 one` ~ 3, `double (double one)` ~ 4, `double (double+1 one)` ~ 5, ...}
 |  - `ℕ₂` ∈ `Set`, `ℕ₂` = { `zero` ~ 0, `id one` ~ 1, `id (double one)` ~ 2, ...}
-
+-->
 
 
 Soon we will prove in Agda that `ℕ` and `ℕ₂` are isomorphic with the following relation:

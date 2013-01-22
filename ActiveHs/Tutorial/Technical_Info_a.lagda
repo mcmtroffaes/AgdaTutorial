@@ -152,9 +152,10 @@ Emacs Agda-mode unicode symbols
 `\lfloor`, `\rfloor`    `⌊`, `⌋`
 ----------------------- -------------------
 
+<!--
 | Typing exercises
 | ----------------
-
+-->
 
 
 

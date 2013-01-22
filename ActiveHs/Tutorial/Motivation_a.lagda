@@ -99,7 +99,7 @@ Additional features
 
 
 
-
+<!-- comment
 | Eliminating errors from programming
 | ===================================
 | 
@@ -166,6 +166,7 @@ Additional features
 | 
 | Agda is a programming language with a type system so expressive that makes it a formal verification tool.
 | 
+-->
 
 
 Benefits of completing the tutorial

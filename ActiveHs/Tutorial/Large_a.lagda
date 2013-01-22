@@ -14,7 +14,6 @@ open import Data.Empty using (⊥)
 open import Data.Unit using (⊤; tt)
 open import Data.Sum using (_⊎_; inj₁; inj₂)
 \end{code}
-| open import Function using (flip; _$_; _∘_)
 
 Introduction
 ============
@@ -111,13 +110,16 @@ f′ : {n m : ℕ} → n ≤′ m → n ≤′ suc m
 f′ {zero} {m} tt = tt
 f′ {suc n} {zero} ()
 f′ {suc n} {suc m} x = f′ {n} {m} x
+\end{code}
 
+<!--
+\begin{code}
 conv : {n m : ℕ} → n ≤′ m → n ≤ m  --
 conv {zero} tt = z≤n  --
 conv {suc n} {zero} ()  --
 conv {suc n} {suc m} e = s≤s (conv e) --
 \end{code}
-
+-->
 
 Exercises
 ========
@@ -126,6 +128,7 @@ Give recursive definitions for `_≡_` and `_≢_` on natural numbers!
 
 Give mutual recursive definitions for `Even` and `Odd`!
 
+<!--
 \begin{code}
 Even : ℕ → Set --
 Odd : ℕ → Set --
@@ -136,7 +139,7 @@ Even (suc n) = Odd n --
 Odd zero = ⊥ --
 Odd (suc n) = Even n --
 \end{code}
-
+-->
 
 
 Macro-like `Set` definitions

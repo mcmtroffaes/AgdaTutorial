@@ -14,12 +14,14 @@ Import List
 open import Data.Nat using (ℕ; zero; suc; _≤_; z≤n; s≤s)
 open import Data.List using (List; []; _∷_)
 \end{code}
+
+<!--
 | open import Data.Nat using (ℕ; zero; suc; _+_; _*_; _≤_; z≤n; s≤s)
 | open import Data.List using (List; []; _∷_; _++_)
 | open import Data.Unit using (⊤; tt)
 | open import Data.Product using (_×_; _,_)
 | open import Function using (_$_; _∘_)
-
+-->
 
 Parameters vs. indices
 ======================
@@ -97,7 +99,7 @@ The parameters of the set are present as implicit arguments in the constructors.
 TODO 
 
 
-
+<!--
 | A simpler definition
 | ====================
 | 
@@ -133,7 +135,7 @@ TODO
 | 2→1 zero .0 refl = zz --
 | 2→1 (suc n) .(suc n) refl = ss $ 2→1 n n refl --
 | \end{code}
-
+-->
 
 General equality: `_≡_`
 ================
@@ -156,6 +158,7 @@ refl {ℕ} {2} : 2 ≡ 2
 
 so it represents equality!
 
+<!--
 | *Examples:*
 | 
 | Set           1st,      2nd, 3rd, ...
@@ -175,7 +178,7 @@ so it represents equality!
 | ...           ...     
 | 
 | 
-
+-->
 
 `_∈_` proposition
 ===============
@@ -200,6 +203,7 @@ Exercises
 *   Define a permutation predicate!
 *   Define a sort predicate!
 
+<!--
 \begin{code}
 data _⊆_ {A : Set} : List A → List A → Set where --
     stop :                                              [] ⊆ [] --
@@ -213,6 +217,7 @@ e0 = keep stop --
 e1 : 1 ∷ 2 ∷ [] ⊆ 1 ∷ 2 ∷ 3 ∷ [] --
 e1 =  keep (keep (drop stop)) --
 \end{code}
+-->
 
 ***************
 

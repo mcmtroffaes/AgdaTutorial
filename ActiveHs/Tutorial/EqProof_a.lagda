@@ -17,8 +17,6 @@ open import Data.Unit using (⊤; tt)
 open import Data.Product using (_×_; _,_)
 open import Function using (_$_)         -- 
 \end{code}
-| open import Data.List using (List; []; _∷_)
-| open import Function using (_$_; _∘_)
 
 Propositional equality: `_≡_`
 ================
@@ -63,16 +61,25 @@ sym refl = refl   -- after pattern matching on 'refl', 'a' and 'b' coincides
 
 \begin{code}
 trans : ∀ {A} {a b c : A} → a ≡ b → b ≡ c → a ≡ c
+\end{code}
+
+<!--
+\begin{code}
 trans refl refl = refl --
 \end{code}
+-->
 
 Prove that every function is compatible with the equivalence relation (congruency):
 
 \begin{code}
 cong : ∀ {A B} {m n : A} → (f : A → B) → m ≡ n → f m ≡ f n
-cong f refl = refl --
 \end{code}
 
+<!--
+\begin{code}
+cong f refl = refl --
+\end{code}
+-->
 
 Automatic reduction of types
 ============================
@@ -155,19 +162,35 @@ Finish the ingredients of the proof that (`ℕ`, `_+_`) is a commutative monoid!
 
 \begin{code}
 +-left-identity  : ∀ a → 0 + a ≡ a
-+-left-identity a = refl --
+\end{code}
 
+<!--
+\begin{code}
++-left-identity a = refl --
+\end{code}
+-->
+
+\begin{code}
 +-assoc          : ∀ a b c → a + (b + c) ≡ (a + b) + c -- hint: use cong
+\end{code}
+
+<!--
+\begin{code}
 +-assoc zero    b c = refl --
 +-assoc (suc a) b c = cong suc (+-assoc a b c) --
 \end{code}
 | +-identity       : ∀ a → 0 + a ≡ a × a + 0 ≡ a
 | +-identity a = +-left-identity a , +-right-identity a --
+-->
 
 Fot commutativity you need a helper function first:
 
 \begin{code}
 m+1+n≡1+m+n : ∀ m n → m + suc n ≡ suc (m + n)
+\end{code}
+
+<!--
+\begin{code}
 m+1+n≡1+m+n zero n = refl  --
 m+1+n≡1+m+n (suc m) n = cong suc (m+1+n≡1+m+n m n) --
 
@@ -177,7 +200,7 @@ m+1+n≡1+m+n (suc m) n = cong suc (m+1+n≡1+m+n m n) --
   (cong suc (+-comm n b)) --
   (sym (m+1+n≡1+m+n b n)) --
 \end{code}
-
+-->
 
 
 Exercise: `List ⊤` ~ `ℕ`
@@ -199,22 +222,47 @@ Let's prove that `fromList` and `toList` are inverses of each-other and that the
 
 \begin{code}
 from-to : ∀ a → fromList (toList a) ≡ a
+\end{code}
+
+<!--
+\begin{code}
 from-to zero = refl  --
 from-to (suc a) = cong suc (from-to a)  --
+\end{code}
+-->
 
+\begin{code}
 to-from : ∀ a → toList (fromList a) ≡ a
+\end{code}
+
+<!--
+\begin{code}
 to-from [] = refl  --
 to-from (x ∷ n) = cong (_∷_ tt) (to-from n)  --
+\end{code}
+-->
 
+\begin{code}
 fromPreserves++ : ∀ (a b : List ⊤) → fromList (a ++ b) ≡ fromList a + fromList b
+\end{code}
+
+<!--
+\begin{code}
 fromPreserves++ [] b = refl --
 fromPreserves++ (x ∷ xs) b = cong suc (fromPreserves++ xs b) --
+\end{code}
+-->
 
+\begin{code}
 toPreserves+ : ∀ (a b : ℕ) → toList (a + b) ≡ toList a ++ toList b
+\end{code}
+
+<!--
+\begin{code}
 toPreserves+ zero    b = refl --
 toPreserves+ (suc n) b = cong (_∷_ tt) (toPreserves+ n b) --
 \end{code}
-
+-->
 
 Equational reasoning
 ====================
@@ -275,6 +323,10 @@ Define the following functions:
 
 \begin{code}
 *-assoc        : ∀ a b c → a * (b * c) ≡ (a * b) * c
+\end{code}
+
+<!--
+\begin{code}
 *-assoc zero b c = refl --
 *-assoc (suc a) b c = --
     b * c + a * (b * c) --
@@ -283,26 +335,52 @@ Define the following functions:
   ≡⟨ sym (distribʳ-*-+ b (a * b) c) ⟩ --
     (b + a * b) * c --
   ∎ --
+\end{code}
+-->
 
+\begin{code}
 *-left-identity  : ∀ a → 1 * a ≡ a
-*-left-identity a = +-right-identity a --
+\end{code}
 
+<!--
+\begin{code}
+*-left-identity a = +-right-identity a --
+\end{code}
+-->
+
+\begin{code}
 *-right-identity : ∀ a → a * 1 ≡ a
+\end{code}
+
+<!--
+\begin{code}
 *-right-identity zero    = refl --
 *-right-identity (suc n) = cong suc (*-right-identity n) --
 *-identity       : ∀ a → 1 * a ≡ a × a * 1 ≡ a --
 *-identity a = *-left-identity a , *-right-identity a --
 \end{code}
+-->
 
 Commutativity:
 
 \begin{code}
 -- helper functions:
 n*0≡0 : ∀ n → n * 0 ≡ 0
+\end{code}
+
+<!--
+\begin{code}
 n*0≡0 zero    = refl --
 n*0≡0 (suc n) = n*0≡0 n --
+\end{code}
+-->
 
+\begin{code}
 *-suc : ∀ n m → n + n * m ≡ n * suc m
+\end{code}
+
+<!--
+\begin{code}
 *-suc zero m = refl --
 *-suc (suc n) m = cong suc $ --
     n + (m + n * m) --
@@ -316,8 +394,15 @@ n*0≡0 (suc n) = n*0≡0 n --
     m + n * suc m --
   ∎ --
   -- hint: you will need steps like this: cong (λ x → n + x) ...
+\end{code}
+-->
 
+\begin{code}
 *-comm : ∀ m n → m * n ≡ n * m
+\end{code}
+
+<!--
+\begin{code}
 *-comm zero n = sym $ n*0≡0 n --
 *-comm (suc m) n =  --
     n + m * n --
@@ -327,9 +412,11 @@ n*0≡0 (suc n) = n*0≡0 n --
     n * suc m --
   ∎ --
 \end{code}
+-->
 
+<!--
 | Browse and read the Agda standard libraries: [http://www.cse.chalmers.se/\~nad/listings/lib-0.5/](http://www.cse.chalmers.se/~nad/listings/lib-0.5/)
-
+-->
 
 Semiring solver
 ===============

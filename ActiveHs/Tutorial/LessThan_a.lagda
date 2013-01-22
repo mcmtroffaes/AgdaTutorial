@@ -7,12 +7,10 @@ Imports
 ========
 
 \begin{code}
-module LessThan_a where --
---open import Data.Empty using (⊥)
---open import Data.Sum using (_⊎_; inj₁; inj₂)
+module LessThan_a where
+
 open import Data.Nat using (ℕ; zero; suc)
 \end{code}
-| open import Function using (flip; _$_; _∘_)
 
 
 Proofs as data
@@ -218,18 +216,18 @@ Exercises
 *   Define equality `_≡_ : ℕ → ℕ → Set`!
 *   Define non-equality `_≠_ : ℕ → ℕ → Set`!
 
-
+<!--
 | Equality on `ℕ`
 | ===============
-
-\begin{code}
-data _≡₁_ : ℕ → ℕ → Set where --
-  zz : zero ≡₁ zero --
-  ss : {m n : ℕ} → m ≡₁ n → suc m ≡₁ suc n --
-
-infix 4 _≡₁_ --
-\end{code}
-
+|
+| \begin{code}
+| data _≡₁_ : ℕ → ℕ → Set where --
+|   zz : zero ≡₁ zero --
+|   ss : {m n : ℕ} → m ≡₁ n → suc m ≡₁ suc n --
+| 
+| infix 4 _≡₁_ --
+| \end{code}
+| 
 | yields
 | 
 | ~~~~~~~~~~~~~~~~~ {.haskell}
@@ -238,7 +236,7 @@ infix 4 _≡₁_ --
 | ss (ss zz) : 2 ≡₁ 2
 | ...
 | ~~~~~~~~~~~~~~~~~
-
+|
 | This is not isomorphic to ℕ.
 | 
 | *Exercises:*
@@ -262,28 +260,24 @@ infix 4 _≡₁_ --
 | antisym z≤n z≤n = zz --
 | antisym (s≤s m≤n) (s≤s n≤m) = ss $ antisym m≤n n≤m --
 | \end{code}
-
-\begin{code}
-data _≠_ : ℕ → ℕ → Set where --
-  z≠s : {n : ℕ}   →          zero ≠ suc n --
-  s≠z : {n : ℕ}   →         suc n ≠ zero --
-  s≠s : {m n : ℕ} → m ≠ n → suc m ≠ suc n --
-
-\end{code}
-
-
-\begin{code}
-data _isDoubleOf_ : ℕ → ℕ → Set where  --
-  z : zero isDoubleOf zero --
-  s : (m n : ℕ) → m isDoubleOf n → suc (suc m) isDoubleOf suc n --
-
-8isDoubleOf4 : 8 isDoubleOf 4 --
-8isDoubleOf4 = s 6 3 (s 4 2 (s 2 1 (s 0 0 z))) --
-
-9isDoubleOf4 : 9 isDoubleOf 4 → ⊥ --
-9isDoubleOf4 (s .7 .3 (s .5 .2 (s .3 .1 (s .1 .0 ()))))  --
-\end{code}
-
+| 
+| \begin{code}
+| data _≠_ : ℕ → ℕ → Set where --
+|   z≠s : {n : ℕ}   →          zero ≠ suc n --
+|   s≠z : {n : ℕ}   →         suc n ≠ zero --
+|   s≠s : {m n : ℕ} → m ≠ n → suc m ≠ suc n --
+| 
+| data _isDoubleOf_ : ℕ → ℕ → Set where  --
+|   z : zero isDoubleOf zero --
+|   s : (m n : ℕ) → m isDoubleOf n → suc (suc m) isDoubleOf suc n --
+| 
+| 8isDoubleOf4 : 8 isDoubleOf 4 --
+| 8isDoubleOf4 = s 6 3 (s 4 2 (s 2 1 (s 0 0 z))) --
+| 
+| 9isDoubleOf4 : 9 isDoubleOf 4 → ⊥ --
+| 9isDoubleOf4 (s .7 .3 (s .5 .2 (s .3 .1 (s .1 .0 ()))))  --
+| \end{code}
+-->
 
 Alternative representation
 ========
@@ -319,7 +313,7 @@ As with `ℕ` and `ℕ₂`,
 *   the structure of the `m ≤ n` and `m ≤′ n` set elements are different
 *   different representations are good for different tasks  
 
-
+<!--
 | Alternative Definition
 | ========
 | 
@@ -410,6 +404,7 @@ As with `ℕ` and `ℕ₂`,
 | ≤⇒≤′ (z≤n _)   = z≤′n --
 | ≤⇒≤′ (s≤s a≤b) = s≤′s $ ≤⇒≤′ a≤b --
 | \end{code}
+-->
 
 
 Syntactic abbreviations
@@ -537,6 +532,7 @@ Exercises
 *   Prove that 5 + 5 = 10!
 *   Prove that 2 + 2 ≠ 5!
 
+<!--
 \begin{code}
 5+5≡10 : 5 + 5 ≡ 10  --
 5+5≡10 = sns (sns (sns (sns (sns znn))))  --
@@ -544,7 +540,7 @@ Exercises
 2+2≢5 : 2 + 2 ≡ 5 → ⊥ --
 2+2≢5 (sns (sns ())) --
 \end{code}
-
+-->
 
 Exercises
 =========
@@ -605,6 +601,7 @@ Exercises
     *   Prove that `5 ≈ double+1 (double one)` is non-empty!
     *   Prove that `4 ≈ double+1 (double one)` is empty!
 
+<!--
 \begin{code}
 data ℕ⁺ : Set where  --
   one    : ℕ⁺  --
@@ -624,6 +621,7 @@ module ℕ≈ℕ⁺ where --
   4≉5 : 4 ≈ double+1 (double one)  → ⊥ --
   4≉5 (+1 (double (sns (sns (sns ()))) y)) --
 \end{code}
+-->
 
 *****************
 

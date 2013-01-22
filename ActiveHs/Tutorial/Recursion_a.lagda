@@ -58,66 +58,104 @@ Define the following functions:
 
 \begin{code}
 pred  : ℕ → ℕ      -- predecessor (pred 0 = 0)
+\end{code}
+
+<!--
+\begin{code}
 pred zero    = zero --
 pred (suc n) = n --
 \end{code}
+-->
 
 \begin{code}
 infixl 6 _∸_
 _∸_   : ℕ → ℕ → ℕ  -- subtraction (0 ∸ n = n)
+\end{code}
+
+<!--
+\begin{code}
 zero  ∸ _     = zero --
 suc n ∸ zero  = suc n --
 suc n ∸ suc m = n ∸ m --
 \end{code}
+-->
 
 \begin{code}
 infixl 7 _*_
 _*_   : ℕ → ℕ → ℕ  -- multiplication
+\end{code}
+
+<!--
+\begin{code}
 zero  * _ = zero --
 suc n * b = b + n * b --
 \end{code}
+-->
 
 \begin{code}
 infixl 6 _⊔_
 _⊔_   : ℕ → ℕ → ℕ  -- maximum
+\end{code}
+
+<!--
+\begin{code}
 zero  ⊔ b     = b --
 a     ⊔ zero  = a --
 suc a ⊔ suc b = suc (a ⊔ b) --
 \end{code}
+-->
 
 \begin{code}
 infixl 7 _⊓_
 _⊓_   : ℕ → ℕ → ℕ  -- minimum
+\end{code}
+
+<!--
+\begin{code}
 zero  ⊓ _     = zero --
 _     ⊓ zero  = zero --
 suc a ⊓ suc b = suc (a ⊓ b) --
 \end{code}
+-->
 
 \begin{code}
 ⌊_/2⌋ : ℕ → ℕ      -- half (⌊ 1 /2⌋ = 0)
+\end{code}
+
+<!--
+\begin{code}
 ⌊ zero /2⌋        = zero --
 ⌊ suc zero /2⌋    = zero --
 ⌊ suc (suc n) /2⌋ = suc ⌊ n /2⌋ --
 \end{code}
-
+-->
 
 Exercises: `even`, `odd`
 =========
 
 \begin{code}
 odd   : ℕ → Bool   -- is odd
+\end{code}
+
+<!--
+\begin{code}
 odd zero          = false --
 odd (suc zero)    = true --
 odd (suc (suc n)) = odd n --
 \end{code}
+-->
 
 \begin{code}
 even  : ℕ → Bool   -- is even
+\end{code}
+
+<!--
+\begin{code}
 even zero          = true --
 even (suc zero)    = false --
 even (suc (suc n)) = even n --
 \end{code}
-
+-->
 
 Mutual definitions
 =========
@@ -131,19 +169,28 @@ Exercises: `_≡?_`, `_≤?_`
 
 \begin{code}
 _≡?_  : ℕ → ℕ → Bool  -- is equal
+\end{code}
+
+<!--
+\begin{code}
 zero  ≡? zero  = true --
 zero  ≡? suc _ = false --
 suc _ ≡? zero  = false --
 suc n ≡? suc m = n ≡? m --
 \end{code}
+-->
 
 \begin{code}
 _≤?_  : ℕ → ℕ → Bool  -- is less than or equal
+\end{code}
+
+<!--
+\begin{code}
 zero  ≤? _     = true --
 suc _ ≤? zero  = false --
 suc n ≤? suc m = n ≤? m --
 \end{code}
-
+-->
 
 Functions with Boolean value
 ============================
@@ -181,11 +228,16 @@ data ℕ₂ : Set where
 
 \begin{code}
 from : ℕ₂ → ℕ  -- hint: use _*_
+\end{code}
+
+<!--
+\begin{code}
 from zero              = zero --
 from (id one)          = suc zero --
 from (id (double n))   = suc (suc zero) * from (id n) --
 from (id (double+1 n)) = suc (suc (suc zero) * from (id n)) --
 \end{code}
+-->
 
 `from` should define the backward function of the following isomorphism between `ℕ` and `ℕ₂`
 (we prove that `from` is an isomorphism later):

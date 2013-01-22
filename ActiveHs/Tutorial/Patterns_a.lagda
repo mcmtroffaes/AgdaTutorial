@@ -137,23 +137,30 @@ Exercise: `_∨_`
 
 
 A) Define logical OR:
- 
+
 \begin{code}
 infixr 5 _∨_
  
 _∨_   : Bool → Bool → Bool
+\end{code}
+
+<!--
+\begin{code}
 true  ∨ _ = true --
 false ∨ x = x --
 \end{code}
+-->
  
 B) Define logical OR with one alternative, with the help of `not` and `_∧_`!
 
+<!--
 \begin{code}
 infixr 5 _∨₁_ --
 
 _∨₁_   : Bool → Bool → Bool --
 x ∨₁ y = not (not x ∧ not y) --
 \end{code}
+-->
  
 Exercises
 =========

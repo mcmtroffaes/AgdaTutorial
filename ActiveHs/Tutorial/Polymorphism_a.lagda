@@ -7,6 +7,7 @@ Import list
 
 \begin{code}
 module Polymorphism_a where
+
 open import Data.Nat
 open import Data.Unit using (⊤; tt)
 \end{code}
@@ -54,7 +55,7 @@ we should give the set as a parameter at every function call.
 
 
 
-
+<!--
 | Exercises: `head` and `tail` on Lists
 | ====================================
 | 
@@ -99,7 +100,7 @@ we should give the set as a parameter at every function call.
 | tail₂ []       = [] --
 | tail₂ (x ∷ xs) = xs ∷ [] --
 | \end{code}
-
+-->
 
 Exercises
 =========
@@ -108,12 +109,25 @@ Exercises
 
 \begin{code}
 fromList : List ⊤ → ℕ
+\end{code}
+
+<!--
+\begin{code}
 fromList []        = zero --
 fromList (tt ∷ xs) = suc (fromList xs) --
+\end{code}
+-->
+
+\begin{code}
 toList   : ℕ → List ⊤
+\end{code}
+
+<!--
+\begin{code}
 toList zero    = [] --
 toList (suc n) = tt ∷ toList n --
 \end{code}
+-->
 
 *   Show on a sheet of paper with equational reasoning that the `fromList` function is a bijection and it preserves the `_+_` and `_++_` operations (that is, `∀ a, b ∈ List ⊤ . fromList (a ++ b) = fromList a + fromList b`).
 
@@ -129,23 +143,40 @@ Define the following functions on lists:
 
 \begin{code}
 map  : {A B : Set} → (A → B)      → List A → List B -- regular map
+\end{code}
+
+<!--
+\begin{code}
 map f []       = [] --
 map f (x ∷ xs) = f x ∷ map f xs --
+\end{code}
+-->
 
+\begin{code}
 maps : {A B : Set} → List (A → B) → List A → List B -- pairwise map
+\end{code}
+
+<!--
+\begin{code}
 maps []       _        = [] --
 maps _        []       = [] --
 maps (f ∷ fs) (x ∷ xs) = f x ∷ (maps fs xs) --
 \end{code}
+-->
 
 Define the singleton list function:
 
 \begin{code}
 [_] : {A : Set} → A → List A
-[ a ] = a ∷ [] --
 \end{code}
 
+<!--
+\begin{code}
+[ a ] = a ∷ [] --
+\end{code}
+-->
 
+<!--
 | Polymorphic `id` function
 | =========================
 | 
@@ -173,12 +204,14 @@ Define the singleton list function:
 | \end{code}
 | 
 | In the second case we let Agda guess the value of the first parameter.
-
+-->
 
 Polymorphic `id` function
 =========================
 
+<!--
 | If we tend to put an `_` in place of a parameter it probably means that it can be made implicit, that is, we could rely on Agda to guess the value. We can do this putting the parameter in curly braces:
+-->
 
 \begin{code}
 id : {A : Set} → A → A
@@ -222,10 +255,15 @@ Define the following functions:
 
 \begin{code}
 proj₁ : {A B : Set} → A × B → A
+\end{code}
+
+<!--
+\begin{code}
 proj₁ (a , _) = a --
 proj₂ : {A B : Set} → A × B → B
 proj₂ (_ , b) = b --
 \end{code}
+-->
 
 `_⊎_`: Disjoint Union (Sum)
 ===================================
@@ -250,8 +288,12 @@ Define the eliminator function for disjoint union:
 
 \begin{code}
 [_,_] : {A B C : Set} → (A → C) → (B → C) → (A ⊎ B → C)
+\end{code}
+
+<!--
+\begin{code}
 [_,_] f g (inj₁ a) = f a --
 [_,_] f g (inj₂ b) = g b --
 \end{code}
-
+-->
 
