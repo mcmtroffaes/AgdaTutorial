@@ -1,5 +1,5 @@
 % Lists
-% Ambrus Kaposi
+% Ambrus Kaposi and Péter Diviánszky
 % 2011. 09. 15.
 
 
