@@ -7,7 +7,7 @@ Imports
 ========
 
 \begin{code}
-module Large_a where
+module Functions.Large where
 
 open import Data.Nat using (ℕ; zero; suc)
 open import Data.Empty using (⊥)

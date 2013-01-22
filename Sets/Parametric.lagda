@@ -1,4 +1,4 @@
-% Lists
+% Parametric Sets
 % Ambrus Kaposi and Péter Diviánszky
 % 2011. 09. 15.
 
@@ -8,7 +8,7 @@ Import List
 ===========
 
 \begin{code}
-module List_a where
+module Sets.Parametric where
 open import Data.Nat
 \end{code}
 

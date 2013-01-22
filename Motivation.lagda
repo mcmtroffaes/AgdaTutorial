@@ -2,10 +2,11 @@
 % Ambrus Kaposi, Péter Diviánszky
 % 2012. 02. 13., 2013. 01.
 
+<!--
 \begin{code}
-module Motivation_a where
+module Motivation where
 \end{code}
-
+-->
 
 About the tutorial
 ==================
@@ -29,7 +30,7 @@ In slide mode the remarks are not visible!
 
 The developers are Péter Diviánszky and Ambrus Kaposi. Any comment is very much appreciated, please send them to Péter (divipp at gmail).
 
-[*More about the tutorial*](About_a.html)
+[*More about the tutorial*](About.html)
 
 
 What is Agda good for?

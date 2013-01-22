@@ -3,7 +3,7 @@
 % 2011. 05. 03.
 
 \begin{code}
-module Recursion_a where
+module Functions.Recursive where
 \end{code}
 
 Import List

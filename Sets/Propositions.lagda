@@ -7,7 +7,7 @@ Imports
 ========
 
 \begin{code}
-module LessThan_a where
+module Sets.Propositions where
 
 open import Data.Nat using (ℕ; zero; suc)
 \end{code}

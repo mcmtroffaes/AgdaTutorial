@@ -5,23 +5,23 @@ Introduction
 ------------
 
 \begin{code}
-module Index_a where
+module Index where
 
-import Motivation_a
-import Technical_Info_a
+import Motivation
+import Installation
 \end{code}
 
 Sets
 ----
 
 \begin{code}
-import Bool_a       -- Enumeration
-import Nat_a        -- Recursion
-import List_a       -- Parameter
-import Indices_a    -- Indices
-import Inference_a  -- Term inference
-import LessThan_a   -- Propositions
-import Equality_a   -- Parameters vs. indices
+import Sets.Enumerated
+import Sets.Recursive
+import Sets.Parametric
+import Sets.Indexed
+import Term_Inference
+import Sets.Propositions
+import Sets.Parameters_vs_Indices
 \end{code}
 
 
@@ -29,12 +29,12 @@ Functions
 ---------
 
 \begin{code}
-import Patterns_a
-import Recursion_a
-import Polymorphism_a
-import Large_a          -- Set result
-import Proofs_a
-import EqProof_a        -- Equality proofs
+import Functions.Cases
+import Functions.Recursive
+import Functions.Polymorphic
+import Functions.Large
+import Functions.Proofs
+import Functions.Equality_Proofs
 \end{code}
 
 Other
@@ -43,24 +43,7 @@ Other
 [Presentation for mathematicians](http://people.inf.elte.hu/divip/Agda.pdf)
 
 \begin{code}
-import About_a
+import About
 \end{code}
-
-
-Lecture notes under revisition
-------------------------------
-
-\begin{code}
-import Vec_a
-import Fin_a
-import Sigma_a
-import Parity_a
-import Ordering_a
-import Dec_a
-import Logic_Agda_a
-\end{code}
-
-[Logic_Haskell_a.lhs](Logic_Haskell_a.lhs)
-
 
 

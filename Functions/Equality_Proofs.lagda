@@ -3,7 +3,7 @@
 % 2012. 11.
 
 \begin{code}
-module EqProof_a where
+module Functions.Equality_Proofs where
 \end{code}
 
 Import List

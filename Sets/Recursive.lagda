@@ -1,4 +1,4 @@
-% Natural Numbers
+% Recursive Sets
 % Péter Diviánszky
 % 2011. 05. 03.
 
@@ -6,7 +6,7 @@ Import List
 ===========
 
 \begin{code}
-module Nat_a where
+module Sets.Recursive where
 
 open import Data.Bool using (Bool; true; false)
 \end{code}

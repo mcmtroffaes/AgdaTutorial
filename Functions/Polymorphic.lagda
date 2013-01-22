@@ -6,7 +6,7 @@ Import list
 ===========
 
 \begin{code}
-module Polymorphism_a where
+module Functions.Polymorphic where
 
 open import Data.Nat
 open import Data.Unit using (⊤; tt)

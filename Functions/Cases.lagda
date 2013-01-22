@@ -1,9 +1,9 @@
-% Basic Pattern Matching
+% Functions Befined by Cases
 % Péter Diviánszky
 % 2011. 05. 03.
 
 \begin{code}
-module Patterns_a where
+module Functions.Cases where
 \end{code}
 
 

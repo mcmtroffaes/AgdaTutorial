@@ -2,10 +2,11 @@
 % Péter Diviánszky
 % 2012. 09. 19.
 
+<!--
 \begin{code}
-module About_a where
+module About where
 \end{code}
-
+-->
 
 *for AIM XVI*
 
@@ -118,7 +119,7 @@ State of art
 Demo
 ========
 
-[We visit the current tutorial.](Index_a.html)
+[We visit the current tutorial.](Index.html)
 
 
 

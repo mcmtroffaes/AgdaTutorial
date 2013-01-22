@@ -1,9 +1,9 @@
-% Parameters vs. indices
+% Parameters vs. Indices
 % Ambrus Kaposi & Peter Divianszky
 % 2011. 10. 05.
 
 \begin{code}
-module Equality_a where
+module Sets.Parameters_vs_Indices where
 \end{code}
 
 

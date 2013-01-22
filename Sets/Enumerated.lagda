@@ -1,4 +1,4 @@
-% Boolean Values
+% Enumerated Sets
 % Péter Diviánszky
 % 2011. 05. 03.
 
@@ -9,7 +9,7 @@ First Agda module
 Our first Agda module contains no definition just a *module header*:
 
 \begin{code}
-module Bool_a where
+module Sets.Enumerated where
 \end{code}
 
  * `module` and `where` are keywords

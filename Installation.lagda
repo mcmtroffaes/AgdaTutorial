@@ -1,9 +1,10 @@
 % Technical Information
 
+<!--
 \begin{code}
-module Technical_Info_a where
+module Installation where
 \end{code}
-
+-->
 
 Installation
 ============
