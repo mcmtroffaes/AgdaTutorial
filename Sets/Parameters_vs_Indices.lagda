@@ -32,7 +32,7 @@ each constructor has the same variable on the first index position
 
 **Example 1**
 
-~~~~~~ {.haskell}
+~~~~~~ 
 data _≤′_ : ℕ → ℕ → Set where
   ≤′-refl : {m : ℕ} →                       m ≤′ m
   ≤′-step : {m : ℕ} → {n : ℕ} →  m ≤′ n  →  m ≤′ suc n
@@ -40,7 +40,7 @@ data _≤′_ : ℕ → ℕ → Set where
 
 is similar to
 
-~~~~~~ {.haskell}
+~~~~~~ 
 data _≤′_ (m : ℕ) : ℕ → Set where
   ≤′-refl :                       m ≤′ m
   ≤′-step : {n : ℕ} →  m ≤′ n  →  m ≤′ suc n
@@ -49,21 +49,21 @@ data _≤′_ (m : ℕ) : ℕ → Set where
 
 **Example 2**
 
-~~~~~~ {.haskell}
+~~~~~~ 
 data _≤″_ : ℕ → ℕ → Set where
   ≤+ : ∀ {m n k} → m + n ≡ k → m ≤″ k
 ~~~~~~
 
 is similar to
 
-~~~~~~ {.haskell}
+~~~~~~ 
 data _≤″_ (m : ℕ) : ℕ → Set where
   ≤+ : ∀ {n k} → m + n ≡ k → m ≤″ k
 ~~~~~~
 
 which is similar to
 
-~~~~~~ {.haskell}
+~~~~~~ 
 data _≤″_ (m : ℕ) (k : ℕ) : Set where
   ≤+ : ∀ {n} → m + n ≡ k → m ≤″ k
 ~~~~~~
@@ -80,7 +80,7 @@ A parameter instead of an index is always a better choice
 
 *The parameter can be fixed to get a simpler definition, for example
 
-~~~~~~ {.haskell}
+~~~~~~ 
 data 10≤′ : ℕ → Set where
   10≤′-refl :                       10≤′ 10
   10≤′-step : {n : ℕ} →  10≤′ n  →  10≤′ suc n
@@ -149,7 +149,7 @@ infix 4 _≡_
 
 yields
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 refl {ℕ} {0} : 0 ≡ 0
 refl {ℕ} {1} : 1 ≡ 1
 refl {ℕ} {2} : 2 ≡ 2

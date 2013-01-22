@@ -32,7 +32,7 @@ infix 4 _≡_
 
 yields
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 refl {ℕ} {0} : 0 ≡ 0
 refl {ℕ} {1} : 1 ≡ 1
 refl {ℕ} {2} : 2 ≡ 2
@@ -93,7 +93,7 @@ Example:
 
 Consequences:
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 refl : 1 + 1 ≡ 2
 ...
 refl : 0 + n ≡ n    -- if 'n : ℕ' is a parameter
@@ -119,7 +119,7 @@ Definitional and propositional equality
 
 Suppose that `n : ℕ` is a parameter.
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 refl : n + 0 ≡ 0 + n   -- type error!
 ~~~~~~~~~~~~~~~~~
 
@@ -142,7 +142,7 @@ but for any `n` we can construct the proof of it.
 
 This is a bit funny though:
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 +-right-identity 0   ⇓  refl
 +-right-identity 1   ⇓  refl
 +-right-identity 2   ⇓  refl

@@ -22,7 +22,7 @@ open import Data.Empty using (⊥)
 We wish to give a definition which
 yields the infinite set of statements
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 0 + 0 ≡ 0,  1 + 0 ≡ 1,  2 + 0 ≡ 2,  ...
 0 + 1 ≡ 1,  1 + 1 ≡ 2,  2 + 1 ≡ 3,  ...
 0 + 2 ≡ 2,  1 + 2 ≡ 3,  2 + 2 ≡ 4,  ...
@@ -32,7 +32,7 @@ yields the infinite set of statements
 
 The outline of the solution:
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 (n : ℕ)                        zero  + n ≡ n     -- yields the first column of statements
 (m : ℕ) (n : ℕ)  m + n ≡ k  →  suc m + n ≡ suc k -- yields the successive columns of statements
 ~~~~~~~~~~~~~~~~~
@@ -60,7 +60,7 @@ data _+_≡_ : ℕ → ℕ → ℕ → Set where
 
 which yields the statements
 
-~~~~~~~ {.haskell}
+~~~~~~~ 
 znn : 0 + 0 ≡ 0
 znn : 0 + 1 ≡ 1
 znn : 0 + 2 ≡ 2
@@ -85,7 +85,7 @@ Notes
 
 *this is the same as
 
-~~~~~~~ {.haskell}
+~~~~~~~ 
 data _+_≡_ : ℕ → ℕ → ℕ → Set where
   znn : {n : ℕ} → zero + n ≡ n
   sns : {m : ℕ} → {n : ℕ} → m + n ≡ k → suc m + n ≡ suc k
@@ -130,7 +130,7 @@ data _≤″_ : ℕ → ℕ → Set where
 
 which yields
 
-~~~~~~~~~ {.haskell}
+~~~~~~~~~ 
 ≤+ znn : 0 ≤″ 0
 ≤+ znn : 0 ≤″ 1
 ≤+ znn : 0 ≤″ 2

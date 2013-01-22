@@ -43,7 +43,7 @@ data ℕ : Set where
 
 yields the infinite set of statements
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 ℕ : Set
 zero : ℕ
 suc zero : ℕ
@@ -97,7 +97,7 @@ data ℕ⁺ : Set where
 
 yields (without ordering)
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 ℕ⁺ : Set
 one : ℕ⁺
 double one : ℕ⁺
@@ -120,7 +120,7 @@ data ℕ₂ : Set where
 
 yields
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 ℕ₂ : Set
 zero : ℕ₂
 id one : ℕ₂
@@ -196,7 +196,7 @@ data BinTree : Set where
 
 yields
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 BinTree : Set
 leaf : BinTree
 node leaf leaf : BinTree
@@ -241,7 +241,7 @@ data BinTree' : Set where
 
 yields
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 BinTree' : Set
 x : BinTree'
 x + x : BinTree'
@@ -261,7 +261,7 @@ infixr 3 _+_
 
 yields
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 BinTree' : Set
 x : BinTree'
 x + x : BinTree'

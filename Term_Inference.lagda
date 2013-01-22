@@ -72,7 +72,7 @@ the implicit arguments make the types unique.
 <!--
 | The definition yields the statements
 |
-| ~~~~~~~~~~~~~~~~~ {.haskell}
+| ~~~~~~~~~~~~~~~~~ 
 | zero : Fin 1
 | zero : Fin 2
 | zero : Fin 3
@@ -89,7 +89,7 @@ the implicit arguments make the types unique.
 | ~~~~~~~~~~~~~~~~~
 | which can be rearranged as
 | 
-| ~~~~~~~~~~~~~~~~~ {.haskell}
+| ~~~~~~~~~~~~~~~~~ 
 | zero : Fin 1
 | 
 | zero : Fin 2
@@ -119,7 +119,7 @@ TODO
 Syntactic abbreviations
 =======================
 
-~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~ 
 data Fin′ : ℕ → Set where
   zero : (n : _) → Fin′ (suc n)
   suc  : (n : _) → Fin′ n → Fin′ (suc n)
@@ -131,7 +131,7 @@ data Fin : ℕ → Set where
 
 Variables with inferred types can be introduced by `∀`:
 
-~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~ 
 data Fin′ : ℕ → Set where
   zero : ∀ n → Fin′ (suc n)
   suc  : ∀ n → Fin′ n → Fin′ (suc n)

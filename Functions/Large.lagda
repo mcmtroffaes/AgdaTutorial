@@ -35,7 +35,7 @@ data  _≤_ : ℕ → ℕ → Set where
 
 which yields the statements
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 z≤n : 0 ≤ 0
 z≤n : 0 ≤ 1
 z≤n : 0 ≤ 2
@@ -66,7 +66,7 @@ suc m ≤′ suc n = m ≤′ n
 
 which yields the statements
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 tt : 0 ≤′ 0
 tt : 0 ≤′ 1
 tt : 0 ≤′ 2

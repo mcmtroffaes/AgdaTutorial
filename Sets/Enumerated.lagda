@@ -30,7 +30,7 @@ data Bool : Set where
 
 It is because of the last two point that the syntax of the definition doesn't look like this:
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 Bool  : Set
 true  : Bool
 false : Bool

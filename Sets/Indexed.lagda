@@ -49,7 +49,7 @@ data Fin : ℕ → Set where
 
 The definition yields the statements
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 zero 0 : Fin 1
 zero 1 : Fin 2
 zero 2 : Fin 3
@@ -67,7 +67,7 @@ suc 4 (suc 3 (zero 2)) : Fin 5
 
 which can be rearranged as
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 zero 0 : Fin 1
 
 zero 1 : Fin 2
@@ -121,7 +121,7 @@ data Vec (A : Set) : ℕ → Set where
 
 Examples:
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 [] : Vec ℕ 0
 [] : Vec Bool 0
 ...

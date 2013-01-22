@@ -108,7 +108,7 @@ infix 4 _≤_
 
 This yields the statements
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 z≤n {0} : 0 ≤ 0
 z≤n {1} : 0 ≤ 1
 z≤n {2} : 0 ≤ 2
@@ -126,7 +126,7 @@ s≤s (s≤s (z≤n {2})) : 2 ≤ 4
 
 which means that the following propositions have proofs:
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 0 ≤ 0
 0 ≤ 1,  1 ≤ 1
 0 ≤ 2,  1 ≤ 2,  2 ≤ 2
@@ -230,7 +230,7 @@ Exercises
 | 
 | yields
 | 
-| ~~~~~~~~~~~~~~~~~ {.haskell}
+| ~~~~~~~~~~~~~~~~~ 
 | zz         : 0 ≡₁ 0
 | ss zz      : 1 ≡₁ 1
 | ss (ss zz) : 2 ≡₁ 2
@@ -292,7 +292,7 @@ infix 4 _≤′_
 
 yields
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 ≤′-refl : 0 ≤ 0
 ≤′-step ≤′-refl : 0 ≤ 1
 ≤′-step (≤′-step ≤′-refl) : 0 ≤ 2
@@ -414,7 +414,7 @@ All code on this slide is valid.
 
 Original definition:
 
-~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~ 
 data  _≤_ : ℕ → ℕ → Set where
   z≤n : {n : ℕ} →                       zero  ≤ n
   s≤s : {m : ℕ} → {n : ℕ} →   m ≤ n  →  suc m ≤ suc n
@@ -422,7 +422,7 @@ data  _≤_ : ℕ → ℕ → Set where
 
 The arrow between typed variables are not needed (also in case of round parenthesis):
 
-~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~ 
 data  _≤_ : ℕ → ℕ → Set where
   z≤n : {n : ℕ} →                     zero  ≤ n
   s≤s : {m : ℕ} {n : ℕ} →   m ≤ n  →  suc m ≤ suc n
@@ -430,7 +430,7 @@ data  _≤_ : ℕ → ℕ → Set where
 
 Typed variables with the same type can be contracted (also in case of round parenthesis):
 
-~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~ 
 data  _≤_ : ℕ → ℕ → Set where
   z≤n : {n : ℕ} →               zero  ≤ n
   s≤s : {m n : ℕ} →   m ≤ n  →  suc m ≤ suc n
@@ -438,7 +438,7 @@ data  _≤_ : ℕ → ℕ → Set where
 
 Inferable expressions can be replaced by an underscore:
 
-~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~ 
 data  _≤_ : ℕ → ℕ → Set where
   z≤n : {n : _} →               zero  ≤ n
   s≤s : {m n : _} →   m ≤ n  →  suc m ≤ suc n
@@ -446,7 +446,7 @@ data  _≤_ : ℕ → ℕ → Set where
 
 Variables with inferred types can be introduced by `∀`:
 
-~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~ 
 data  _≤_ : ℕ → ℕ → Set where
   z≤n : ∀ {n} →               zero  ≤ n
   s≤s : ∀ {m n} →   m ≤ n  →  suc m ≤ suc n
@@ -459,7 +459,7 @@ data  _≤_ : ℕ → ℕ → Set where
 We wish to give a definition which
 yields the infinite set of true propostions
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 0 + 0 ≡ 0,  1 + 0 ≡ 1,  2 + 0 ≡ 2,  ...
 0 + 1 ≡ 1,  1 + 1 ≡ 2,  2 + 1 ≡ 3,  ...
 0 + 2 ≡ 2,  1 + 2 ≡ 3,  2 + 2 ≡ 4,  ...
@@ -468,7 +468,7 @@ yields the infinite set of true propostions
 
 The outline of the solution:
 
-~~~~~~~~~~~~~~~~~ {.haskell}
+~~~~~~~~~~~~~~~~~ 
 (n : ℕ)                        zero  + n ≡ n     -- yields the first column of statements
 (m : ℕ) (n : ℕ)  m + n ≡ k  →  suc m + n ≡ suc k -- yields the successive columns of statements
 ~~~~~~~~~~~~~~~~~
@@ -495,7 +495,7 @@ data _+_≡_ : ℕ → ℕ → ℕ → Set where
 
 which yields the statements
 
-~~~~~~~ {.haskell}
+~~~~~~~ 
 znn : 0 + 0 ≡ 0
 znn : 0 + 1 ≡ 1
 znn : 0 + 2 ≡ 2
@@ -520,7 +520,7 @@ Notes
 
 *this is the same as
 
-~~~~~~~ {.haskell}
+~~~~~~~ 
 data _+_≡_ : ℕ → ℕ → ℕ → Set where
   znn : {n : ℕ} → zero + n ≡ n
   sns : {m : ℕ} → {n : ℕ} → m + n ≡ k → suc m + n ≡ suc k
@@ -566,7 +566,7 @@ data _≤″_ : ℕ → ℕ → Set where
 
 which yields
 
-~~~~~~~~~ {.haskell}
+~~~~~~~~~ 
 ≤+ znn : 0 ≤″ 0
 ≤+ znn : 0 ≤″ 1
 ≤+ znn : 0 ≤″ 2
