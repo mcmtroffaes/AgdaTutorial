@@ -1,12 +1,18 @@
-% Introduction to Agda
+% Agda Tutorial
+% Péter Diviánszky and Ambrus Kaposi
+% 2011-2013
 
 
-Introduction
+General Information
 ------------
 
+<!--
 \begin{code}
 module Index where
+\end{code}
+-->
 
+\begin{code}
 import Motivation
 import Installation
 \end{code}
@@ -37,7 +43,7 @@ import Functions.Proofs
 import Functions.Equality_Proofs
 \end{code}
 
-Other
+Other material
 -----
 
 [Presentation for mathematicians](http://people.inf.elte.hu/divip/Agda.pdf)
