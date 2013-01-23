@@ -18,13 +18,13 @@ import Motivation
 import Installation
 
 import Emacs_Usage
-import Modules.Basic
 \end{code}
 
 Sets
 ----
 
 \begin{code}
+import Modules.Basic
 import Sets.Enumerated
 import Sets.Recursive
 import Sets.Parametric
@@ -50,7 +50,7 @@ import Functions.Equality_Proofs
 Other material
 -----
 
-[Presentation for mathematicians](http://people.inf.elte.hu/divip/Agda.pdf)
+*   [Presentation for mathematicians](http://people.inf.elte.hu/divip/Agda.pdf)
 
 \begin{code}
 import About
