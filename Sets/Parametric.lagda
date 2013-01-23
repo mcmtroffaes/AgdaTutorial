@@ -110,16 +110,18 @@ Exercises
 Mutually recursive sets
 =======================
 
-`List₁` and `List₂` are mutually recursive sets:
+`List₁` and `List₂` are mutually recursive parametric sets:
 
 \begin{code}
-mutual
-  data List₁ (A B : Set) : Set  where
-    []  :                 List₁ A B
-    _∷_ : A → List₂ A B → List₁ A B
+data List₁ (A B : Set) : Set
+data List₂ (A B : Set) : Set
 
-  data List₂ (A B : Set) : Set  where
-    _∷_ : B → List₁ A B → List₂ A B
+data List₁ (A B : Set) where
+  []  :                 List₁ A B
+  _∷_ : A → List₂ A B → List₁ A B
+
+data List₂ (A B : Set) where
+  _∷_ : B → List₁ A B → List₂ A B
 \end{code}
 
 *Exercise:* list the smallest first 5 elements of `List₁ ⊤ Bool`!
