@@ -88,7 +88,7 @@ Additional features
 
 -   inferred terms, implicit arguments
 -   holes, interactive development
--   unicode characters, misfix operators
+-   unicode characters, mixfix operators
 
 
 
