@@ -115,7 +115,7 @@ State of art
     -   There are too much ad-hoc exercises.
 -   Currently Peter is working on it.
 
-The darcs repository is located at [http://hub.darcs.net/divip/AgdaTutorial/edit](http://hub.darcs.net/divip/AgdaTutorial/edit)
+The darcs repository is located at [http://hub.darcs.net/divip/AgdaTutorial](http://hub.darcs.net/divip/AgdaTutorial)
 
 You are welcome to send patches (please send small patches first)!
 
