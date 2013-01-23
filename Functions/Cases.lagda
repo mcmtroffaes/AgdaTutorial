@@ -1,4 +1,4 @@
-% Functions Befined by Cases
+% Functions Defined by Cases
 % Péter Diviánszky
 % 2011. 05. 03.
 
