@@ -113,7 +113,11 @@ State of art
 -   Only ~1/6 is ready.
 -   The methodology is not strictly followed yet.
     -   There are too much ad-hoc exercises.
--   Currently Peter is working on it as the autumn semester goes on.
+-   Currently Peter is working on it.
+
+The darcs repository is located at [http://hub.darcs.net/divip/AgdaTutorial/edit](http://hub.darcs.net/divip/AgdaTutorial/edit)
+
+You are welcome to send patches (please send small patches first)!
 
 
 Demo
