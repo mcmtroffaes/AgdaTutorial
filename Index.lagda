@@ -53,6 +53,8 @@ Other material
 *   [Presentation for mathematicians](http://people.inf.elte.hu/divip/Agda.pdf)
 
 \begin{code}
+import Further_Reading
+
 import About
 \end{code}
 
