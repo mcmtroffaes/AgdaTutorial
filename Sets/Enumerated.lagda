@@ -1,6 +1,4 @@
 % Enumerated Sets
-% Péter Diviánszky
-% 2011. 05. 03.
 
 <!--
 \begin{code}
@@ -28,7 +26,7 @@ data Bool : Set where
  * there is nothing else which is `Bool`
  * `true` and `false` are different
 
-It is because of the last two point that the syntax of the definition doesn't look like this:
+It is because of the last two points that the syntax of the definition doesn't look like this:
 
 ~~~~~~~~~~~~~~~~~ 
 Bool  : Set
@@ -58,10 +56,10 @@ B) Define a set named `Quarter` with four elements, `east`, `west`, `north` and 
 
 
 
-Question
+Questions
 ===============
 
-Suppose we have another Boolean set defined:
+Suppose we have `Bool'` defined:
 
 \begin{code}
 data Bool' : Set where
@@ -69,39 +67,37 @@ data Bool' : Set where
   false' : Bool'
 \end{code}
 
-Are `Bool` and `Bool'` the same set?  
-If not, which one is the "real" Booleans?
+1.  Are `Bool` and `Bool'` the same set?  
+1.  If not, which one is the "real" set of Booleans?
 
 
 Isomorphic sets
 ===============
 
-`Bool` and `Bool'` are *definitionally* different but they are *isomorphic*.*
+`Bool` and `Bool'` are *definitionally* different but they are *isomorphic*.
 
 Two sets are isomorphic if there is an isomorphism between them i.e.
-a one-to-one relation between the elements.**
+a one-to-one relation between the elements.
 
-------------
-
-*Taking the constructor names into account they are even *canonically isomorphic*
-i.e. there is a canonical isomorphism between them.
-
-**We define the formal notion of isomorphism later in Agda.
+We will define the formal notion of isomorphism in Agda
+and we will be able to convert values between isomorphic sets.
 
 
-Representations and interpretations
+
+Representation and interpretation
 ===============
 
-
-TODO: figure
-
-
-
 Both `Bool` and `Bool'` may represent the Booleans; it is the choice
-of the programmer which one to use (or group of programmers in collaboration).
+of the programmer or group of programmers which one to use.
 
+Interpretation (or meaning) is the opposite relation to representation.
 
+-   The interpretation (the meaning) of `Bool` is the set of Boolean values.
+-   One possible representation of the set of Booleans is `Bool`.
+-   Another possible representation of the set of Booleans is `Bool'`.
+-   `Bool` and `Bool'` are isomorphic - different representations of the same concept should be isomorphic.
 
+Different interpretations of the same definition is also possible as we will see.
 
 
 Special finite sets
