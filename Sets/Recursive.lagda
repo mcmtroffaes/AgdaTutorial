@@ -18,8 +18,7 @@ More about import declarations come later.
 Peano representation
 ============================
 
-We are looking for a representation natural numbers i.e.
-a set which has as many elements as ℕ.  
+We are looking for a representation natural numbers.
 The simplest choice is the *Peano representation* which corresponds to the unary numeral system:
 
 term                    interpretation in decimal form
@@ -42,7 +41,7 @@ data ℕ : Set where
   suc  : ℕ → ℕ
 \end{code}
 
-yields the infinite set of statements
+yields the infinite set of judgements
 
 ~~~~~~~~~~~~~~~~~ 
 ℕ : Set
@@ -57,33 +56,35 @@ suc (suc (suc zero)) : ℕ
 | *Interpretation:* `ℕ` ∈ `Set`, `ℕ` = { `zero` ~ 0, `suc zero` ~ 1, `suc (suc zero)` ~ 2, ... }
 -->
 
-We may use `0`, `1`, `2`, ... instead of `zero`, `suc zero`, ...*
+We may use `0`, `1`, `2`, ... instead of `zero`, `suc zero`, `suc (suc zero)`, ...*
 
 ************************
 
 *\ Decimal natural number literals can be used if we bind our `ℕ` set to the Agda internals with the following three declarations:
 
-\begin{code}
--- {-# BUILTIN NATURAL ℕ    #-}
--- {-# BUILTIN ZERO    zero #-}
--- {-# BUILTIN SUC     suc  #-}
-\end{code}
+~~~~~~~~
+{-# BUILTIN NATURAL ℕ    #-}
+{-# BUILTIN ZERO    zero #-}
+{-# BUILTIN SUC     suc  #-}
+~~~~~~~~
 
 
-Set element definitions
+Type checking of expressions
 =======================
 
-\begin{code}
-nine : ℕ
-nine = suc (suc (suc (suc (suc (suc (suc (suc (suc zero))))))))
+With the Emacs command C-`c` C-`d` one can get Agda to type check
+a given expression (`d` stands for 'deduce').
 
-ten : ℕ
-ten = suc nine
-\end{code}
+Example: Hit C-`c` C-`d` and enter `suc (suc zero)`. 
 
-The type signature is optional.
+Exercise: Try to type-check the following expressions:
 
-
+-   `suc zero`
+-   `suc (zero)`
+-   `(suc) zero`
+-   `zero suc`
+-   `(suc suc) zero`
+-   `suc`
 
 
 Binary representation of `ℕ`
@@ -150,7 +151,7 @@ Soon we will prove in Agda that `ℕ` and `ℕ₂` are isomorphic with the follo
 `suc (suc (suc zero))`  `id (double+1 one)`
 ...                     ...
 
-*Exercise:* define `nine : ℕ₂`!
+*Exercise:* How 9 is represented in `ℕ₂`? Type check the expression!
 
 *Question*: why didn't we use one `data` definition with 4 constructors `zero`, `one`, `double`, `double+1`?
 
@@ -174,14 +175,13 @@ Each representation has its merit.
 *****************
 
 A good strategy is choose the right representation for each task
-and give the isomorphisms between the representations.
+and convert values between different representations.
 
 
-Exercises
+Exercise
 =========
 
  * Define `ℤ`!
- * Define `ℚ`!
 
 (Several solutions are possible.)
 
