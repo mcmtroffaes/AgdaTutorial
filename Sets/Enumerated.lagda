@@ -67,37 +67,28 @@ data Bool' : Set where
   false' : Bool'
 \end{code}
 
-1.  Are `Bool` and `Bool'` the same set?  
+1.  Are `Bool` and `Bool'` the same sets?  
 1.  If not, which one is the "real" set of Booleans?
 
 
-Isomorphic sets
-===============
+Isomorphisms
+==========
 
-`Bool` and `Bool'` are *definitionally* different but they are *isomorphic*.
+`Bool` and `Bool'` are definitionally different but they are *isomorphic*.
 
-Two sets are isomorphic if there is an isomorphism between them i.e.
-a one-to-one relation between the elements.
-
-We will define the formal notion of isomorphism in Agda
-and we will be able to convert values between isomorphic sets.
-
+*   Two sets are isomorphic if there is a one-to-one relation between their elements.
+*   We will represent isomorphisms in Agda later.
 
 
 Representation and interpretation
 ===============
-
-Both `Bool` and `Bool'` may represent the Booleans; it is the choice
-of the programmer or group of programmers which one to use.
 
 Interpretation (or meaning) is the opposite relation to representation.
 
 -   The interpretation (the meaning) of `Bool` is the set of Boolean values.
 -   One possible representation of the set of Booleans is `Bool`.
 -   Another possible representation of the set of Booleans is `Bool'`.
--   `Bool` and `Bool'` are isomorphic - different representations of the same concept should be isomorphic.
-
-Different interpretations of the same definition is also possible as we will see.
+-   Different interpretations of the same definition is also possible as we will see.
 
 
 Special finite sets
@@ -105,35 +96,52 @@ Special finite sets
 
 We can define finite sets with n = 0, 1, 2, ... elements.
 
-Two special cases with n = 0 and n = 1:
+The special case with n = 0 is the empty set:
 
 \begin{code}
 data ⊥ : Set where   -- There is no constructor.
+\end{code}
 
+The special case with n = 1 is the singleton set (set with one element):
+
+\begin{code}
 data ⊤ : Set where
   tt : ⊤
 \end{code}
 
-We will use `⊥` as the empty set and `⊤` as the one-element set.  
-(These have special roles as you will see.)
+`⊥` and `⊤` have interesting interpretations as we will see.
 
 
----------------
+Types vs. sets
+===========
 
-`tt` stands for trivially true.
+Basic differences between types and sets:
 
-If we define two empty sets they will be different, unlike in set theory.  
-(Type theory differs from set theory; we prefer type theory for several reasons.)
+-   The type of an element is unique ↔ an element can be member of different sets  
+    E.g. `true` cannot be the element of two different type at the same time.
+-   A type is not the collection of its elements ↔ a set is characterized by its elements  
+    E.g. there are different empty types.
+
+`data` defines types, no sets!  
+
+-   We prefer types over sets for several reasons.
+-   **From now on, we use the term 'type' instead of the term 'set'.**
+-   We will still use the term 'element' for types.
+-   `Set` is the type of types, so it should be called `Type`.  
+    Agda 2.3.2 still calls it `Set`.
+-   Agda allows to give the same name to constructors of different types,  
+    if at each constructor application the type is unambiguous.
 
 
 Syntactic abbreviation
 ======================
 
-If you have multiple elements of the same set you can define these in one line:
+If we have multiple elements of the same type we can define these in one line:
+
 \begin{code}
 data name : Set where
-  elem1 elem2 elem3 : name
+  elem₁ elem₂ : name
 \end{code}
 
-
+x
 
