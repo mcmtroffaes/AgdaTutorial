@@ -1,6 +1,4 @@
 % Recursive Sets
-% Péter Diviánszky
-% 2011. 05. 03.
 
 Import List
 ===========
@@ -8,10 +6,13 @@ Import List
 \begin{code}
 module Sets.Recursive where
 
-open import Data.Bool using (Bool; true; false)
+open import Sets.Enumerated using (Bool; true; false)
 \end{code}
 
-This opens and imports `Data.Bool` from the standard library. Without `open` we could only refer to the functions imported with qualified name such as `Data.Bool.bool`.
+The effect of this `open import` declaration is the same as if we copied the
+definition of `Bool` type here. Note that we enumerated the constructors of `Bool` too.
+
+More about import declarations come later.
 
 
 Peano representation
