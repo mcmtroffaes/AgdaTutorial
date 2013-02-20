@@ -28,6 +28,7 @@ import Modules.Basic
 import Sets.Enumerated
 import Sets.Recursive
 import Constants
+import Syntax.Infix
 import Sets.Parametric
 import Sets.Indexed
 import Term_Inference
