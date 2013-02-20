@@ -125,10 +125,10 @@ Basic differences between types and sets:
 `data` defines types, no sets!  
 
 -   We prefer types over sets for several reasons.
--   **From now on, we use the term 'type' instead of the term 'set'.**
--   We will still use the term 'element' for types.
+-   From now on, we use both terms 'type' and 'set' for types.  
+    We use the term 'element' for types too.
 -   `Set` is the type of types, so it should be called `Type`.  
-    Agda 2.3.2 still calls it `Set`.
+    Agda 2.3.2 and before (and probably after too) calls it `Set`.
 -   Agda allows to give the same name to constructors of different types,  
     if at each constructor application the type is unambiguous.
 
