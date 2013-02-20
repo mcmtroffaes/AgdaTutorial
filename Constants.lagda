@@ -34,4 +34,15 @@ The type signature is optional.
 Normal form
 =======================
 
+`ten`, `suc nine` and `suc (suc (suc (suc (suc (suc (suc (suc (suc zero))))))))` equally
+represent the number 10, but only the last one is the so called *normal form*.
+
+One can ask for the normal form in the interactive environment by C-`c` C-`n`.
+
+
+
+
+
+
+
 
