@@ -239,40 +239,8 @@ Exercises
     -   with natural number data attached to the leafs
     -   with natural number data attached to the nodes
     -   with Booleans in the nodes and natural numbers in the leafs
-*   Define the lists of natural numbers! Use `_∷_` as list consructor with right precedence!
-*   Define the non-empty lists of natural numbers!
-*   Define trees with nodes with finite children (0, 1, 2, ...)!
+*   Define the lists (finite sequences) of natural numbers.
+*   Define the non-empty lists of natural numbers.
 
-
-Mutual definitions
-=========
-
-To allow mutual definitions one should declare any set before using it:
-
-\begin{code}
-data L : Set
-data M : Set
-
-data L where
-  nil : L
-  _∷_ : ℕ → M → L
-
-data M where
-  _∷_ : Bool → L → M
-\end{code}
-
-Note that `: Set` is missing in the definitions of sets declared before.
-
-*Exercise*: What are the elements of `L` and `M`?
-
-
-Exercise
-=========
-
-Define a small grammar!*
-
--------
-
-*highly underspecified exercise
 
 
