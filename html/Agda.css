@@ -59,8 +59,6 @@ h3 {
 
 h1.title {
   padding-top: 3em;
-}
-h3.date {
   padding-bottom: 2em;
 }
 h1.title, h2.author, h3.date {
@@ -69,7 +67,7 @@ h1.title, h2.author, h3.date {
 }
 
 h2.author, h3.date { visibility: hidden }
-h2.author { display: none }
+h2.author, h3.date { display: none }
 
 
 hr {
