@@ -212,23 +212,7 @@ node (node leaf leaf) (node leaf leaf) : BinTree
 
 *Exercise:* define binary trees according to the following shapes!
 
-~~~~~~~~ {.dot}
-Node [shape = point]
-Edge [dir = none]
-z
-o -> z1
-o -> z2
-x -> a
-x -> b
-a -> a1
-a -> a2
-b -> b1
-b -> b2
-x1 -> x2 -> x3 -> x4
-x1 -> x1v
-x2 -> x2v
-x3 -> x3v
-~~~~~~~~
+![Binary tree shapes](dot/Binary_tree_shapes.gif)
 
 
 
