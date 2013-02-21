@@ -45,6 +45,7 @@ Functions
 import Functions.Cases
 import Functions.Recursive
 import Functions.Polymorphic
+import Functions.Functions_vs_Sets
 import Functions.Large
 import Functions.Proofs
 import Functions.Equality_Proofs

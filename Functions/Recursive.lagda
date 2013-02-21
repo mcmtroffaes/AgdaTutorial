@@ -168,21 +168,6 @@ suc n ≤? suc m = n ≤? m --
 \end{code}
 -->
 
-Functions with Boolean value
-============================
-
-*Remark*
-
-An `A → B → C` function
-corresponds to specification
-`A → B → C → Set` according our previous remark.
-So `_≤?_ : ℕ → ℕ → Bool` would correspond to `ℕ → ℕ → Bool → Set`,
-but Boolean valued functions can be specified easier
-so we have `_≤_ : ℕ → ℕ → Set` as specification.
-
-We give the theory behind this later.
-
-
 
 Binary representation of `ℕ`
 ==============
