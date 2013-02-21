@@ -1,13 +1,11 @@
-% Proofs
-% Péter Diviánszky and Ambrus Kaposi
-% 2011. 05. 03.
+% Universal Quantification
 
 
 Imports
 ========
 
 \begin{code}
-module Functions.Proofs where
+module Functions.Universal_Quantification where
 
 open import Data.Nat using (ℕ; zero; suc; _+_)
 open import Data.Empty using (⊥)
@@ -15,26 +13,6 @@ open import Data.Sum using (_⊎_; inj₁; inj₂; [_,_]′)
 open import Function using (flip; _$_; _∘_)
 \end{code}
 
-
-Dependently typed functions
-===============
-
-Dependently typed function:
-
-`f : (x : A) → B`, where `B` may depend on `x`
-
-*Example*  
-Let `Fin n` be the set of natural numbers less than `n`.  
-`a : (n : ℕ) → Fin n` is a sequence whose `n`th elem is in `Fin n`.
-
-*Notes*
-
-
--   Polymorph functions like `(A : Set) → A → A` are also dependent functions.
--   Non-dependent functions like `A → B` are special `(x : A) → B` functions where `B`
-    doesn't depend on `x`.
--   ∣`(x : A)→ B`∣ = ∏`x`∈`A` ∣`B`∣, for example  
-    ∣`(n : Fin m)→ Fin (suc n)`∣ = (`m` + 1)!
 
 
 Definition of `_≤_`
@@ -51,9 +29,13 @@ infix 4 _≤_
 \end{code}
 
 
-Proof example
+Universal quantification
 ======
 
+We can represent a proof for universal quantification on a set by
+a dependent function on that set.
+
+Example:
 
 \begin{code}
 ≤-refl : (n : ℕ) → n ≤ n
