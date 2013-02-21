@@ -7,32 +7,10 @@ open import Sets.Enumerated using (Bool; true; false)
 \end{code}
 
 
-Boolean NOT as a relation
+Negation as a function
 ============================
 
-Definition of NOT as a relation:
-
-\begin{code}
-data Not : Bool → Bool → Set where
-  n₁ : Not true false
-  n₂ : Not false true
-\end{code}
-
-This creates four new sets from which two are non-empty.
-
-`Not a b` is non-empty iff `b` is the negated value of `a`.
-
-**********
-
-`not` is a function that has `Bool` as domain and `Bool` as range.
-We can pattern match on the elements that appear in set `Bool` namely `true` and `false` to define how the function works.
-
-
-
-Boolean NOT as a function
-============================
-
-Definition of NOT as a function:
+Representation of negation as a function from `Bool` to `Bool`:
 
 \begin{code}
 not : Bool → Bool
@@ -40,61 +18,24 @@ not true  = false
 not false = true
 \end{code}
 
-This adds elements to `Bool` like
+We pattern match on the elements that appear in set `Bool` namely `true` and `false` to define how the function works.
+
+
+Computational content of functions
+==================================
+
+We have elements of `Bool` like
 
 `not true : Bool`  
 `not (not (not false)) : Bool`  
 
-but these are not new elements (they are not in *canonical form*).
+but these are not new elements: their normal form is either `true` or `false`.
 
-`not a` is the negated value of `a`.
+In the interactive environment we can compute the normal form by C-`c` C-`n`.
 
-The definition has a *computational content*, i.e. how to compute
-the negated value.
-
-
-Relations vs. functions
-=====================
-
-Relation advantages:
-
--   Less restrictions
-    -   not all cases should be covered (partial specification)
-    -   redundancy is allowed
-    -   general recursion is allowed
-    -   inconsistency is allowed (resulting in an empty relation)
--   Shorter and easier to compose than corresponding functions  
-    (the difference increases with complexity)
-
-Function advantages:
-
--   More guarantees
-    -   coverage check ensures that all cases are covered 
-    -   reachability check excludes multiple cases  
-    -   termination check ensures terminating recursion
-    -   inconsistency is excluded by construction
--   Computational content (reduction to normal form)
-    -   code generation
-    -   simplified equality proofs (at compile time; see later)
--   Easier to use  
-    `not (not a)` instead of `Not a b ∧ Not b c`
-
-Specification vs. implementation
-=====================
-
-Relations are good for describing the problem/question (**specification**).
-
-Functions are good for describing the solution/answer (**implementation**).
-
-*Notes*
-
--   Implementations are connected to specifications by the type system (see later).  
-    "Programming without types is like giving the answer without knowing the question."
--   Functions are used in specifications too because of advantages
-    "easier to use" and "simplified equality proofs".
-    -   like in mathematics where definitions
-        may need theorems in advance
-
+Funtions have *computational content*.  
+For example, `not` defines not just a relation between `Bool` and `Bool`,
+but also an algorithm how to compute the negated value.
 
 
 Logical AND
