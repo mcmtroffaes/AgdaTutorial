@@ -1,21 +1,9 @@
 % Functions Defined by Cases
-% Péter Diviánszky
-% 2011. 05. 03.
 
 \begin{code}
 module Functions.Cases where
-\end{code}
 
-
-The `Bool` set
-==============
-
-Remember the definition of `Bool`:
-
-\begin{code}
-data Bool : Set where
-  true  : Bool
-  false : Bool
+open import Sets.Enumerated using (Bool; true; false)
 \end{code}
 
 
