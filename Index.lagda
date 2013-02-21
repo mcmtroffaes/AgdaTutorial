@@ -31,6 +31,7 @@ import Constants
 import Syntax.Infix
 import Sets.Mutual
 import Sets.Parametric
+
 import Sets.Indexed
 import Term_Inference
 import Sets.Propositions
@@ -47,6 +48,7 @@ import Functions.Recursive
 import Functions.Polymorphic
 import Functions.Functions_vs_Sets
 import Functions.Large
+
 import Functions.Dependent
 import Functions.Universal_Quantification
 import Functions.Equality_Proofs
