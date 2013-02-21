@@ -1,6 +1,4 @@
 % Recursive Functions
-% Ambrus Kaposi and Péter Diviánszky
-% 2011. 05. 03.
 
 \begin{code}
 module Functions.Recursive where
@@ -11,29 +9,7 @@ Import List
 
 \begin{code}
 open import Data.Bool using (Bool; true; false)
-\end{code}
-
-
-Definition of `ℕ`
-==============
-
-Recall the Peano representation of natural numbers:
-
-\begin{code}
-data ℕ : Set where
-  zero :     ℕ
-  suc  : ℕ → ℕ
-\end{code}
-
-************************
-
-We may use `0`, `1`, `2`, ... instead of `zero`, `suc zero`, ... if
-we declare
-
-\begin{code}
--- {-# BUILTIN NATURAL ℕ    #-}
--- {-# BUILTIN ZERO    zero #-}
--- {-# BUILTIN SUC     suc  #-}
+open import Data.Nat using (ℕ; suc; zero)
 \end{code}
 
 
@@ -211,17 +187,10 @@ We give the theory behind this later.
 Binary representation of `ℕ`
 ==============
 
-Recall the binary representation of natural numbers:
+Import the binary representation of natural numbers:
 
 \begin{code}
-data ℕ⁺ : Set where
-  one      :      ℕ⁺
-  double   : ℕ⁺ → ℕ⁺
-  double+1 : ℕ⁺ → ℕ⁺
-
-data ℕ₂ : Set where
-  zero :      ℕ₂
-  id   : ℕ⁺ → ℕ₂
+open import Sets.Recursive using (ℕ⁺; one; double; double+1; ℕ₂; zero; id)
 \end{code}
 
 *Exercise:* define the conversion function:
