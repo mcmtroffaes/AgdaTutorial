@@ -41,7 +41,8 @@ but also an algorithm how to compute the negated value.
 Logical AND
 ===============================
 
-Definition:
+Logical AND could be defined with four alternatives but
+here is a shorter definition with two alternatives with variables:
  
 \begin{code}
 _∧_   : Bool → Bool → Bool
@@ -51,11 +52,10 @@ false ∧ _ = false
 infixr 6 _∧_
 \end{code}
 
-*********
 
 -   We can use variables as patterns.
--   We can use wildcard (an underscore) as pattern.
--   Logical AND could be defined with four alternatives.
+-   We can use wildcard (an underscore) as a pattern.  
+    A wildcard pattern is an unnamed variable.
 -   Similar to data sets
     -   Underscores in names like `_∧_` denote the space for the operands.
     -   `infixr` gives the fixity
