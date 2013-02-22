@@ -52,6 +52,7 @@ import Functions.Large
 import Functions.Dependent
 import Functions.Universal_Quantification
 import Functions.Equality_Proofs
+import Sets.With_Functions
 \end{code}
 
 Other material
