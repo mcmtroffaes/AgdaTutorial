@@ -56,18 +56,6 @@ suc (suc (suc zero)) : ℕ
 | *Interpretation:* `ℕ` ∈ `Set`, `ℕ` = { `zero` ~ 0, `suc zero` ~ 1, `suc (suc zero)` ~ 2, ... }
 -->
 
-We may use `0`, `1`, `2`, ... instead of `zero`, `suc zero`, `suc (suc zero)`, ...*
-
-************************
-
-*\ Decimal natural number literals can be used if we bind our `ℕ` set to the Agda internals with the following three declarations:
-
-~~~~~~~~
-{-# BUILTIN NATURAL ℕ    #-}
-{-# BUILTIN ZERO    zero #-}
-{-# BUILTIN SUC     suc  #-}
-~~~~~~~~
-
 
 Type checking of expressions
 =======================

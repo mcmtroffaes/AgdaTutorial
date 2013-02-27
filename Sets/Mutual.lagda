@@ -4,7 +4,7 @@
 module Sets.Mutual where
 
 open import Sets.Enumerated using (Bool; true; false)
-open import Sets.Recursive using (ℕ; zero; suc)
+open import Syntax.Decimal_Naturals using (ℕ; zero; suc)
 \end{code}
 
 

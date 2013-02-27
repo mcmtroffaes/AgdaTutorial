@@ -28,6 +28,7 @@ import Modules.Basic
 import Sets.Enumerated
 import Sets.Recursive
 import Constants
+import Syntax.Decimal_Naturals
 import Syntax.Infix
 import Sets.Mutual
 import Sets.Parametric
