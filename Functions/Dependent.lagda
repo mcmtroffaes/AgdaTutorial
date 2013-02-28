@@ -118,16 +118,3 @@ raise zero i = i
 raise (suc n) i = suc (raise n i)
 \end{code}
 -->
-
-Define `fin≤`:
-
-\begin{code}
-fin≤ : ∀ {n}(m : Fin n) → toℕ m < n
-\end{code}
-
-<!--
-\begin{code}
-fin≤ zero    = s≤s z≤n
-fin≤ (suc m) = s≤s (fin≤ m)
-\end{code}
--->

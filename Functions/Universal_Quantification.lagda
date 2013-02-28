@@ -7,7 +7,8 @@ Imports
 \begin{code}
 module Functions.Universal_Quantification where
 
-open import Data.Nat using (ℕ; zero; suc; _+_; _≤_; z≤n; s≤s; _≤′_; ≤′-step; ≤′-refl)
+open import Data.Nat using (ℕ; zero; suc; _+_; _≤_; _<_; z≤n; s≤s; _≤′_; ≤′-step; ≤′-refl)
+open import Data.Fin using (Fin; zero; suc; toℕ)
 open import Data.Empty using (⊥)
 open import Data.Sum using (_⊎_; inj₁; inj₂; [_,_]′)
 open import Function using (flip; _$_; _∘_)
@@ -145,3 +146,21 @@ s≤′s (≤′-step m≤′n) = ≤′-step (s≤′s m≤′n) --
 ≤⇒≤′ (s≤s a≤b) = s≤′s $ ≤⇒≤′ a≤b --
 \end{code}
 -->
+
+
+Exercises with `Fin`
+====================
+
+Define `fin≤`:
+
+\begin{code}
+fin≤ : ∀ {n}(m : Fin n) → toℕ m < n
+\end{code}
+
+<!--
+\begin{code}
+fin≤ zero    = s≤s z≤n
+fin≤ (suc m) = s≤s (fin≤ m)
+\end{code}
+-->
+
