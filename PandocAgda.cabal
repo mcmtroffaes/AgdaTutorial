@@ -1,5 +1,5 @@
 name:            PandocAgda
-version:         2.3.3
+version:         2.3.3.0.1
 cabal-version:   >= 1.8
 build-type:      Simple
 license:         BSD3
