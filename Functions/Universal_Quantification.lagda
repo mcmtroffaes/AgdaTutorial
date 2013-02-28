@@ -7,26 +7,12 @@ Imports
 \begin{code}
 module Functions.Universal_Quantification where
 
-open import Data.Nat using (ℕ; zero; suc; _+_)
+open import Data.Nat using (ℕ; zero; suc; _+_; _≤_; z≤n; s≤s; _≤′_; ≤′-step; ≤′-refl)
 open import Data.Empty using (⊥)
 open import Data.Sum using (_⊎_; inj₁; inj₂; [_,_]′)
 open import Function using (flip; _$_; _∘_)
 \end{code}
 
-
-
-Definition of `_≤_`
-===================
-
-Remember
-
-\begin{code}
-data  _≤_ : ℕ → ℕ → Set where
-  z≤n : {n : ℕ} →               zero  ≤ n
-  s≤s : {m n : ℕ} →   m ≤ n  →  suc m ≤ suc n
-
-infix 4 _≤_
-\end{code}
 
 
 Universal quantification
@@ -102,16 +88,6 @@ From the 4 above properties follows that `_≤_` is a total order on `ℕ`. (We 
 
 Exercises
 =============
-
-Recall
-
-\begin{code}
-data _≤′_ (m : ℕ) : ℕ → Set where
-  ≤′-refl :                    m ≤′ m
-  ≤′-step : {n : ℕ} → m ≤′ n → m ≤′ suc n
-
-infix 4 _≤′_
-\end{code}
 
 Define the following functions:
 
