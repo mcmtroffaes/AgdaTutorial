@@ -1,6 +1,4 @@
 % Functions with Sets Result
-% Péter Diviánszky
-% 2012. 11. 06.
 
 
 Imports
@@ -183,6 +181,41 @@ Another example
 ¬ : Set → Set
 ¬ A = A → ⊥
 \end{code}
+
+
+Another example: recursive `Fin`
+================================
+
+`Fin₀ n` is isomorphic to `Fin n` for all `n`:
+
+\begin{code}
+Fin₀ : ℕ → Set
+Fin₀ zero    = ⊥
+Fin₀ (suc n) = ⊤ ⊎ Fin₀ n
+\end{code}
+
+
+Elements:
+
+    n    Fin₀ n                             Fin n
+    ------------------------------------------------------------------
+    0    {                              }   {                      }
+    1    { inj₁ tt                      }   { zero                 }
+    2    { inj₁ tt                          { zero
+         , inj₂ (inj₁ tt)               }   , suc zero             }
+    3    { inj₁ tt                          { zero
+         , inj₂ (inj₁ tt)                   , suc zero
+         , inj₂ (inj₂ (inj₁ tt)         }   , suc (suc zero)       }
+    4    { inj₁ tt                          { zero
+         , inj₂ (inj₁ tt)                   , suc zero
+         , inj₂ (inj₂ (inj₁ tt))            , suc (suc zero)
+         , inj₂ (inj₂ (inj₂ (inj₁ tt))) }   , suc (suc (suc zero)) }
+    ...
+
+Pattern:
+
+ * `zero` ~ `inj₁ tt`
+ * `suc` ~ `inj₂`
 
 
 
