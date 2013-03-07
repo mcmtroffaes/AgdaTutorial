@@ -56,6 +56,15 @@ import Functions.Equality_Proofs
 import Sets.With_Functions
 \end{code}
 
+
+Modules
+-------
+
+\begin{code}
+import Modules.Advanced
+import Modules.Parameterised
+\end{code}
+
 Other material
 -----
 
