@@ -64,6 +64,7 @@ Modules
 import Modules.Advanced
 import Modules.Parameterised
 import Modules.Data
+import Modules.Imports
 \end{code}
 
 Other material
