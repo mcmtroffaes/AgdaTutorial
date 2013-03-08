@@ -200,7 +200,7 @@ TODO
 Exercise
 ========
 
-Define the set of equivalence relations!
+Define the predicate of being an equivalence relation!
 
 \begin{code}
 record IsEquivalence {A : Set} (_≈_ : A → A → Set) : Set where
@@ -234,6 +234,6 @@ isEquivalence = record
 Exercise
 ========
 
-Define the set of semigroups!
+Define the predicate of being a semigroup!
 
 Prove that `ℕ` is a semigroup with `_+_`!
