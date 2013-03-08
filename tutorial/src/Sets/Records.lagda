@@ -7,7 +7,8 @@ module Sets.Records where
 
 open import Data.Nat
 open import Data.Bool
-open import Relation.Binary.PropositionalEquality using (_≡_; refl)
+open import Relation.Binary.PropositionalEquality using (_≡_)
+import Relation.Binary.PropositionalEquality as Eq
 \end{code}
 
 
@@ -102,7 +103,7 @@ Records has the following advantages over `data` definitions:
 
 \begin{code}
 extRec : (x : R) → x ≡ r (R.r₁ x) (R.r₂ x)
-extRec _ = refl
+extRec _ = Eq.refl
 
 -- {- not possible -}
 -- extData : (x : R″) → x ≡ r″ (r₁ x) (r₂ x)
@@ -196,3 +197,43 @@ Implicit record fields
 TODO
 
 
+Exercise
+========
+
+Define the set of equivalence relations!
+
+\begin{code}
+record IsEquivalence {A : Set} (_≈_ : A → A → Set) : Set where
+\end{code}
+
+<!--
+\begin{code}
+  field
+    refl  : ∀ {x} → x ≈ x
+    sym   : ∀ {x y} → x ≈ y → y ≈ x
+    trans : ∀ {x y z} → x ≈ y → y ≈ z → x ≈ z
+\end{code}
+-->
+
+Prove that `_≡_` is an equivalence relation on any set!
+
+\begin{code}
+isEquivalence : {A : Set} → IsEquivalence {A} _≡_
+\end{code}
+
+<!--
+\begin{code}
+isEquivalence = record
+    { refl = Eq.refl
+    ; sym  = Eq.sym
+    ; trans = Eq.trans
+    }
+\end{code}
+-->
+
+Exercise
+========
+
+Define the set of semigroups!
+
+Prove that `ℕ` is a semigroup with `_+_`!

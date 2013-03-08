@@ -57,8 +57,8 @@ import Sets.With_Functions
 \end{code}
 
 
-Modules
--------
+Modules and records
+-------------------
 
 \begin{code}
 import Modules.Advanced
