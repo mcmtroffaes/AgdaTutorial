@@ -1,0 +1,13 @@
+% Changes
+
+PandocAgda 2.3.3.0.1 --> 2.3.3.0.2
+
+-   correct a dependency in cabal file
+-   README and CHANGES files
+
+PandocAgda 2.3.3 --> 2.3.3.0.1
+
+-   correct LICENCE file
+-   correct darcs repo URL
+
+
