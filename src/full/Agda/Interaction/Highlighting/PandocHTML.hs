@@ -211,7 +211,8 @@ pandocPage template css slideVariant modName contents info =
     | s == "\n\\end{code}" || List.isPrefixOf "\\end{code}" s
     = (: getCode xs) . reverse
   getCode' (x:xs) = getCode' xs . (x:)
-  getCode' [] = error "__IMPOSSIBLE__" -- ???
+  getCode' []
+    = __IMPOSSIBLE__
 
   splitComment w = concatMap f
     where
