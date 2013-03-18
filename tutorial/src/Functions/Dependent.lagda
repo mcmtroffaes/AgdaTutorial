@@ -6,6 +6,8 @@ module Functions.Dependent where
 
 open import Data.Nat using (ℕ; zero; suc; _+_; z≤n; s≤s; _<_)
 open import Data.Fin using (Fin; zero; suc)
+open import Data.Vec using (Vec; []; _∷_)
+open import Data.Product using (_×_; _,_)
 \end{code}
 
 
@@ -118,3 +120,108 @@ raise zero i = i
 raise (suc n) i = suc (raise n i)
 \end{code}
 -->
+
+
+
+Exercises
+=========
+
+Define `head` and `tail`.
+
+\begin{code}
+head : ∀ {n}{A : Set} → Vec A (suc n) → A
+\end{code}
+
+<!--
+\begin{code}
+head (a ∷ as) = a
+\end{code}
+-->
+
+\begin{code}
+tail : ∀ {n}{A : Set} → Vec A (suc n) → Vec A n
+\end{code}
+
+<!--
+\begin{code}
+tail (a ∷ as) = as
+\end{code}
+-->
+
+Define concatenation for vectors.
+
+\begin{code}
+_++_ : ∀ {n m}{A : Set} → Vec A n → Vec A m → Vec A (n + m)
+\end{code}
+
+<!--
+\begin{code}
+[]       ++ bs = bs
+(a ∷ as) ++ bs = a ∷ as ++ bs
+\end{code}
+-->
+
+Define `maps`. (Note that two cases will be enough!)
+
+\begin{code}
+maps : ∀ {n}{A B : Set} → Vec (A → B) n → Vec A n → Vec B n
+\end{code}
+
+<!--
+\begin{code}
+maps [] [] = []
+maps (f ∷ fs) (a ∷ as) = f a ∷ maps fs as
+\end{code}
+-->
+
+Define `replicate`.
+
+\begin{code}
+replicate : ∀ {n}{A : Set} → A → Vec A n
+\end{code}
+
+<!--
+\begin{code}
+replicate {zero}  a = []
+replicate {suc n} a = a ∷ replicate a
+\end{code}
+-->
+
+Define `map` with the help of `maps` and `replicate`.
+
+\begin{code}
+map : ∀ {n}{A B : Set} → (A → B) → Vec A n → Vec B n
+\end{code}
+
+<!--
+\begin{code}
+map f xs = maps (replicate f) xs
+\end{code}
+-->
+
+Define `zip` with the help of `map` and `maps`.
+
+\begin{code}
+zip : ∀ {n}{A B : Set} → Vec A n → Vec B n → Vec (A × B) n
+\end{code}
+
+<!--
+\begin{code}
+zip as bs = maps (map (_,_) as) bs
+\end{code}
+-->
+
+Define safe element indexing.
+
+\begin{code}
+_!_ : ∀ {n}{A : Set} → Vec A n → Fin n → A
+\end{code}
+
+<!--
+\begin{code}
+[] ! ()
+(a ∷ as) ! zero = a
+(a ∷ as) ! suc n = as ! n
+\end{code}
+-->
+
