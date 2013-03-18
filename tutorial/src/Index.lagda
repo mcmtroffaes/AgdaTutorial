@@ -54,6 +54,8 @@ import Functions.Dependent
 import Functions.Universal_Quantification
 import Functions.Equality_Proofs
 import Sets.With_Functions
+
+import Sets.Sigma
 \end{code}
 
 
