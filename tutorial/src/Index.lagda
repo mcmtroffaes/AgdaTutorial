@@ -56,6 +56,9 @@ import Functions.Equality_Proofs
 import Sets.With_Functions
 
 import Sets.Sigma
+
+import Functions.Views
+import Functions.Views.Decidability
 \end{code}
 
 
@@ -70,6 +73,7 @@ import Modules.Imports
 import Sets.Records
 import Modules.Records
 \end{code}
+
 
 Other material
 -----
