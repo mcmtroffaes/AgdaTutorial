@@ -5,6 +5,7 @@ module Sets.With_Functions where
 
 open import Data.Nat
 open import Data.Empty using (⊥)
+open import Data.List using (List; length)
 open import Relation.Nullary using (Dec; yes; no)
 open import Data.Product using (Σ; _×_; _,_; proj₁; proj₂)
 open import Relation.Binary.PropositionalEquality using (_≡_; refl; trans; sym; cong)
@@ -125,3 +126,15 @@ isEven (suc (suc n)) | no ¬p = no (λ x → ¬p (prevEven x))
 \end{code}
 
 
+Other examples
+==============
+
+\begin{code}
+data  _≤″_ : ℕ → ℕ → Set  where
+   diff : ∀ i j → i ≤″ j + i
+
+infix 4 _≤″_
+
+data Vec (A : Set) : ℕ -> Set where
+  vec : (x : List A) -> Vec A (length x)
+\end{code}
