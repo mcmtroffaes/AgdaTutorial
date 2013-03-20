@@ -75,6 +75,14 @@ import Modules.Records
 \end{code}
 
 
+Applications
+------------
+
+\begin{code}
+import Application.Algebra
+\end{code}
+
+
 Other material
 -----
 
