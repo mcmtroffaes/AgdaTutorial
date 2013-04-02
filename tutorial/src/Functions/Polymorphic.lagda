@@ -51,7 +51,7 @@ Polymorphic parameters have to be named explicitly in beginning of the declarati
 In Agda, polymorphic parameters are explicit, in Haskell they are implicit.
 
 Instead of curly braces we can use also round braces but then
-we should give the set as a parameter at every function call.
+we have to give the set as a parameter at every function call.
 
 
 
@@ -218,7 +218,7 @@ id : {A : Set} → A → A
 id a = a
 \end{code}
 
-If we want, can specify the implicit paramter manually in curly braces:
+If we want, can specify the implicit parameter manually in curly braces:
 
 \begin{code}
 aNumber = id {ℕ} (suc zero)
@@ -249,7 +249,7 @@ infixr 2 _×_
 Exercises
 =========
 
-Define a function which swaps the two element!
+Define a function which swaps the two elements!
 
 Define the following functions:
 
@@ -282,7 +282,7 @@ infixr 1 _⊎_
 Exercises
 =========
 
-Define a function which swaps the two element!
+Define a function which swaps the two elements!
 
 Define the eliminator function for disjoint union:
 

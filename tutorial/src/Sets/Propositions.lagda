@@ -47,7 +47,7 @@ infixr 2 _×_
 \end{code}
 
 We represent the proofs of the **disjunction** of two propositions `A` and `B` by the type `A ⊎ B`.  
-`A ⊎ B` has two different kind of proofs:
+`A ⊎ B` has two different kinds of proofs:
 
 *   `inj₁ a`, where `a` is proof of `A`,
 *   `inj₂ b`, where `b` is proof of `B`.
@@ -420,7 +420,7 @@ data  _≤_ : ℕ → ℕ → Set where
   s≤s : {m : ℕ} → {n : ℕ} →   m ≤ n  →  suc m ≤ suc n
 ~~~~~~~~~~~
 
-The arrow between typed variables are not needed (also in case of round parenthesis):
+The arrows between typed variables are not needed (also in case of round parenthesis):
 
 ~~~~~~~~~~~ 
 data  _≤_ : ℕ → ℕ → Set where
@@ -457,7 +457,7 @@ data  _≤_ : ℕ → ℕ → Set where
 ==========
 
 We wish to give a definition which
-yields the infinite set of true propostions
+yields the infinite set of true propositions
 
 ~~~~~~~~~~~~~~~~~ 
 0 + 0 ≡ 0,  1 + 0 ≡ 1,  2 + 0 ≡ 2,  ...
@@ -485,7 +485,7 @@ Technical details of the solution
 Definition of `_+_≡_`
 ==========
 
-`_+_̄≡_` is an indexed set with three natural number indices and with two constructors:*
+`_+_≡_` is an indexed set with three natural number indices and with two constructors:*
 
 \begin{code}
 data _+_≡_ : ℕ → ℕ → ℕ → Set where
@@ -625,6 +625,6 @@ module ℕ≈ℕ⁺ where --
 
 *****************
 
-*There are lots of isomorphism between `ℕ` and `ℕ⁺`, we mean here the most natural one.
+*There are lots of isomorphisms between `ℕ` and `ℕ⁺`, we mean here the most natural one.
 
 

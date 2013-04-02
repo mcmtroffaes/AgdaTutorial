@@ -37,7 +37,7 @@ parity (suc .(suc (k * 2))) | odd  k = even (1 + k)
 `Parity` is a view on natural numbers expressing that every natural number is either even or odd.
 `parity` is called the *view function* of `Parity` which proves that there is exactly one element for every value of the index of the view.
 
-If we pattern match on `parity n` we learn not only wether `n` is even or odd but we also learn what the value of the corresponding `k` is.
+If we pattern match on `parity n` we learn not only whether `n` is even or odd but we also learn what the value of the corresponding `k` is.
 
 Compare it with the following function:
 

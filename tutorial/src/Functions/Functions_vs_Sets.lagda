@@ -18,7 +18,7 @@ data Not : Bool → Bool → Set where
   n₂ : Not false true
 \end{code}
 
-This creates four new sets from which two are non-empty.
+This creates four new sets of which two are non-empty.
 
 `Not a b` is non-empty iff `b` is the negated value of `a`.
 
@@ -73,7 +73,7 @@ Functions are good for describing the solution/answer (**implementation**).
 
 -   Implementations are connected to specifications by the type system (see later).  
 -   Functions are used in specifications too because of the advantage
-    "easier to use" and they can represent negation and universial quantification.
+    "easier to use" and they can represent negation and universal quantification.
     -   like in mathematics where definitions
         may need theorems in advance
 

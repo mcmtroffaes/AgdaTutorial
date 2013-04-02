@@ -67,4 +67,4 @@ odd*even (ss n) m = odd+odd m (odd+even m (odd*even n m)) --
 Exercise
 ========
 
-Give a simpler definition of even and odd (with less constructors).
+Give a simpler definition of even and odd (with fewer constructors).

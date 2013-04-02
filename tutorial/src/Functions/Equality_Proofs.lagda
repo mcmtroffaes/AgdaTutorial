@@ -150,7 +150,7 @@ This is a bit funny though:
 ~~~~~~~~~~~~~~~~~
 
 So the code of `+-right-identity` is kind of dead code
-(doesn't do any meaningful at run time).  
+(doesn't do anything meaningful at run time).  
 We'll discuss this later.
 
 
@@ -183,7 +183,7 @@ Finish the ingredients of the proof that (`ℕ`, `_+_`) is a commutative monoid!
 | +-identity a = +-left-identity a , +-right-identity a --
 -->
 
-Fot commutativity you need a helper function first:
+For commutativity you need a helper function first:
 
 \begin{code}
 m+1+n≡1+m+n : ∀ m n → m + suc n ≡ suc (m + n)
@@ -218,7 +218,7 @@ toList zero = []
 toList (suc n) = tt ∷ toList n
 \end{code}
 
-Let's prove that `fromList` and `toList` are inverses of each-other and that they preserve the operations `_++_` and `_+_`!
+Let's prove that `fromList` and `toList` are inverses of each other and that they preserve the operations `_++_` and `_+_`!
 
 \begin{code}
 from-to : ∀ a → fromList (toList a) ≡ a

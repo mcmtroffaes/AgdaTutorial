@@ -48,7 +48,7 @@ Exercises
 
 * What is the connection between `List ⊤` and `ℕ`?
 * Define a `Maybe` set (lists with 0 or 1 elements)!
-* Define paramteric trees (various sorts)!
+* Define parametric trees (various sorts)!
 
 
 
@@ -175,7 +175,7 @@ Set                     1st,                           2nd,                     
 
 ***************
 
-Nested are special non-regular sets.  
+Nested sets are special non-regular sets.  
 Nested sets can be translated to mutually recursive regular sets.
 
 

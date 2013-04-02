@@ -17,7 +17,7 @@ Semigroup property
 Let `A` be a type and let `_∙_` be a binary operation on `A`.
 `A` with `_∙_` forms a semigroup iff `_∙_` is associative.
 
-We can model the semigroup propostion as follows:
+We can model the semigroup proposition as follows:
 
 \begin{code}
 record IsSemigroup {A : Set} (_∙_ : A → A → A) : Set where
@@ -84,7 +84,7 @@ module Usage₃ where
 Monoid property
 ==================
 
-`IsMonoid {A} _∙_ ε` represents the propostion that
+`IsMonoid {A} _∙_ ε` represents the proposition that
 (`A`, `_∙_`, `ε`) is a monoid:
 
 \begin{code}
@@ -208,7 +208,7 @@ Commutative _∙_ = ∀ x y →  x ∙ y  ≡  y ∙ x
 \end{code}
 -->
 
-The first paramter of `LeftIdentity` is the neutral element.
+The first parameter of `LeftIdentity` is the neutral element.
 
 \begin{code}
 LeftIdentity : {A : Set} → A → Op₂ A → Set _
@@ -362,7 +362,7 @@ module MonoidOperations (m : Monoid) where
 
 
 
-Standard Library defintions
+Standard Library definitions
 ================
 
 You can find the given definitions in the following Standard Library modules:

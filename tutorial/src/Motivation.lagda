@@ -172,12 +172,12 @@ Benefits of completing the tutorial
         solutions for individual problems are not worked out.
 -   learn similar languages easier
     -   most Haskell type system extensions are just special cases
-        -   Haskell is practical general-purpose programming language also used in industry.
+        -   Haskell is a practical general-purpose programming language also used in industry.
     -   languages with similar goals: Coq, Idris, Epigram
         -   write formal proofs in Coq which is more mainstream
 -   use the ideas presented here
     -   have a better programming style / understanding in other languages
-    -   steel the ideas
+    -   steal the ideas
 -   learn theory easier (will be more familiar for you)
     -   type theory
         -   dependent types

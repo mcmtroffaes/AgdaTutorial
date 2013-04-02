@@ -57,10 +57,10 @@ suc (suc (suc zero)) : ℕ
 -->
 
 
-Type checking of expressions
+Type-checking of expressions
 =======================
 
-With the Emacs command C-`c` C-`d` one can get Agda to type check
+With the Emacs command C-`c` C-`d` one can get Agda to type-check
 a given expression (`d` stands for 'deduce').
 
 Example: Hit C-`c` C-`d` and enter `suc (suc zero)`. 
@@ -139,7 +139,7 @@ Soon we will prove in Agda that `ℕ` and `ℕ₂` are isomorphic with the follo
 `suc (suc (suc zero))`  `id (double+1 one)`
 ...                     ...
 
-*Exercise:* How 9 is represented in `ℕ₂`? Type check the expression!
+*Exercise:* How 9 is represented in `ℕ₂`? Type-check the expression!
 
 *Question*: why didn't we use one `data` definition with 4 constructors `zero`, `one`, `double`, `double+1`?
 
@@ -162,7 +162,7 @@ Each representation has its merit.
 
 *****************
 
-A good strategy is choose the right representation for each task
+A good strategy is to choose the right representation for each task
 and convert values between different representations.
 
 

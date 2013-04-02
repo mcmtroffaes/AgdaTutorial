@@ -132,7 +132,7 @@ compare (suc .(suc m + k)) (suc .m)           | greater m k = greater (suc m) k
 Usage of views
 =====
 
-If we pattern match on `parity n` we learn not only wether `n` is even or odd but we
+If we pattern match on `parity n` we learn not only whether `n` is even or odd but we
 also get a proof of it. From the proof we can get additional information too (like what is the
 half of `n`).
 

@@ -86,7 +86,7 @@ data 10≤′ : ℕ → Set where
   10≤′-step : {n : ℕ} →  10≤′ n  →  10≤′ suc n
 ~~~~~~
 
-was made from `_≤′_` with a simple substituion which is possible with `_≤_`.
+was made from `_≤′_` with a simple substitution which is possible with `_≤_`.
 
 **TODO: give examples.
 
@@ -123,7 +123,7 @@ TODO
 | 
 | *Exercise*:
 | 
-| Create conversion functions between the two equalites:
+| Create conversion functions between the two equalities:
 | 
 | \begin{code}
 | cong₂ : ∀ {a b} (f : ℕ → ℕ) → a ≡₂ b → f a ≡₂ f b -- helper function

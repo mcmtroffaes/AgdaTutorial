@@ -20,12 +20,12 @@ Intermediate
 -   [Notes on the simply typed lambda calculus](Further_Reading/Simply_typed_lambda_calculus.pdf)  
     *Peter Aczel*  
     In the Proceedings of the 1997 "Computational Logic" Advanced Study Institute International Summer School at Marktoberdorf, 1999. 
-    [Original copy.](www.cs.man.ac.uk/~petera/markt97_paper.ps.gz)
+    [Original copy.](http://www.cs.man.ac.uk/~petera/markt97_paper.ps.gz)
 
 -   [Abstracton and Computation, Chapter 1.3-1.4](Further_Reading/Abstraction_Computation.pdf)  
     *Venanzio Capretta*  
     PhD Thesis. Supervisor: Henk Barendregt. Defended on April 23, 2002. University of Nijmegen, The Netherlands. 
-    [Original copy.](cs.ru.nl/~venanzio/publications/Abstraction_Computation.pdf)
+    [Original copy.](http://cs.ru.nl/~venanzio/publications/Abstraction_Computation.pdf)
 
 
 Advanced

@@ -69,7 +69,7 @@ Commands inside a hole
 ----------------- -----------------------------------------
 C-`c` C-`,`       information about the hole
 C-`c` C-`d`       deduce (type of contents of hole)
-C-`c` C-Space     give (checks wether the term in the whole has the right type and if yes, replaces the hole with the term)
+C-`c` C-Space     give (checks whether the term in the hole has the right type and if it has, replaces the hole with the term)
 C-`c` C-`c`       case split (pattern match on variables)
 C-`c` C-`r`       refine (one step further)
 C-`c` C-`a`       auto (try to find a solution)

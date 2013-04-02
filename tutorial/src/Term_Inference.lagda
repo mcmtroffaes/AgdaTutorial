@@ -42,7 +42,7 @@ Implicit arguments
 ==========
 
 Underscores can be hidden:  
-Mark argument positions of constructors *implicit* with curly brackets.
+Make arguments of constructors *implicit* with curly brackets.
 
 \begin{code}
 data Fin : ℕ → Set where

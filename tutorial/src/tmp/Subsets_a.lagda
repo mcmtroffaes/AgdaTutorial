@@ -18,7 +18,7 @@ data Fin : ℕ → Set where
   suc  : {n : ℕ} → Fin n → Fin (suc n)
 \end{code}
 
-If possible, better to use parameters instead of indexes.
+If possible, it's better to use parameters instead of indexes.
 
 Note that the index cannot be turned to be a parameter because
 there is at least one constructor for which the result has a non-variable
@@ -43,7 +43,7 @@ Set           1st,       2nd,             3rd,                   ...
 *********************
 
 
-Indexed sets is the first subset of inductive families discussed here which cannot be defined in Haskell.
+Indexed sets are the first subset of inductive families discussed here which cannot be defined in Haskell.
 
 
 `Vec`: Vectors (Lists with Known Size)
@@ -76,7 +76,7 @@ Set           1st,       2nd,                       3rd,                   ...
 `Σ`: Dependent Pair
 ==============
 
-The most well-know set with dependent constructor parameters is the dependent pair:
+The most well-known set with dependent constructor parameters is the dependent pair:
 
 \begin{code}
 data Σ (A : Set) (B : A → Set) : Set where

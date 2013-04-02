@@ -51,7 +51,7 @@ We can create a subset of type `A` by giving a predicate `P` on `A`:
 `Σ` concatenates a family of types:
 
  * `List A` ~ `Σ ℕ (Vec A)`
- * `Σ ℕ Fin` is the type that containts all `Fin`s.
+ * `Σ ℕ Fin` is the type that contains all `Fin`s.
 
 Existential quantification can be expressed with `Σ`:
 

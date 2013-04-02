@@ -12,18 +12,18 @@ open import Data.Nat
 Module parameters
 ==============
 
-Modules may have parameters which are acessable inside the module.
+Modules may have parameters which are accessible inside the module.
 
 The parameter can filled in outside of the module:
 
 \begin{code}
 module X where
 
-  module Y (x₁ : ℕ) where   -- paramter
-    y₁ = suc x₁             -- using the paramter
+  module Y (x₁ : ℕ) where   -- parameter
+    y₁ = suc x₁             -- using the parameter
     y₂ = suc y₁
 
-  x₂ = suc (suc (Y.y₁ 10))  -- filling in the paramter
+  x₂ = suc (suc (Y.y₁ 10))  -- filling in the parameter
   x₂′ = suc (Y.y₂ 10)
 \end{code}
 
@@ -76,6 +76,6 @@ Laws
 ====
 
 -   `open module` M₁ pars `=` M₂ terms [`public`] mods  ≡  
-    `module` M₁ `=` M₂ terms mods  
+    `module` M₁ pars `=` M₂ terms mods  
     `open` M₁ [`public`]
 

@@ -16,7 +16,7 @@ suc (suc z)  -- 1-től nagyobb természetes szám, amiből ha kettőt kivonunk z
 
 
 Order 3 4  részleges elemei:
-x = less n m = less 3 0   -- itt nincsnek külön elemek!
+x = less n m = less 3 0   -- itt nincsenek külön elemek!
 
 Order a b
 less n m     -- n = a, n + (suc m) = b
@@ -36,7 +36,7 @@ k   --   n /= 0 !     ( {n : N} (k : Fin n) -> 1 <= n
 `Ordering`: Ordering View
 =========================
 
-Views are families of sets which has always 1 element.
+Views are families of sets which always have 1 element.
 
 *Example:*  
 A set which helps to decide the relation between two naturals:

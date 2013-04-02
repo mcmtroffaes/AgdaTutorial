@@ -50,7 +50,7 @@ Technical details of the solution
 Definition of `_+_≡_`
 ==========
 
-`_+_̄≡_` is an indexed set with three natural number indices and with two constructors:*
+`_+_≡_` is an indexed set with three natural number indices and with two constructors:*
 
 \begin{code}
 data _+_≡_ : ℕ → ℕ → ℕ → Set where
@@ -187,6 +187,6 @@ module ℕ≈ℕ⁺ where --
 
 *****************
 
-*There are lots of isomorphism between `ℕ` and `ℕ⁺`, we mean here the most natural one.
+*There are lots of isomorphisms between `ℕ` and `ℕ⁺`, we mean here the most natural one.
 
 

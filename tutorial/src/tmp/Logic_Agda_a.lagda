@@ -215,4 +215,4 @@ p-indirect-conclusion p = ¬¬a⇒a (p-indirect p)
 
 **********
 
-If you can come up with a better example (eg. an indirect proof of a simple proposition not using the constructive one inside), please [let me know](http://akaposi.web.elte.hu)!
+If you can come up with a better example (e.g. an indirect proof of a simple proposition not using the constructive one inside), please [let me know](http://akaposi.web.elte.hu)!

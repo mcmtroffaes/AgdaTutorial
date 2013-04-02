@@ -22,7 +22,7 @@ Ideology
 Assumptions
 
 -   Most IT people are not interested in theory in the first place.
--   One can go on a long way without any theoretical knowledge in Agda.  
+-   One can go a long way without any theoretical knowledge in Agda.  
     *   The proposed tutorial is a demonstration for this.
 -   Much background theoretical remarks interrupts the playing experience.
 -   Students react quite differently to theoretical remarks.  
@@ -87,7 +87,7 @@ Tutorial: *Idiomatic solutions for practical exercises taken into pieces, sorted
     -   revisit non-idiomatic code when the idiomatic solution is possible
     -   try to **avoid this step**
 1.  Hide all Agda code!  
-    Unhide code for the first appearence of any language construct/technique used and add **very practical explanations**.
+    Unhide code for the first appearance of any language construct/technique used and add **very practical explanations**.
 
 ---------------
 

@@ -64,7 +64,7 @@ plus : ℕ → ℕ → ℕ
 plus x y = if x ≤? zero then y else suc (plus (pred x) y)
 \end{code}
 
-(We've also lost termination check.)
+(We've also lost the termination check.)
 
 \begin{code}
 plus' : ℕ → ℕ → ℕ

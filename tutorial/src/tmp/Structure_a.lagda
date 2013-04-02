@@ -31,23 +31,23 @@ Partial Information
 
 Open expressions contain partial information:
 
--   `suc n` -- a natural number which is at least 1; its predessor is `n`
+-   `suc n` -- a natural number which is at least 1; its predecessor is `n`
 -   `suc (suc n)` -- a natural number which is at least 2; `n` is the number minus 2.
 -   `n ≤ suc m`  -- `n` is strictly less than `m`.
 -   `A ⊎ Bool`  -- `A` is a set (no other information).
 
-The information can propagate in several direction:
+The information can propagate in several directions:
 
 -   `z≤n i : a ≤ b`  --  `a` is `zero` and `i` equals to `b` (info from `z≤n`).
 -   `e : suc a ≤ suc b`  -- `e` is `s≤s x` for some `x` (info from the type).
 -   `z≤n i : a ≤ suc zero`  --  `a` is `zero` and `i` is `suc zero`.
 -   `s≤s e : a ≤ zero`  --  Impossible case; we can derive a contradiction from this.
 
-A big part of these information are deduced and propagated by Agda.
+A big part of this information is deduced and propagated by Agda.
 
 ------------------
 
-We can help Agda if it cannot deduce or propagate these kind of information; see later.
+We can help Agda if it cannot deduce or propagate these kinds of information; see later.
 
 
 Exercises

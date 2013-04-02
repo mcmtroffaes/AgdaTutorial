@@ -18,8 +18,8 @@ Ideology
 Assumptions
 
 -   Most IT people are not interested in theory in the first place.
--   One can go on a long way without any theoretical knowledge in Agda.  
--   Theoretical remarks interrupts the programming experience.
+-   One can go a long way without any theoretical knowledge in Agda.  
+-   Theoretical remarks interrupt the programming experience.
     *   Students react quite differently to theoretical remarks.  
         (confused ↔ want to know a lot more)
 -   People who already played with Agda are more

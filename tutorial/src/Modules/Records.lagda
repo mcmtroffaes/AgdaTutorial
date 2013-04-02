@@ -53,7 +53,7 @@ module AppliedOpening where
   y = r₁
 \end{code}
 
-Another examle:
+Another example:
 
 \begin{code}
 module AppliedOpening′ where

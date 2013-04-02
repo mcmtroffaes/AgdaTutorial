@@ -37,7 +37,7 @@ Indentation is used to indicate which definitions are part of a module.
 Qualified names
 ==============
 
-Names introduced in a module can be accessed by qualfication outside of the module:
+Names introduced in a module can be accessed by qualification outside of the module:
 
 \begin{code}
 module X′ where
@@ -116,7 +116,7 @@ module X‴ where
 Private definitions
 ===================
 
-Private definitions are inaccessable outside of the module:
+Private definitions are inaccessible outside of the module:
 
 \begin{code}
 module X⁗ where
@@ -128,12 +128,12 @@ module X⁗ where
       y₁ = suc x₁   -- private definition
 
     module Z where
-      z = suc y₁    -- accessable
+      z = suc y₁    -- accessible
 
     y₂ = suc Z.z
 
   x₂ = suc Y.y₂
-  --  x₂′ = suc (suc (suc Y.y₁))   -- not accessable
+  --  x₂′ = suc (suc (suc Y.y₁))   -- not accessible
 \end{code}
 
 
@@ -158,7 +158,7 @@ module X⁵ where
     open Z using (z′; z″)  -- partial opening
 
     y₂ = suc z′     -- usage
-    -- y₂′ = suc z     -- not acessible
+    -- y₂′ = suc z     -- not accessible
 
   x₂ = suc Y.y₂
 \end{code}
@@ -185,7 +185,7 @@ module X⁶ where
     open Z hiding (z)  -- partial opening
 
     y₂ = suc z′     -- usage
-    -- y₂′ = suc z     -- not acessible
+    -- y₂′ = suc z     -- not accessible
 
   x₂ = suc Y.y₂
 \end{code}
@@ -212,8 +212,8 @@ module X⁷ where
     open Z renaming (z to v; z″ to v″)  -- renamings
 
     y₂ = suc v     -- usage
-    -- y₂″ = suc z     -- not acessible
-    y₂′ = suc z′    -- acessible
+    -- y₂″ = suc z     -- not accessible
+    y₂′ = suc z′    -- accessible
 
   x₂ = suc Y.y₂
 \end{code}

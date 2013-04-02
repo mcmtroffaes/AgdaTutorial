@@ -68,4 +68,4 @@ Equality
 | mixfix operators
 | comments: --, {- -}
 
-| should contaion links to the corresponding chapter
+| should contain links to the corresponding chapter

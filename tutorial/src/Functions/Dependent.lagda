@@ -32,8 +32,8 @@ fromℕ (suc n) = suc (fromℕ n)
     the number of elements can be given as a product:  
     ∣`(x : A)→ B`∣ = ∏`x`∈`A` ∣`B`∣, for example  
     ∣`(n : Fin m)→ Fin (suc n)`∣ = (`m` + 1)!
--   Polymorph functions like `(A : Set) → A → A` are special cases of dependent functions.
--   Non-dependent functions like `A → B` are special special cases of dependent functions  
+-   Polymorphic functions like `(A : Set) → A → A` are special cases of dependent functions.
+-   Non-dependent functions like `A → B` are special cases of dependent functions  
     (`(x : A) → B` where `B` doesn't depend on `x`).
 
 

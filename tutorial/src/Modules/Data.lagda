@@ -7,7 +7,7 @@ module Modules.Data where
 Data modules
 ============
 
-Data declarations defines modules which are
+Data declarations define modules which are
 immediately opened:
 
 \begin{code}
@@ -59,5 +59,5 @@ y₂ = const zero (ℕ.suc zero)   -- automatic name disambiguation
 -- y₄ = const zero (suc ℕ.zero) -- this is still ambiguous for Agda!
 \end{code}
 
-Ambigous parts are highlighted in yellow.
+Ambiguous parts are highlighted in yellow.
 

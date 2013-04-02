@@ -12,7 +12,7 @@ import Relation.Binary.PropositionalEquality as Eq
 \end{code}
 
 
-Record set defintions
+Record set definitions
 ==============
 
 A record type is a special set for representing tuples of values.
@@ -26,7 +26,7 @@ record R : Set where
 \end{code}
 
 
-Record value defintions
+Record value definitions
 ==============
 
 An example:
@@ -37,7 +37,7 @@ x = record { r₁ = true; r₂ = 2 }
 \end{code}
 
 
-Record value defintions with constructors
+Record value definitions with constructors
 ==============
 
 One could define a constructor for `R` values:
@@ -78,7 +78,7 @@ x‴ = r (R.r₁ x) (R.r₂ x)
 \end{code}
 
 
-`record` vs. `data` defintions
+`record` vs. `data` definitions
 ==============
 
 For every set defined with `record` there is an equivalent set defined with `data`.
@@ -96,9 +96,9 @@ r₂ : R″ → ℕ
 r₂ (r″ a b) = b
 \end{code}
 
-Records has the following advantages over `data` definitions:
+Records have the following advantages over `data` definitions:
 
--   We get seletor functions for free.
+-   We get selector functions for free.
 -   A record is definitionally equivalent to its recombined parts:  
 
 \begin{code}

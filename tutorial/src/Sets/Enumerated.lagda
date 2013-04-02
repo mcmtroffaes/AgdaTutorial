@@ -88,7 +88,7 @@ Interpretation (or meaning) is the opposite relation to representation.
 -   The interpretation (the meaning) of `Bool` is the set of Boolean values.
 -   One possible representation of the set of Booleans is `Bool`.
 -   Another possible representation of the set of Booleans is `Bool'`.
--   Different interpretations of the same definition is also possible as we will see.
+-   Different interpretations of the same definition are also possible as we will see.
 
 
 Special finite sets
@@ -118,11 +118,11 @@ Types vs. sets
 Basic differences between types and sets:
 
 -   The type of an element is unique ↔ an element can be member of different sets  
-    E.g. `true` cannot be the element of two different type at the same time.
+    E.g. `true` cannot be the element of two different types at the same time.
 -   A type is not the collection of its elements ↔ a set is characterized by its elements  
     E.g. there are different empty types.
 
-`data` defines types, no sets!  
+`data` defines types, not sets!  
 
 -   We prefer types over sets for several reasons.
 -   From now on, we use both terms 'type' and 'set' for types.  
@@ -136,12 +136,12 @@ Basic differences between types and sets:
 Syntactic abbreviation
 ======================
 
-If we have multiple elements of the same type we can define these in one line:
+If we have multiple elements of the same type we can define them in one line:
 
 \begin{code}
 data name : Set where
   elem₁ elem₂ : name
 \end{code}
 
-x
+
 

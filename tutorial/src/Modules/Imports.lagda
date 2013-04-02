@@ -5,7 +5,7 @@ module Modules.Imports where
 \end{code}
 
 
-Detach a module in a separate file
+Detach a module into a separate file
 ==================================
 
 Module definitions can be detached into separate files:
@@ -42,7 +42,7 @@ module X′ where
 Search paths
 ============
 
-Agda source files should be acessible from the Agda search paths.
+Agda source files should be accessible from the Agda search paths.
 
 In the Emacs environment, the Agda search paths can be set by
 
@@ -63,7 +63,7 @@ Qualified modules in import declarations
 =======
 
 Module definitions can be detached into separate files
-contained in (possibly nested) directories acessible from the search paths.
+contained in (possibly nested) directories accessible from the search paths.
 
 Example:
 

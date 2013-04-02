@@ -33,7 +33,7 @@ but these are not new elements: their normal form is either `true` or `false`.
 
 In the interactive environment we can compute the normal form by C-`c` C-`n`.
 
-Funtions have *computational content*.  
+Functions have *computational content*.  
 For example, `not` defines not just a relation between `Bool` and `Bool`,
 but also an algorithm how to compute the negated value.
 
@@ -102,7 +102,7 @@ B)  Define a set named `Quarter` with four elements, `east`, `west`, `north` and
 
     Define a function `turnLeft : Quarter → Quarter`.
  
-    Define the functions `turnBack` and `turnRight` with the help of `turnLeft`! (By either pattern matching  or defining specific function composition function.)
+    Define the functions `turnBack` and `turnRight` with the help of `turnLeft`! (By either pattern matching or defining a specific function composition function.)
 
 
 

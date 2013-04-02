@@ -17,7 +17,7 @@ Introduction
 ============
 
 Function definitions give another possibility to define sets.  
-We give general design rules which language construct to use.
+We give general design rules on which language construct to use.
 
 
 Inductive `_≤_` definition
@@ -84,7 +84,7 @@ tt : 2 ≤′ 4
 Inductive vs. recursive definitions
 ===============
 
-`_≤_` and `_≤′_` have the same type and define exatly the same relations. But:
+`_≤_` and `_≤′_` have the same type and define exactly the same relations. But:
 
 **Inductive definitions are better than
 recursive definitions with pattern matching.**
@@ -152,7 +152,7 @@ n < m = suc n ≤ m
 
 Although we could have an inductive definition of `_<_`,
 this definition is better because
-no conversion functions needed between `_≤_` and `_<_`.
+no conversion functions are needed between `_≤_` and `_<_`.
 
 On the other hand,
 

@@ -38,7 +38,7 @@ n   Sets with n elements
 Definition of `Fin`
 ==========
 
-`Fin` is an set *indexed with* a natural number  
+`Fin` is a set *indexed with* a natural number  
 (we use `Fin` because this is not the final definition of `Fin`):
 
 \begin{code}
@@ -93,8 +93,8 @@ Exercises
 
 *   Define a `Bool` indexed family of sets such that the set indexed by `false` contains
     no elements and the set indexed by `true` contains one element!
-*   Define a `ℕ` indexed family of sets such that the sets indexed by even numbers contains
-    one element and others are empty!
+*   Define a `ℕ` indexed family of sets such that the sets indexed by even numbers contain
+    one element and the others are empty!
 
 <!--
 \begin{code}

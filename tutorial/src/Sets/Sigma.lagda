@@ -52,7 +52,7 @@ The dependent pair may represent
 Examples:
 
 -   `List A` ~ `Σ ℕ (Vec A)`
--   `Σ ℕ Fin` is the type that containts all `Fin`s.
+-   `Σ ℕ Fin` is the type that contains all `Fin`s.
 
 The non-dependent pair and the disjoint union of two types are special cases
 of `Σ`:
@@ -94,7 +94,7 @@ toFin (suc n , s≤s m≤n) = suc (toFin (n , m≤n))
 -->
 
 
-`Σ` as exsistential quantification
+`Σ` as existential quantification
 ==================================
 
 Let `A` be a type and let `P` be a predicate on `A`.  

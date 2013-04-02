@@ -29,7 +29,7 @@ Windows
 -----------
 
 1. If you don't have Haskell platform and you have administrator access to the computer, try the [all-in-one Windows installer](http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.Windows).
-1. If you already have Haskell platform installed (and maybe don't have adminsitrator access), you need to go through the following steps:
+1. If you already have Haskell platform installed (and maybe don't have administrator access), you need to go through the following steps:
 
     1. Put GHC into `%PATH%` (cmd: `set PATH=%PATH%;"C:\Program Files\Haskell Platform\2011.2.0.1\bin";`)
     1. install [Emacs](http://www.gnu.org/software/emacs/)

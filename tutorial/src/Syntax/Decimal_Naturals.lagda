@@ -38,7 +38,7 @@ will be a shorthand for
 Technical details
 ===========
 
-Agda need special directives to allow decimal
+Agda needs special directives to allow decimal
 notations of constants in Peano representation:
 
     data ℕ : Set where
