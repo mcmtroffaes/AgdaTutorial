@@ -94,6 +94,7 @@ runAgda = do
       i       <- optInteractive     <$> liftTCM commandLineOptions
       ghci    <- optGHCiInteraction <$> liftTCM commandLineOptions
       compile <- optCompile         <$> liftTCM commandLineOptions
+      compileNoMain <- optCompileNoMain <$> liftTCM commandLineOptions
       epic    <- optEpicCompile     <$> liftTCM commandLineOptions
       js      <- optJSCompile       <$> liftTCM commandLineOptions
       when i $ liftIO $ putStr splashScreen
@@ -106,12 +107,14 @@ runAgda = do
           failIfInt _ (Just _) = __IMPOSSIBLE__
 
           interaction :: TCM (Maybe Interface) -> TCM ()
-          interaction | i         = runIM . interactionLoop
-                      | ghci      = (failIfInt mimicGHCi =<<)
-                      | compile   = (MAlonzo.compilerMain =<<) . (failIfNoInt =<<)
-                      | epic      = (Epic.compilerMain    =<<) . (failIfNoInt =<<)
-                      | js        = (JS.compilerMain      =<<) . (failIfNoInt =<<)
-                      | otherwise = (() <$)
+          interaction | i             = runIM . interactionLoop
+                      | ghci          = (failIfInt mimicGHCi =<<)
+                      | compile && compileNoMain
+                                      = (MAlonzo.compilerMain False =<<) . (failIfNoInt =<<)
+                      | compile       = (MAlonzo.compilerMain True =<<) . (failIfNoInt =<<)
+                      | epic          = (Epic.compilerMain    =<<) . (failIfNoInt =<<)
+                      | js            = (JS.compilerMain      =<<) . (failIfNoInt =<<)
+                      | otherwise     = (() <$)
       interaction $ do
         hasFile <- hasInputFile
         resetState
