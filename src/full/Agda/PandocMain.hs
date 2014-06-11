@@ -122,15 +122,15 @@ runAgda = do
           unsolvedOK <- optAllowUnsolved <$> pragmaOptions
 
           result <- case mw of
-            Just (Warnings [] [] []) -> __IMPOSSIBLE__
-            Just (Warnings _ unsolved@(_:_) _)
+            Imp.SomeWarnings (Warnings [] [] []) -> __IMPOSSIBLE__
+            Imp.SomeWarnings (Warnings _ unsolved@(_:_) _)
               | not unsolvedOK -> typeError $ UnsolvedMetas unsolved
-            Just (Warnings _ _ unsolved@(_:_))
+            Imp.SomeWarnings (Warnings _ _ unsolved@(_:_))
               | not unsolvedOK -> typeError $ UnsolvedConstraints unsolved
-            Just (Warnings termErrs@(_:_) _ _) ->
+            Imp.SomeWarnings (Warnings termErrs@(_:_) _ _) ->
               typeError $ TerminationCheckFailed termErrs
-            Just _  -> return Nothing
-            Nothing -> return $ Just i
+            Imp.SomeWarnings _ -> return Nothing
+            Imp.NoWarnings -> return $ Just i
 
           whenM (optGenerateHTML <$> commandLineOptions) $
             generateHTML fullopts $ iModuleName i
