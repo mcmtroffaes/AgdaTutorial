@@ -35,7 +35,7 @@ import Agda.Interaction.Options
 import qualified Agda.Interaction.PandocOptions as PO
 import Agda.Interaction.PandocConvertOptions
 import Agda.Interaction.Monad
-import Agda.Interaction.GhcTop (mimicGHCi)
+import Agda.Interaction.EmacsTop (mimicGHCi)
 import qualified Agda.Interaction.Imports as Imp
 import qualified Agda.Interaction.Highlighting.Dot as Dot
 import qualified Agda.Interaction.Highlighting.LaTeX as LaTeX
