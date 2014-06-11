@@ -24,6 +24,8 @@ module Agda.Interaction.PandocOptions
 import Agda.Interaction.Options
     ( PragmaOptions (..)
     , OptionsPragma
+    , defaultVerbosity
+    , defaultCutOff
     )
 
 import Agda.Termination.CutOff ( CutOff(..) )
@@ -66,6 +68,7 @@ data CommandLineOptions =
             , optRunTests             :: Bool
             , optGHCiInteraction      :: Bool
             , optCompile              :: Bool
+            , optCompileNoMain        :: Bool
             , optEpicCompile          :: Bool
             , optJSCompile            :: Bool
             , optCompileDir           :: Maybe FilePath
@@ -96,10 +99,6 @@ type SlideVariant = String
 mapFlag :: (String -> String) -> OptDescr a -> OptDescr a
 mapFlag f (Option _ long arg descr) = Option [] (map f long) arg descr
 
--- | For batch usage.
-defaultVerbosity :: Verbosity
-defaultVerbosity = Trie.singleton [] 1
-
 -- | For interactive usage, do not print any debug messages
 --   by default.
 defaultInteractionVerbosity :: Verbosity
@@ -120,6 +119,7 @@ defaultOptions =
             , optRunTests             = False
             , optGHCiInteraction      = False
             , optCompile              = False
+            , optCompileNoMain        = False
             , optEpicCompile          = False
             , optJSCompile            = False
             , optCompileDir           = Nothing
@@ -150,7 +150,7 @@ defaultPragmaOptions = PragmaOptions
   , optAllowUnsolved             = False
   , optDisablePositivity         = False
   , optTerminationCheck          = True
-  , optTerminationDepth          = CutOff 0    -- this is the cutoff value
+  , optTerminationDepth          = defaultCutOff
   , optCompletenessCheck         = True
   , optUniverseCheck             = True
   , optSizedTypes                = False
@@ -159,6 +159,7 @@ defaultPragmaOptions = PragmaOptions
   , optUniversePolymorphism      = True
   , optWithoutK                  = False
   , optCopatterns                = False
+  , optPatternMatching           = True
   }
 
 -- | The default output directory for LaTeX.

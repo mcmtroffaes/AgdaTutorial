@@ -18,6 +18,7 @@ convertOptions opts =
             , optRunTests             = PO.optRunTests opts        
             , optGHCiInteraction      = PO.optGHCiInteraction opts        
             , optCompile              = PO.optCompile opts        
+            , optCompileNoMain        = PO.optCompileNoMain opts
             , optEpicCompile          = PO.optEpicCompile opts        
             , optJSCompile            = PO.optJSCompile opts        
             , optCompileDir           = PO.optCompileDir opts        
