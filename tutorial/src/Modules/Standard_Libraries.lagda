@@ -1,8 +1,10 @@
 % Agda Standard Libraries
 
+<!--
 \begin{code}
 module Modules.Standard_Libraries where
 \end{code}
+-->
 
 The Standard Libraries
 ----------------------
