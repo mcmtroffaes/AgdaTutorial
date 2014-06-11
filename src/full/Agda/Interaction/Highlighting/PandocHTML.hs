@@ -193,7 +193,7 @@ pandocPage template css slideVariant modName contents info =
 
   (Pandoc meta md) = readMarkdown def contents 
 
-  conv x =  [Para [ RawInline "html"
+  conv x =  [Para [ RawInline (Format "html")
                   . renderHtmlFragment
                   . (pre <<) 
                   . mconcat
@@ -222,9 +222,9 @@ pandocPage template css slideVariant modName contents info =
       g [] = (:[]) . reverse
       g (c:cs) = g cs . (c:)
 
-  removeCodeBlocks (RawBlock "latex" s: xs) | List.isPrefixOf "\\begin{code}" s
+  removeCodeBlocks (RawBlock (Format "latex") s: xs) | List.isPrefixOf "\\begin{code}" s
         = removeCodeBlocks' (++) xs
-  removeCodeBlocks (RawBlock "html" s: xs) | List.isPrefixOf "<!--\n\\begin{code}" s
+  removeCodeBlocks (RawBlock (Format "html") s: xs) | List.isPrefixOf "<!--\n\\begin{code}" s
         = removeCodeBlocks' const xs
   removeCodeBlocks xs@(Para (Pandoc.Str "\\begin{code}":_):_)
         = removeCodeBlocks' (++) (drop 1 $ dropWhile (not . end) xs)
