@@ -36,6 +36,7 @@ import qualified Agda.Interaction.PandocOptions as PO
 import Agda.Interaction.PandocConvertOptions
 import Agda.Interaction.Monad
 import Agda.Interaction.EmacsTop (mimicGHCi)
+import Agda.Interaction.Imports (MaybeWarnings(..))
 import qualified Agda.Interaction.Imports as Imp
 import qualified Agda.Interaction.Highlighting.Dot as Dot
 import qualified Agda.Interaction.Highlighting.LaTeX as LaTeX
@@ -117,7 +118,11 @@ runAgda = do
                       | otherwise     = (() <$)
       interaction $ do
         hasFile <- hasInputFile
-        resetState
+        -- Andreas, 2013-10-30 The following 'resetState' kills the
+        -- verbosity options.  That does not make sense (see fail/Issue641).
+        -- 'resetState' here does not seem to serve any purpose,
+        -- thus, I am removing it.
+        -- resetState
         if not hasFile then return Nothing else do
           file    <- getInputFile
           (i, mw) <- Imp.typeCheck file
@@ -125,15 +130,17 @@ runAgda = do
           unsolvedOK <- optAllowUnsolved <$> pragmaOptions
 
           result <- case mw of
-            Imp.SomeWarnings (Warnings [] [] []) -> __IMPOSSIBLE__
-            Imp.SomeWarnings (Warnings _ unsolved@(_:_) _)
+                          -- we get here if there are unfilled interaction
+                          -- points that have been solved by unification
+            SomeWarnings (Warnings [] [] []) -> return Nothing
+            SomeWarnings (Warnings _ unsolved@(_:_) _)
               | not unsolvedOK -> typeError $ UnsolvedMetas unsolved
-            Imp.SomeWarnings (Warnings _ _ unsolved@(_:_))
+            SomeWarnings (Warnings _ _ unsolved@(_:_))
               | not unsolvedOK -> typeError $ UnsolvedConstraints unsolved
-            Imp.SomeWarnings (Warnings termErrs@(_:_) _ _) ->
+            SomeWarnings (Warnings termErrs@(_:_) _ _) ->
               typeError $ TerminationCheckFailed termErrs
-            Imp.SomeWarnings _ -> return Nothing
-            Imp.NoWarnings -> return $ Just i
+            SomeWarnings _  -> return Nothing
+            NoWarnings -> return $ Just i
 
           whenM (optGenerateHTML <$> commandLineOptions) $
             generateHTML fullopts $ iModuleName i
