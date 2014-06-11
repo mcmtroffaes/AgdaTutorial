@@ -26,6 +26,8 @@ import Agda.Interaction.Options
     , OptionsPragma
     )
 
+import Agda.Termination.CutOff ( CutOff(..) )
+
 import Control.Monad            ( when )
 import Control.Monad.Error	( MonadError(..) )
 import Data.Maybe (isJust)
@@ -148,7 +150,7 @@ defaultPragmaOptions = PragmaOptions
   , optAllowUnsolved             = False
   , optDisablePositivity         = False
   , optTerminationCheck          = True
-  , optTerminationDepth          = 0    -- this is the cutoff value
+  , optTerminationDepth          = CutOff 0    -- this is the cutoff value
   , optCompletenessCheck         = True
   , optUniverseCheck             = True
   , optSizedTypes                = False
@@ -305,7 +307,7 @@ verboseFlag s o =
 terminationDepthFlag s o =
     do k <- readM s `catchError` \_ -> usage
        when (k < 1) $ usage -- or: turn termination checking off for 0
-       return $ o { optTerminationDepth = k-1 }
+       return $ o { optTerminationDepth = CutOff (k-1) }
     where usage = throwError "argument to termination-depth should be >= 1"
 
 integerArgument :: String -> String -> Either String Int
