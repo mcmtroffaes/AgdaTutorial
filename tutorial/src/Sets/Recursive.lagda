@@ -6,7 +6,7 @@ Import List
 \begin{code}
 module Sets.Recursive where
 
-open import Sets.Enumerated using (Bool; true; false)
+open import Data.Bool using (Bool; true; false)
 \end{code}
 
 The effect of this `open import` declaration is the same as if we copied the
