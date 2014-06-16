@@ -35,7 +35,8 @@ Note that `: Set` is missing in the definitions of sets declared before.
 Exercise
 =========
 
-*   Define trees with nodes with finite children (0, 1, 2, ...)!
+*   Define trees where each node can have any finite number of children
+    (0, 1, 2, ...).
 
 Exercise
 =========
