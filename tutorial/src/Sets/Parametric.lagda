@@ -130,7 +130,7 @@ data List₂ (A B : Set) where
 Non-regular recursive set
 =========================
 
-List the first smallest 4 (+4) elements of the following dataset (let `A` = `⊤` and `B` = `Bool` and reversed):
+Consider the following data set:
 
 \begin{code}
 data AlterList (A B : Set) : Set  where
@@ -138,6 +138,8 @@ data AlterList (A B : Set) : Set  where
   _∷_ : A → AlterList B A → AlterList A B
 \end{code}
 
+List the 4 smallest elements of `AlterList ⊤ Bool`, and
+the 5 smallest elements of `AlterList Bool ⊤`.
 
 Nested set
 ==========
