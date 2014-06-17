@@ -124,7 +124,7 @@ data List₂ (A B : Set) where
   _∷_ : B → List₁ A B → List₂ A B
 \end{code}
 
-*Exercise:* list the smallest first 5 elements of `List₁ ⊤ Bool`!
+*Exercise:* list the smallest first 7 elements of `List₁ ⊤ Bool`!
 
 
 Non-regular recursive set
