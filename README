@@ -19,6 +19,7 @@ Local Builds
     until https://github.com/agda/agda/pull/29 is merged).
 
         git clone git@github.com:divipp/agda.git ../agda
+        git clone git@github.com:agda/agda-stdlib.git ../agda-stdlib
         git clone git@github.com:divipp/PandocAgda.git ../PandocAgda
 
 2.  Install the git versions of agda and PandocAgda.
@@ -27,7 +28,7 @@ Local Builds
 
 3.  Generate the html view of the tutorial.
 
-        cd tutorial; make
+        cabal exec agdapandoc -- -i ../agda-stdlib/src -i tutorial/src --html tutorial/src/Index.lagda --css=Agda.css
 
 
 Development
