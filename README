@@ -11,11 +11,19 @@ http://people.inf.elte.hu/divip/AgdaTutorial/Index.html
 Local Builds
 ------------
 
-1.  Install the darcs version of the Agda compiler
-2.  Install `agdapandoc` which is
-    a slightly modified version of the Agda compiler.
+1.  Set up a sandbox.
 
-        cabal install
+        cabal sandbox init
+
+2.  Clone Agda and PandocAgda (note: divipp's Agda fork is required
+    until https://github.com/agda/agda/pull/29 is merged).
+
+        git clone git@github.com:divipp/agda.git ../agda
+        git clone git@github.com:divipp/PandocAgda.git ../PandocAgda
+
+2.  Install the git versions of agda and PandocAgda.
+
+        cabal install ../agda ../PandocAgda
 
 3.  Generate the html view of the tutorial.
 
