@@ -357,7 +357,7 @@ module MonoidOperations (m : Monoid) where
 
   _×′_ : ℕ → Carrier → Carrier
   0     ×′ x = ε
-  suc n ×′ x = x ∙ n ×′ x
+  suc n ×′ x = x ∙ (n ×′ x)
 \end{code}
 
 
