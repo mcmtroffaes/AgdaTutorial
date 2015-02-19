@@ -22,11 +22,11 @@ Local Builds
         git clone git@github.com:agda/agda-stdlib.git ../agda-stdlib
         git clone git@github.com:divipp/PandocAgda.git ../PandocAgda
 
-2.  Install the git versions of agda and PandocAgda.
+3.  Install the git versions of agda and PandocAgda.
 
         cabal install ../agda ../PandocAgda
 
-3.  Generate the html view of the tutorial.
+4.  Generate the html view of the tutorial.
 
         cabal exec agdapandoc -- -i ../agda-stdlib/src -i tutorial/src --html tutorial/src/Index.lagda --css=Agda.css
 
