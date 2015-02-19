@@ -124,13 +124,13 @@ data _∈_ {A : Set}(x : A) : List A → Set where
 infix 4 _∈_
 
 _!_ : ∀{A : Set} → List A → ℕ → Maybe A
-[] ! _           = nothing
-x ∷ xs ! zero    = just x
-x ∷ xs ! (suc n) = xs ! n
+[] ! _             = nothing
+(x ∷ xs) ! zero    = just x
+(x ∷ xs) ! (suc n) = xs ! n
 
 infix 5 _!_
 
-lookup : ∀ {A}{x : A}(xs : List A) → x ∈ xs → Σ ℕ (λ n → xs ! n ≡ just x)
+lookup : ∀ {A}{x : A}(xs : List A) → x ∈ xs → Σ ℕ (λ n → (xs ! n) ≡ just x)
 \end{code}
 
 Define `lookup`!

@@ -278,7 +278,7 @@ infixr 2 _≡⟨_⟩_
 _∎ : ∀ {A : Set} (x : A) → x ≡ x
 x ∎ = refl
 
-infix  2 _∎
+infix  3 _∎
 \end{code}
 
 Usage example:
