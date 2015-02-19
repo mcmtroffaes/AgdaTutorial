@@ -6,8 +6,8 @@ Import list
 \begin{code}
 module Constants where
 
-open import Sets.Enumerated using (Bool; true; false)
-open import Sets.Recursive using (ℕ; zero; suc)
+open import Data.Bool using (Bool; true; false)
+open import Data.Nat using (ℕ; zero; suc)
 \end{code}
 
 
