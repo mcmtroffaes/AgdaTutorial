@@ -3,7 +3,7 @@
 \begin{code}
 module Sets.Mutual where
 
-open import Sets.Enumerated using (Bool; true; false)
+open import Data.Bool using (Bool; true; false)
 open import Syntax.Decimal_Naturals using (ℕ; zero; suc)
 \end{code}
 
