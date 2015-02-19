@@ -1,5 +1,3 @@
-% Agda Tutorial
-
 Usage
 -----
 
