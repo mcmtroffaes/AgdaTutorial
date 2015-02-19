@@ -4,7 +4,7 @@
 module Sets.Mutual where
 
 open import Data.Bool using (Bool; true; false)
-open import Syntax.Decimal_Naturals using (ℕ; zero; suc)
+open import Data.Nat using (ℕ; zero; suc)
 \end{code}
 
 
