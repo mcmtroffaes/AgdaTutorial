@@ -3,7 +3,7 @@
 \begin{code}
 module Functions.Functions_vs_Sets where
 
-open import Sets.Enumerated using (Bool; true; false)
+open import Data.Bool using (Bool; true; false)
 \end{code}
 
 
