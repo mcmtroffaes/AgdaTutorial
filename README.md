@@ -13,10 +13,9 @@ Local Builds
 
         cabal sandbox init
 
-2.  Clone Agda and PandocAgda (note: divipp's Agda fork is required
-    until https://github.com/agda/agda/pull/29 is merged).
+2.  Clone Agda and PandocAgda.
 
-        git clone git@github.com:divipp/agda.git ../agda
+        git clone git@github.com:agda/agda.git ../agda
         git clone git@github.com:agda/agda-stdlib.git ../agda-stdlib
         git clone git@github.com:divipp/PandocAgda.git ../PandocAgda
 
