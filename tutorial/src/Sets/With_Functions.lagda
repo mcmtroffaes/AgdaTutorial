@@ -3,7 +3,7 @@
 \begin{code}
 module Sets.With_Functions where
 
-open import Data.Nat
+open import Data.Nat using (zero; suc; ℕ; _+_)
 open import Data.Empty using (⊥)
 open import Data.List using (List; length)
 open import Relation.Nullary using (Dec; yes; no)

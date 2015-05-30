@@ -157,7 +157,7 @@ _++_ : ∀ {n m}{A : Set} → Vec A n → Vec A m → Vec A (n + m)
 <!--
 \begin{code}
 []       ++ bs = bs
-(a ∷ as) ++ bs = a ∷ as ++ bs
+(a ∷ as) ++ bs = a ∷ (as ++ bs)
 \end{code}
 -->
 
