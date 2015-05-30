@@ -2,7 +2,7 @@
 DOTS=$(wildcard dot/*.dot)
 DOTPNG=$(patsubst dot/%.dot, html/dot/%.gif, $(DOTS))
 
-.PHONY: html sync clean
+.PHONY: html clean
 
 html: $(DOTPNG)
 	agdapandoc -i ~/share/Agda/lib/src/ -i src --html=NoSlides src/Index.lagda --css=Agda.css
