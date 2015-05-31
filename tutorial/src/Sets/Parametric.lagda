@@ -171,9 +171,7 @@ Set                     1st,                           2nd,                     
 `x : Square ℕ`  
 `x = suc (suc (zero (t4 (t4 1 2 3 4) (t4 5 6 7 8) (t4 9 10 11 12) (t4 13 14 15 16))))`
 
-~~~~~~~ {.latex}
-\left(\begin{array}{cccc}1&2&5&6\\3&4&7&8\\9&10&13&14\\11&12&15&16\end{array}\right)
-~~~~~~~
+$\left(\begin{array}{cccc}1&2&5&6\\3&4&7&8\\9&10&13&14\\11&12&15&16\end{array}\right)$
 
 ***************
 
