@@ -11,15 +11,19 @@ module Installation where
 Agda compiler
 ============
 
-General installation instruction can be found at the [Download](http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.Download) section of the Agda website.
+General installation instructions of the Agda compiler can be found at the
+[Download](http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.Download)
+section of the Agda website.
 
-The following instructions may be out of date.
+*Please note that the following instructions may be out of date.*
 
 
 Linux or FreeBSD
 ---------
 
-If you have Ubuntu / Debian / NixOS / some other decent Linux distro or FreeBSD, you can safely install Agda from your package manager. Or you can use cabal-install as described below for the Windows version.
+If you have Ubuntu / Debian / NixOS / some other decent Linux distro or
+even FreeBSD, you can safely install Agda from your package manager. Or
+you can use `cabal-install` as described below for the Windows version.
 
 After installation show Emacs where to find agda-mode by the following command:
 
@@ -28,18 +32,22 @@ After installation show Emacs where to find agda-mode by the following command:
 Windows
 -----------
 
-1. If you don't have Haskell platform and you have administrator access to the computer, try the [all-in-one Windows installer](http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.Windows).
-1. If you already have Haskell platform installed (and maybe don't have administrator access), you need to go through the following steps:
+1. If you do not have Haskell Platform installed but you have administrator
+   access to the computer, try the
+   [all-in-one Windows installer](http://wiki.portal.chalmers.se/agda/pmwiki.php?n=Main.Windows).
 
-    1. Put GHC into `%PATH%` (cmd: `set PATH=%PATH%;"C:\Program Files\Haskell Platform\2011.2.0.1\bin";`)
-    1. install [Emacs](http://www.gnu.org/software/emacs/)
-    1. put Emacs into `%PATH%` (cmd: `set PATH=%PATH%;"c:\program files (x86)\emacs-23.3\bin";`)
-    1. put the cabal/bin folder into `%PATH%` (cmd: `set PATH=%PATH%;%APPDATA%\cabal\bin;`)
-    1. cmd: `cabal update`
-    1. cmd: `cabal install agda`
+1. If you already have Haskell Platform installed (but you may not necessarily
+   have administrator access), you will need to go through the following steps:
+
+    1. Put GHC into `%PATH%` (`set PATH=%PATH%;"C:\Program Files\Haskell Platform\2014.2.0.0\bin";`)
+    1. Install [Emacs](http://www.gnu.org/software/emacs/)
+    1. Put Emacs into `%PATH%` (`set PATH=%PATH%;"c:\program files (x86)\emacs-23.3\bin";`)
+    1. Put the cabal/bin folder into `%PATH%` (`set PATH=%PATH%;%APPDATA%\cabal\bin;`)
+    1. `cabal update`
+    1. `cabal install Agda`
     1. `agda-mode setup`  
        If that fails, you have two opportunities:
-        1. put `(load-file (let ((coding-system-for-read ‘utf-8)) (shell-command-to-string “agda-mode locate”)))` into your `.emacs` file (path is usually `Users/username/AppData/Roaming/.emacs`)
+        1. put `(load-file (let ((coding-system-for-read ‘utf-8)) (shell-command-to-string “agda-mode locate”)))` into your `.emacs` file (path is usually `Users\%USERNAME%\AppData\Roaming\.emacs`)
         1. after starting emacs, type `(load-file (let ((coding-system-for-read ‘utf-8)) (shell-command-to-string “agda-mode locate”)))` into the *scratch* buffer, select it with the mouse and type `M-x eval-region`
 
 1. If you neither have administrator access nor Haskell Platform installed: get administrator access!
