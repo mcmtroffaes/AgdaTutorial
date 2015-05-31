@@ -1,13 +1,13 @@
 % Constant Definitions
 
-Import List
+Import list
 ===========
 
 \begin{code}
 module Constants where
 
-open import Data.Bool using (Bool; true; false)
-open import Data.Nat using (ℕ; zero; suc)
+open import Sets.Enumerated using (Bool; true; false)
+open import Sets.Recursive using (ℕ; zero; suc)
 \end{code}
 
 
@@ -35,9 +35,10 @@ Normal form
 =======================
 
 `ten`, `suc nine` and `suc (suc (suc (suc (suc (suc (suc (suc (suc zero))))))))` equally
-represent the number 10, but only the last one is the so called *normal form*.
+represent the number 10, but only the last one is the so-called *normal form*.
 
-One can ask for the normal form in the interactive environment by C-`c` C-`n`.
+One can ask for the normal form of an expression in the interactive environment
+by C-`c` C-`n`.
 
 
 
