@@ -45,23 +45,19 @@ notations of constants in Peano representation:
       zero :     ℕ
       suc  : ℕ → ℕ
 
-    {-# BUILTIN NATURAL ℕ    #-}
-    {-# BUILTIN ZERO    zero #-}
-    {-# BUILTIN SUC     suc  #-}
+    {-# BUILTIN NATURAL ℕ #-}
 
 
-Unfortunately, this BUILTIN machinery is not designed to accommodate multiple
-definitions of a given BUILTIN.
+Unfortunately, this `BUILTIN` machinery is not designed to accommodate multiple
+definitions of a given `BUILTIN`.
 If we wish to use definitions from the Standard Libraries later (and we wish),
 we cannot make another Peano representation of naturals *with* decimal notation.
 
-The solution is to reuse the existing `ℕ`, `zero`, `suc` definitions
+The solution is to reuse the existing the `ℕ`, `zero`, and `suc` definitions
 with decimal notation from the Standard Libraries:
 
 \begin{code}
 open import Data.Nat public using (ℕ; zero; suc)
 \end{code}
 
-(`import` declarations are discussed later.)
-
-
+(Import declarations will be discussed later.)
