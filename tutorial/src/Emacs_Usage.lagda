@@ -60,7 +60,8 @@ M-`.`             jump to definition
 M-`*`             jump back
 ----------------- -----------------------------------------
 
-See also the `Agda` menu on the menu bar
+Note that you can also find the same (and further more) commands in the
+`Agda` submenu on the menu bar.
 
 
 Commands inside a hole
@@ -75,10 +76,10 @@ C-`c` C-`r`       refine (one step further)
 C-`c` C-`a`       auto (try to find a solution)
 ----------------- -----------------------------------------
 
-See also the context-sensitive menu when right-clicking inside a hole
+See also the context-sensitive menu on the right click inside a hole.
 
 
-Emacs Agda-mode unicode symbols
+Emacs Agda-mode Unicode symbols
 ===========================
 
 ----------------------- -------------------
