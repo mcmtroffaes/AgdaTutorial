@@ -3,8 +3,7 @@
 % 2011. 09. 15.
 
 
-
-Import List
+Import list
 ===========
 
 \begin{code}
@@ -14,7 +13,7 @@ open import Data.Nat
 
 
 Definition of `List`
-==============
+====================
 
 Definition of `List`:
 
@@ -26,9 +25,11 @@ data List (A : Set) : Set where
 infixr 5 _∷_
 \end{code}
 
-*Interpretation*: `List A` ∈ `Set`, where `A` ∈ `Set`. We call `A` a parameter of `List` and we can refer to `A` in the definition of the set elements.
+*Interpretation*: `List A` ∈ `Set`, where `A` ∈ `Set`. We call `A` a
+parameter of `List` and we can refer to `A` in the definition of the set
+elements.
 
-*Example:* elements of `List Bool`:
+*Example:* Note that the elements of `List Bool` are as follows:
 
     []  
     true  ∷ []  
@@ -40,22 +41,18 @@ infixr 5 _∷_
     ...
 
 
-
-
-
 Exercises
-=========
+---------
 
-* What is the connection between `List ⊤` and `ℕ`?
-* Define a `Maybe` set (lists with 0 or 1 elements)!
-* Define parametric trees (various sorts)!
+1. What is the connection between `List ⊤` and `ℕ`?
+1. Define a `Maybe` set (lists with 0 or 1 elements).
+1. Define parametric trees (various sorts).
 
 
-
-`_×_`: Cartesian Product
+`_×_`: Cartesian product
 ========================
 
-The definition of Cartesian product:
+Definition of Cartesian product:
 
 \begin{code}
 data _×_ (A B : Set) : Set where
@@ -65,26 +62,28 @@ infixr 4 _,_
 infixr 2 _×_
 \end{code}
 
-`(A B : Set)` is the way of specifying a set that is parameterised by two sets.
+`(A B : Set)` is the way of specifying a set that is parameterized by two
+(other) sets.
 
-*Example:*  
-Elements of `Bool × Bool` (the extra space is needed before the comma):
+*Example:* Elements of `Bool × Bool` (the extra space is needed before
+the comma):
 
-     true , true 
+     true , true
      true , false
      false , true
      false , false
 
 
 Exercises
-=========
+---------
 
- * How many elements are there in `⊤ × ⊤`, `⊤ × ⊥`, `⊥ × ⊤` and `⊥ × ⊥`?
- * How should we define `Top` so that ∀ A : Set. `Top × A` would be isomorphic to `A` (neutral element of `_×_`)?
+1. How many elements are there in `⊤ × ⊤`, `⊤ × ⊥`, `⊥ × ⊤` and `⊥ × ⊥`?
+1. How should we define `Top` so that ∀ A : Set .`Top × A` would be
+   isomorphic to `A` (i.e. neutral element of `_×_`)?
 
 
-`_⊎_`: Disjoint Union (Sum)
-===================================
+`_⊎_`: Disjoint union (sum)
+===========================
 
 Definition:
 
@@ -98,13 +97,14 @@ infixr 1 _⊎_
 
 
 Exercises
-=========
+---------
 
- * What are the elements of `Bool ⊎ ⊤`?
- * What are the elements of `⊤ ⊎ (⊤ ⊎ ⊤)`?
- * Name an already learned isomorphic type to `⊤ ⊎ ⊤`!
- * How should we define `Bottom` so that ∀ A : Set. `Bottom ⊎ A` would be isomorphic to `A` (Neutral element of `_⊎_`)?
- * Give an isomorphic definition of `Maybe A` with the help of `_⊎_` and `⊤`!
+1. What are the elements of `Bool ⊎ ⊤`?
+1. What are the elements of `⊤ ⊎ (⊤ ⊎ ⊤)`?
+1. Name a type isomorphic to `⊤ ⊎ ⊤` that you have already seen before.
+1. How should we define `Bottom` so that ∀ A : Set . `Bottom ⊎ A` would
+   be isomorphic to `A` (i.e. neutral element of `_⊎_`)?
+1. Give an isomorphic definition of `Maybe A` with the help of `_⊎_` and `⊤`.
 
 
 Mutually recursive sets
@@ -124,7 +124,10 @@ data List₂ (A B : Set) where
   _∷_ : B → List₁ A B → List₂ A B
 \end{code}
 
-*Exercise:* list the smallest first 7 elements of `List₁ ⊤ Bool`!
+Exercise
+--------
+
+List the smallest first 7 elements of `List₁ ⊤ Bool`!
 
 
 Non-regular recursive set
@@ -138,24 +141,29 @@ data AlterList (A B : Set) : Set  where
   _∷_ : A → AlterList B A → AlterList A B
 \end{code}
 
+
+Exercise
+--------
+
 List the 4 smallest elements of `AlterList ⊤ Bool`, and
 the 5 smallest elements of `AlterList Bool ⊤`.
+
 
 Nested set
 ==========
 
 `Square`, the set of square matrices with 2^n^ rows, is nested, because at least
 one of its constructors refers to the set defined with more complex
-parameter(s):
+parameters:
 
 
 \begin{code}
 data T4 (A : Set) : Set where
-  quad : A → A → A → A → T4 A
+  t4 : A → A → A → A → T4 A
 
 data Square (A : Set) : Set where
   zero :            A  → Square A   -- 2^0 rows
-  suc  : Square (T4 A) → Square A   -- 2^(n+1) rows
+  suc  : Square (T4 A) → Square A   -- 2^(n + 1) rows
 \end{code}
 
 
@@ -175,10 +183,5 @@ $\left(\begin{array}{cccc}1&2&5&6\\3&4&7&8\\9&10&13&14\\11&12&15&16\end{array}\r
 
 ***************
 
-Nested sets are special non-regular sets.  
-Nested sets can be translated to mutually recursive regular sets.
-
-
-
-
-
+Nested sets are special non-regular sets.  Nested sets can be translated
+to mutually recursive regular sets.
