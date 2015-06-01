@@ -3,8 +3,8 @@
 % 2013. 01.
 
 
-Imports
-=======
+Import list
+===========
 
 \begin{code}
 module Term_Inference where
@@ -17,17 +17,17 @@ open import Data.Nat      using (ℕ; zero; suc)
 
 
 Term inference
-===========
+==============
 
-The Agda compiler tries to infer terms marked with underscore.  
-If the choice of term is ambiguous, term inference fails. 
+The Agda compiler tries to infer terms marked with underscore.  If the choice
+of term is ambiguous, the term inference will fail.
 
-Examples:
+*Examples:*
 
 \begin{code}
 data Fin′ : ℕ → Set where
-  zero : (n : _) → Fin′ (suc n)   -- ℕ is inferred
-  suc  : (n : _) → Fin′ n → Fin′ (suc n)   -- ℕ is inferred
+  zero : (n : _) → Fin′ (suc n)            -- ℕ is inferred
+  suc  : (n : _) → Fin′ n → Fin′ (suc n)   -- ℕ is inferred again
 
 x : Fin′ 3
 x = suc _ (zero _)   -- 2 and 1 are inferred
@@ -35,14 +35,14 @@ x = suc _ (zero _)   -- 2 and 1 are inferred
 
 ------------
 
-If term inference fails we see yellow colour.
+Term inference failure is marked with yellow colour.
 
 
 Implicit arguments
-==========
+==================
 
-Underscores can be hidden:  
-Make arguments of constructors *implicit* with curly brackets.
+Underscores can be hidden by making arguments of constructors *implicit* with
+curly brackets.
 
 \begin{code}
 data Fin : ℕ → Set where
@@ -50,14 +50,14 @@ data Fin : ℕ → Set where
   suc  : {n : _} → Fin n → Fin (suc n)
 \end{code}
 
-After this we have
+After that, we obtain the following:
 
 \begin{code}
 x′ : Fin 3
-x′ = suc {_} (zero {_}) 
+x′ = suc {_} (zero {_})
 \end{code}
 
-`{_}` can be deleted:
+And the `{_}`s can be now deleted:
 
 \begin{code}
 x″ : Fin 3
@@ -111,15 +111,31 @@ the implicit arguments make the types unique.
 Named and multiple implicit arguments
 ==========
 
-TODO
+There can be more implicit arguments, as the following definition
+demonstrates:
 
+\begin{code}
+data T : ℕ → ℕ → ℕ → Set where
+  c : {n m k : _} → T (suc n) (suc m) (suc k)
 
+xt : T 1 2 3
+xt = c
+\end{code}
 
+In addition to that, in case of multiple implicit arguments, some of their
+actual values may be set by naming them.  For example:
+
+\begin{code}
+xt' : T 1 2 3
+xt' = c {m = 1}
+\end{code}
 
 Syntactic abbreviations
 =======================
 
-~~~~~~~~~~~ 
+Consider the following definitions again from above:
+
+~~~~~~~~~~
 data Fin′ : ℕ → Set where
   zero : (n : _) → Fin′ (suc n)
   suc  : (n : _) → Fin′ n → Fin′ (suc n)
@@ -129,9 +145,10 @@ data Fin : ℕ → Set where
   suc  : {n : _} → Fin n → Fin (suc n)
 ~~~~~~~~~~~
 
-Variables with inferred types can be introduced by `∀`:
+There variables with inferred types can be introduced by the `∀` (universal
+quantification) symbol, no matter if they are explicit or implicit:
 
-~~~~~~~~~~~ 
+~~~~~~~~~~~
 data Fin′ : ℕ → Set where
   zero : ∀ n → Fin′ (suc n)
   suc  : ∀ n → Fin′ n → Fin′ (suc n)
@@ -140,7 +157,3 @@ data Fin : ℕ → Set where
   zero : ∀ {n} → Fin (suc n)
   suc  : ∀ {n} → Fin n → Fin (suc n)
 ~~~~~~~~~~~
-
-
-
-
