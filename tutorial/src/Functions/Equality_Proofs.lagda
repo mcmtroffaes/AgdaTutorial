@@ -6,7 +6,7 @@
 module Functions.Equality_Proofs where
 \end{code}
 
-Import List
+Import list
 ===========
 
 \begin{code}
@@ -15,11 +15,11 @@ open import Data.Nat using (ℕ; zero; suc; _+_; _*_; _≤_; z≤n; s≤s)
 open import Data.List using (List; []; _∷_; _++_)
 open import Data.Unit using (⊤; tt)
 open import Data.Product using (_×_; _,_)
-open import Function using (_$_)         -- 
+open import Function using (_$_)         --
 \end{code}
 
 Propositional equality: `_≡_`
-================
+=============================
 
 Recall the definition of propositional equality:
 
@@ -30,9 +30,9 @@ data _≡_ {A : Set} (x : A) : A → Set  where
 infix 4 _≡_
 \end{code}
 
-yields
+that yields the following statements:
 
-~~~~~~~~~~~~~~~~~ 
+~~~~~~~~~~~~~~~~~
 refl {ℕ} {0} : 0 ≡ 0
 refl {ℕ} {1} : 1 ≡ 1
 refl {ℕ} {2} : 2 ≡ 2
@@ -43,40 +43,40 @@ refl {Bool} {not b} : not b ≡ not b   -- if 'b : Bool' is a parameter
 ...
 ~~~~~~~~~~~~~~~~~
 
+`_≡_` as an equivalence and a congruence
+========================================
 
-`_≡_` is an equivalence and a congruence
-==============================
-
-`_≡_` is an equivalence-relation:
+Note that `_≡_` is an equivalence relation:
 
 \begin{code}
 refl'  : ∀ {A} (a : A) → a ≡ a
 refl' a = refl
 
 sym   : ∀ {A} {a b : A} → a ≡ b → b ≡ a
-sym refl = refl   -- after pattern matching on 'refl', 'a' and 'b' coincides
+sym refl = refl
 \end{code}
 
-*Exercise*
+In the definition of `sym`, we can prove the symmetry with pattern matching on
+`refl`, in which case `a` and `b` coincides.
 
+Exercises
+---------
+
+1. Prove that `≡` is a transitive relation:
+
+     `trans : ∀ {A} {a b c : A} → a ≡ b → b ≡ c → a ≡ c`
+
+1. Prove that every function is compatible with the equivalence relation,
+   which is called congruency:
+
+     `cong : ∀ {A B} {m n : A} → (f : A → B) → m ≡ n → f m ≡ f n`
+
+<!--
 \begin{code}
 trans : ∀ {A} {a b c : A} → a ≡ b → b ≡ c → a ≡ c
-\end{code}
-
-<!--
-\begin{code}
 trans refl refl = refl --
-\end{code}
--->
 
-Prove that every function is compatible with the equivalence relation (congruency):
-
-\begin{code}
 cong : ∀ {A B} {m n : A} → (f : A → B) → m ≡ n → f m ≡ f n
-\end{code}
-
-<!--
-\begin{code}
 cong f refl = refl --
 \end{code}
 -->
@@ -84,52 +84,47 @@ cong f refl = refl --
 Automatic reduction of types
 ============================
 
-Agda reduces types automatically during type checking.  
-This is safe because all functions terminate.
-
-Example:
+Agda reduces types automatically during type checking.  That is safe because
+all functions terminate (that is, they are all total functions).  For example:
 
 `1 + 1 ≡ 2`  ⇓  `2 ≡ 2`.
 
-Consequences:
+Note the consequences:
 
-~~~~~~~~~~~~~~~~~ 
+~~~~~~~~~~~~~~~~~
 refl : 1 + 1 ≡ 2
 ...
 refl : 0 + n ≡ n    -- if 'n : ℕ' is a parameter
 ...
 ~~~~~~~~~~~~~~~~~
 
-
 Definitional and propositional equality
-==============================
+=======================================
 
 `x` and `y` are definitionally equal iff `refl : x ≡ y`.
 
 "Definitional equality is trivial equality."
 
-*Example*
+As an example, consider the following:
 
 \begin{code}
 1+1≡2 : 1 + 1 ≡ 2
 1+1≡2 = refl
 \end{code}
 
-*Counterexample*
+While as a counterexample, consider this.  Suppose that `n : ℕ` is a
+parameter.
 
-Suppose that `n : ℕ` is a parameter.
-
-~~~~~~~~~~~~~~~~~ 
-refl : n + 0 ≡ 0 + n   -- type error!
+~~~~~~~~~~~~~~~~~
+refl : n + 0 ≡ 0 + n
 ~~~~~~~~~~~~~~~~~
 
-This doesn't typecheck because  
-`n + 0 ≡ 0 + n` ⇓ `n + 0 ≡ n`  
-and `n + 0` is not the same as `n`.
-
+Here, we will get a type error, that is it will not typecheck
+because `n + 0 ≡ 0 + n` ⇓ `n + 0 ≡ n`  and `n + 0` is not the
+same as `n`.
 
 Proof of `a + 0 ≡ a`
-=====================
+====================
 
 \begin{code}
 +-right-identity : ∀ n → n + 0 ≡ n
@@ -137,45 +132,33 @@ Proof of `a + 0 ≡ a`
 +-right-identity (suc n) = cong suc (+-right-identity n)
 \end{code}
 
-So `n + 0 ≡ n` is not trivial,  
-but for any `n` we can construct the proof of it.
+Thus `n + 0 ≡ n` is not trivial to prove, but for any `n`, we can construct the
+proof for it.  While that is a bit funny though:
 
-This is a bit funny though:
-
-~~~~~~~~~~~~~~~~~ 
+~~~~~~~~~~~~~~~~~
 +-right-identity 0   ⇓  refl
 +-right-identity 1   ⇓  refl
 +-right-identity 2   ⇓  refl
 ...
 ~~~~~~~~~~~~~~~~~
 
-So the code of `+-right-identity` is kind of dead code
-(doesn't do anything meaningful at run time).  
-We'll discuss this later.
-
-
+That is, the code of `+-right-identity` is kind of dead code (which does not do
+anything meaningful at run time).  We will come back to this later.
 
 Exercises
-================================
+---------
 
 Finish the ingredients of the proof that (`ℕ`, `_+_`) is a commutative monoid!
 
 \begin{code}
 +-left-identity  : ∀ a → 0 + a ≡ a
-\end{code}
-
-<!--
-\begin{code}
-+-left-identity a = refl --
-\end{code}
--->
-
-\begin{code}
 +-assoc          : ∀ a b c → a + (b + c) ≡ (a + b) + c -- hint: use cong
 \end{code}
 
 <!--
 \begin{code}
++-left-identity a = refl --
+
 +-assoc zero    b c = refl --
 +-assoc (suc a) b c = cong suc (+-assoc a b c) --
 \end{code}
@@ -183,10 +166,11 @@ Finish the ingredients of the proof that (`ℕ`, `_+_`) is a commutative monoid!
 | +-identity a = +-left-identity a , +-right-identity a --
 -->
 
-For commutativity you need a helper function first:
+For proving the commutativity, you will need a helper function first:
 
 \begin{code}
 m+1+n≡1+m+n : ∀ m n → m + suc n ≡ suc (m + n)
++-comm      : ∀ a b → a + b ≡ b + a
 \end{code}
 
 <!--
@@ -194,7 +178,6 @@ m+1+n≡1+m+n : ∀ m n → m + suc n ≡ suc (m + n)
 m+1+n≡1+m+n zero n = refl  --
 m+1+n≡1+m+n (suc m) n = cong suc (m+1+n≡1+m+n m n) --
 
-+-comm : ∀ a b → a + b ≡ b + a
 +-comm zero b = sym (+-right-identity b)  --
 +-comm (suc n) b = trans  --
   (cong suc (+-comm n b)) --
@@ -202,63 +185,43 @@ m+1+n≡1+m+n (suc m) n = cong suc (m+1+n≡1+m+n m n) --
 \end{code}
 -->
 
-
 Exercise: `List ⊤` ~ `ℕ`
-======================
+------------------------
 
-Let
+Consider the following function definitions:
 
 \begin{code}
 fromList : List ⊤ → ℕ
-fromList [] = zero
+fromList []       = zero
 fromList (x ∷ xs) = suc (fromList xs)
 
 toList : ℕ → List ⊤
-toList zero = []
+toList zero    = []
 toList (suc n) = tt ∷ toList n
 \end{code}
 
-Let's prove that `fromList` and `toList` are inverses of each other and that they preserve the operations `_++_` and `_+_`!
+Let us prove that `fromList` and `toList` are inverses of each other and that
+they preserve the `_++_` and `_+_` operations.
 
 \begin{code}
 from-to : ∀ a → fromList (toList a) ≡ a
-\end{code}
-
-<!--
-\begin{code}
-from-to zero = refl  --
-from-to (suc a) = cong suc (from-to a)  --
-\end{code}
--->
-
-\begin{code}
 to-from : ∀ a → toList (fromList a) ≡ a
-\end{code}
 
-<!--
-\begin{code}
-to-from [] = refl  --
-to-from (x ∷ n) = cong (_∷_ tt) (to-from n)  --
-\end{code}
--->
-
-\begin{code}
 fromPreserves++ : ∀ (a b : List ⊤) → fromList (a ++ b) ≡ fromList a + fromList b
+toPreserves+    : ∀ (a b : ℕ) → toList (a + b) ≡ toList a ++ toList b
 \end{code}
 
 <!--
 \begin{code}
+from-to zero    = refl  --
+from-to (suc a) = cong suc (from-to a)  --
+
+to-from []      = refl  --
+to-from (x ∷ n) = cong (_∷_ tt) (to-from n)  --
+
 fromPreserves++ [] b = refl --
 fromPreserves++ (x ∷ xs) b = cong suc (fromPreserves++ xs b) --
-\end{code}
--->
 
-\begin{code}
-toPreserves+ : ∀ (a b : ℕ) → toList (a + b) ≡ toList a ++ toList b
-\end{code}
-
-<!--
-\begin{code}
 toPreserves+ zero    b = refl --
 toPreserves+ (suc n) b = cong (_∷_ tt) (toPreserves+ n b) --
 \end{code}
@@ -267,7 +230,7 @@ toPreserves+ (suc n) b = cong (_∷_ tt) (toPreserves+ n b) --
 Equational reasoning
 ====================
 
-Equational reasoning is *not* a new language construct!
+Equational reasoning is *not* a new language construct.
 
 \begin{code}
 _≡⟨_⟩_ : ∀ {A : Set} (x : A) {y z : A} → x ≡ y → y ≡ z → x ≡ z
@@ -281,7 +244,7 @@ x ∎ = refl
 infix  3 _∎
 \end{code}
 
-Usage example:
+This could be then used in the following way:
 
 \begin{code}
 +-comm' : (n m : ℕ) → n + m ≡ m + n
@@ -297,18 +260,15 @@ Usage example:
     ∎
 \end{code}
 
-
-
 Properties of `_*_`
-==============================
+===================
 
-We'd like to prove that (`ℕ`, `_*_`) is a commutative monoid.
-
-We will need distributivity:
+We would like to prove that (`ℕ`, `_*_`) is a commutative monoid.  In order
+to do so, first we will need distributivity:
 
 \begin{code}
 distribʳ-*-+ : ∀ a b c → (a + b) * c ≡ a * c + b * c
-distribʳ-*-+ zero b c = refl
+distribʳ-*-+ zero    b c = refl
 distribʳ-*-+ (suc a) b c =
     c + (a + b) * c
   ≡⟨ cong (λ x → c + x) (distribʳ-*-+ a b c) ⟩
@@ -318,16 +278,37 @@ distribʳ-*-+ (suc a) b c =
   ∎
 \end{code}
 
+We can also see that the proof involves using the so-called λ-functions.  Such
+functions are basically functions without names, and can be used at places
+where we would have defined a function for a single use only.
 
-Define the following functions:
+Their syntax is as follows:
+
+~~~~
+λ x → E(x)
+~~~~
+
+where `x` is a variable bound by `λ` as a quantifier, and `E(x)` is the scope
+of this variable.  It corresponds to such a function, with the name, `f`
+missing:
+
+~~~~
+f x = E(x)
+~~~~
+
+Define the following functions (or, rather, prove the following series of
+lemmata):
 
 \begin{code}
-*-assoc        : ∀ a b c → a * (b * c) ≡ (a * b) * c
+*-assoc          : ∀ a b c → a * (b * c) ≡ (a * b) * c
+*-left-identity  : ∀ a → 1 * a ≡ a
+*-right-identity : ∀ a → a * 1 ≡ a
+*-identity       : ∀ a → 1 * a ≡ a × a * 1 ≡ a
 \end{code}
 
 <!--
 \begin{code}
-*-assoc zero b c = refl --
+*-assoc zero    b c = refl --
 *-assoc (suc a) b c = --
     b * c + a * (b * c) --
   ≡⟨  cong (λ x → (b * c) + x) (*-assoc a b c) ⟩ --
@@ -335,52 +316,29 @@ Define the following functions:
   ≡⟨ sym (distribʳ-*-+ b (a * b) c) ⟩ --
     (b + a * b) * c --
   ∎ --
-\end{code}
--->
 
-\begin{code}
-*-left-identity  : ∀ a → 1 * a ≡ a
-\end{code}
-
-<!--
-\begin{code}
 *-left-identity a = +-right-identity a --
-\end{code}
--->
 
-\begin{code}
-*-right-identity : ∀ a → a * 1 ≡ a
-\end{code}
-
-<!--
-\begin{code}
 *-right-identity zero    = refl --
 *-right-identity (suc n) = cong suc (*-right-identity n) --
-*-identity       : ∀ a → 1 * a ≡ a × a * 1 ≡ a --
+
 *-identity a = *-left-identity a , *-right-identity a --
 \end{code}
 -->
 
-Commutativity:
+Proving commutativity:
 
 \begin{code}
--- helper functions:
-n*0≡0 : ∀ n → n * 0 ≡ 0
+n*0≡0  : ∀ n → n * 0 ≡ 0
+*-suc  : ∀ n m → n + n * m ≡ n * suc m
+*-comm : ∀ m n → m * n ≡ n * m
 \end{code}
 
 <!--
 \begin{code}
 n*0≡0 zero    = refl --
 n*0≡0 (suc n) = n*0≡0 n --
-\end{code}
--->
 
-\begin{code}
-*-suc : ∀ n m → n + n * m ≡ n * suc m
-\end{code}
-
-<!--
-\begin{code}
 *-suc zero m = refl --
 *-suc (suc n) m = cong suc $ --
     n + (m + n * m) --
@@ -394,15 +352,7 @@ n*0≡0 (suc n) = n*0≡0 n --
     m + n * suc m --
   ∎ --
   -- hint: you will need steps like this: cong (λ x → n + x) ...
-\end{code}
--->
 
-\begin{code}
-*-comm : ∀ m n → m * n ≡ n * m
-\end{code}
-
-<!--
-\begin{code}
 *-comm zero n = sym $ n*0≡0 n --
 *-comm (suc m) n =  --
     n + m * n --
@@ -412,14 +362,19 @@ n*0≡0 (suc n) = n*0≡0 n --
     n * suc m --
   ∎ --
 \end{code}
--->
-
-<!--
 | Browse and read the Agda standard libraries: [http://www.cse.chalmers.se/\~nad/listings/lib-0.5/](http://www.cse.chalmers.se/~nad/listings/lib-0.5/)
 -->
 
 Semiring solver
 ===============
+
+As another approach to proving certain properties about operations, one may
+consider using the `SemiringSolver` module.  This exports the `solve` function
+that could be fed with the abstract representation of the theorem to be
+proven, and then it tries to find (construct) a proof for that.
+
+Note that it has to be imported together with the `Data.Nat.Properties`
+module.
 
 \begin{code}
 module trySemiringSolver where
@@ -432,6 +387,3 @@ open import Relation.Binary.PropositionalEquality renaming (_≡_ to _≡-offici
 f : ∀ a b c → a + b * c + 1 ≡-official 1 + c * b + a
 f = solve 3 (λ a b c → a :+ b :* c :+ con 1 := con 1 :+ c :* b :+ a) refl
 \end{code}
-
-
-
