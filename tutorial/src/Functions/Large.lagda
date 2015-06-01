@@ -1,8 +1,8 @@
-% Functions with Sets Result
+% Functions with Set Results
 
 
-Imports
-========
+Import list
+===========
 
 \begin{code}
 module Functions.Large where
@@ -16,24 +16,24 @@ open import Data.Sum using (_⊎_; inj₁; inj₂)
 Introduction
 ============
 
-Function definitions give another possibility to define sets.  
-We give general design rules on which language construct to use.
+Function definitions give another possibility to define sets.  Here we will
+give general design guidelines on which language construct to use in certain
+situations.
 
-
-Inductive `_≤_` definition
+Inductive definition of `_≤_`
 ==========
 
-The *inductive* definition of `_≤_`:
+Consider the *inductive* definition of `_≤_` as follows:
 
 \begin{code}
 data  _≤_ : ℕ → ℕ → Set where
-  z≤n : {n : ℕ} →               zero  ≤ n
-  s≤s : {m n : ℕ} →   m ≤ n  →  suc m ≤ suc n
+  z≤n : {n : ℕ}   →         zero  ≤ n
+  s≤s : {m n : ℕ} → m ≤ n → suc m ≤ suc n
 \end{code}
 
-which yields the statements
+that will yield the following statements:
 
-~~~~~~~~~~~~~~~~~ 
+~~~~~~~~~~~~~~~~~
 z≤n : 0 ≤ 0
 z≤n : 0 ≤ 1
 z≤n : 0 ≤ 2
@@ -46,14 +46,13 @@ s≤s (s≤s z≤n) : 2 ≤ 2
 s≤s (s≤s z≤n) : 2 ≤ 3
 s≤s (s≤s z≤n) : 2 ≤ 4
 ...
-...
 ~~~~~~~~~~~~~~~~~
 
-
-Recursive `_≤_` definition
+Recursive definition of `_≤_`
 ==========
 
-The *recursive* definition of less-than-or-equal:
+In comparison, now consider the *recursive* definition of `_≤_` as follows
+(written as `_≤′_`):
 
 \begin{code}
 _≤′_ : ℕ → ℕ → Set
@@ -62,9 +61,9 @@ suc m ≤′ zero  = ⊥
 suc m ≤′ suc n = m ≤′ n
 \end{code}
 
-which yields the statements
+that will yield the following statements:
 
-~~~~~~~~~~~~~~~~~ 
+~~~~~~~~~~~~~~~~~
 tt : 0 ≤′ 0
 tt : 0 ≤′ 1
 tt : 0 ≤′ 2
@@ -77,54 +76,56 @@ tt : 2 ≤′ 2
 tt : 2 ≤′ 3
 tt : 2 ≤′ 4
 ...
-...
 ~~~~~~~~~~~~~~~~~
 
 
 Inductive vs. recursive definitions
 ===============
 
-`_≤_` and `_≤′_` have the same type and define exactly the same relations. But:
+`_≤_` and `_≤′_` have the same type and define exactly the same relations.  But
+note that:
 
-**Inductive definitions are better than
-recursive definitions with pattern matching.**
+**Inductive definitions are better than recursive definitions with pattern
+matching.**
 
-*Explanation*
+Suppose that we have `n : ℕ`, `m : ℕ` in a function definition.
 
-Suppose in a function definition we have `n : ℕ`, `m : ℕ`.
+ - In case of `e : n ≤ m`, we *can* pattern match on `e` -- the possible cases
+   are `z≤n` and `s≤s x`.
 
--   In case of `e : n ≤ m` we *can* pattern match on `e`; the possible cases are `z≤n` and `s≤s x`.
--   In case of `e : n ≤′ m` we *cannot* pattern match on `e`, because the type of `e` is not yet known
-    to be `⊥` or `⊤`. We should pattern match on `n` and `m` before to learn more about `n ≤′ m`.
+ - In case of `e : n ≤′ m`, we *cannot* pattern match on `e`, because the type
+   of `e` is not yet known to be either `⊥` or `⊤`. We should pattern match on
+   `n` and `m` before to we could learn more about `n ≤′ m`.
 
-Example (we discuss *dependent functions* like this later):
+For example (we are going to discuss *dependent functions* like this one
+later):
 
 \begin{code}
 f : {n m : ℕ} → n ≤ m → n ≤ suc m
-f z≤n = z≤n
+f z≤n     = z≤n
 f (s≤s x) = s≤s (f x)
 
 f′ : {n m : ℕ} → n ≤′ m → n ≤′ suc m
-f′ {zero} {m} tt = tt
-f′ {suc n} {zero} ()
-f′ {suc n} {suc m} x = f′ {n} {m} x
+f′ {zero}  {m}     tt = tt
+f′ {suc n} {zero}  ()
+f′ {suc n} {suc m} x  = f′ {n} {m} x
 \end{code}
 
 <!--
 \begin{code}
 conv : {n m : ℕ} → n ≤′ m → n ≤ m  --
-conv {zero} tt = z≤n  --
+conv {zero}         tt = z≤n  --
 conv {suc n} {zero} ()  --
 conv {suc n} {suc m} e = s≤s (conv e) --
 \end{code}
 -->
 
 Exercises
-========
+---------
 
-Give recursive definitions for `_≡_` and `_≢_` on natural numbers!
+ #. Give recursive definitions for `_≡_` and `_≢_` on natural numbers.
 
-Give mutual recursive definitions for `Even` and `Odd`!
+ #. Give mutual recursive definitions for the `Even` and `Odd` sets.
 
 <!--
 \begin{code}
@@ -143,50 +144,63 @@ Odd (suc n) = Even n --
 Macro-like `Set` definitions
 =================
 
-Macro-like functions don't pattern match on their argument:
+We can create macro-like function definitions that do not pattern match on
+their argument:
 
 \begin{code}
 _<_ : ℕ → ℕ → Set
 n < m = suc n ≤ m
 \end{code}
 
-Although we could have an inductive definition of `_<_`,
-this definition is better because
-no conversion functions are needed between `_≤_` and `_<_`.
+Although we could have an inductive definition of `_<_`, this definition is
+better because no conversion functions are needed between `_≤_` and `_<_`.
 
-On the other hand,
+On the other hand, while the following would be also possible:
 
 \begin{code}
 Maybe : Set → Set
 Maybe A = ⊤ ⊎ A
 \end{code}
 
-is possible, but not advised because then we can't
-distinguish `Maybe ⊤` from `⊤ ⊎ ⊤`, for example.
+in general, this is not advised because then we cannot distinguish
+`Maybe ⊤` from `⊤ ⊎ ⊤`, for example.
 
-*General rule:*  
+We can summarize the general rule as follows:
+
 **Macro-like `Set` definitions are better than inductive definitions if
-we don't want to distinguish the new type from the base type.**
+we do not want to distinguish the new (derived) type from the base
+type.**
 
-Exercises
-========
+Exercise
+--------
 
-Define `_>_` and `_≥_` on top of `_≤_`!
-
+Define `_>_` and `_≥_` on top of `_≤_`.
 
 Another example
 ===============
+
+A good example of the macro-like behavior is the definition of the `¬`
+function.  This is used to create a shorthand for writing negated statements
+(which we are also going to use later).
 
 \begin{code}
 ¬ : Set → Set
 ¬ A = A → ⊥
 \end{code}
 
-
 Another example: recursive `Fin`
 ================================
 
-`Fin₀ n` is isomorphic to `Fin n` for all `n`:
+Recall the definition of the `Fin` indexed type from earlier:
+
+\begin{code}
+data Fin : ℕ → Set where
+  zero : (n : ℕ) → Fin (suc n)
+  suc  : (n : ℕ) → Fin n → Fin (suc n)
+\end{code}
+
+With this in mind, consider the `Fin₀` function, where `Fin₀ n` is isomorphic
+to `Fin n` for all `n`:
 
 \begin{code}
 Fin₀ : ℕ → Set
@@ -194,8 +208,7 @@ Fin₀ zero    = ⊥
 Fin₀ (suc n) = ⊤ ⊎ Fin₀ n
 \end{code}
 
-
-Elements:
+Compare the produced elements:
 
     n    Fin₀ n                             Fin n
     ------------------------------------------------------------------
@@ -212,7 +225,7 @@ Elements:
          , inj₂ (inj₂ (inj₂ (inj₁ tt))) }   , suc (suc (suc zero)) }
     ...
 
-Pattern:
+Based on the table above, we can observe the following pattern:
 
  * `zero` ~ `inj₁ tt`
  * `suc` ~ `inj₂`
