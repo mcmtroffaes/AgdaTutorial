@@ -2,8 +2,8 @@
 % Péter Diviánszky
 % 2013. 01.
 
-Imports
-=======
+Import list
+===========
 
 \begin{code}
 module Sets.Indexed where
@@ -17,9 +17,9 @@ open import Data.Nat      using (ℕ; zero; suc)
 
 
 `Fin`, family of finite sets
-===========
+============================
 
-We wish to define a `ℕ`-indexed family of sets `Fin` such
+We wish to define an `ℕ`-indexed family of sets `Fin` such
 that `Fin n` has exactly `n` elements.
 
 Given the definition of `Fin`, the following equivalences would hold:
@@ -36,10 +36,10 @@ n   Sets with n elements
 
 
 Definition of `Fin`
-==========
+===================
 
-`Fin` is a set *indexed with* a natural number  
-(we use `Fin` because this is not the final definition of `Fin`):
+`Fin` is a set *indexed with* a natural number (we use `Fin` because this is
+not the final definition of `Fin`):
 
 \begin{code}
 data Fin : ℕ → Set where
@@ -49,7 +49,7 @@ data Fin : ℕ → Set where
 
 The definition yields the statements
 
-~~~~~~~~~~~~~~~~~ 
+~~~~~~~~~~~~~~~~~
 zero 0 : Fin 1
 zero 1 : Fin 2
 zero 2 : Fin 3
@@ -65,9 +65,9 @@ suc 4 (suc 3 (zero 2)) : Fin 5
 ...
 ~~~~~~~~~~~~~~~~~
 
-which can be rearranged as
+that could be rearranged as
 
-~~~~~~~~~~~~~~~~~ 
+~~~~~~~~~~~~~~~~~
 zero 0 : Fin 1
 
 zero 1 : Fin 2
@@ -89,12 +89,13 @@ So we can conclude that `Fin n` has `n` distinct elements.
 
 
 Exercises
-=========
+---------
 
-*   Define a `Bool` indexed family of sets such that the set indexed by `false` contains
-    no elements and the set indexed by `true` contains one element!
-*   Define a `ℕ` indexed family of sets such that the sets indexed by even numbers contain
-    one element and the others are empty!
+1. Define a `Bool`-indexed family of sets such that the set indexed by `false`
+   contains no elements and the set indexed by `true` contains one element.
+
+1. Define an `ℕ`-indexed family of sets such that the sets indexed by even
+   numbers contain one element and the others are empty!
 
 <!--
 \begin{code}
@@ -109,19 +110,19 @@ data Even : ℕ → Set where --
 
 
 `Vec A n` ~ `A`^`n`^
-==========
+====================
 
 `Vec A n` is an `n`-tuple of elements of `A`:
 
 \begin{code}
 data Vec (A : Set) : ℕ → Set where
-  []  : Vec A zero
+  []   : Vec A zero
   cons : (n : ℕ) → A → Vec A n → Vec A (suc n)
 \end{code}
 
-Examples:
+*Examples:*
 
-~~~~~~~~~~~~~~~~~ 
+~~~~~~~~~~~~~~~~~
 [] : Vec ℕ 0
 [] : Vec Bool 0
 ...
@@ -136,11 +137,11 @@ cons 1 false (cons 0 true []) : Vec Bool 2
 
 
 Exercise
-========
+--------
 
-*   Define a `Bool` indexed family of sets with two parameters, `A` and `B`, such
-    that the set indexed by `false` contains
-    an `A` element and the set indexed by `true` contains a `B` element!
+Define a `Bool`-indexed family of sets with two parameters, `A` and `B`, such
+that the set indexed by `false` contains an `A` element and the set indexed by
+`true` contains a `B` element.
 
 <!--
 \begin{code}
@@ -149,4 +150,3 @@ data Union (A B : Set) : Bool → Set where  --
   inj₂ : B → Union A B true --
 \end{code}
 -->
-
