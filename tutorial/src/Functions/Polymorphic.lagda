@@ -26,11 +26,14 @@ data List (A : Set) : Set where
 infixr 5 _∷_
 \end{code}
 
+Remember this is a polymorphic definition.
 
-`_++_` : Concatenation on Lists
-===========================
 
-Definition of concatenation:
+`_++_` : Concatenation on lists
+===============================
+
+Using the definition of the `List` set above, the definition of list
+concatenation can be given as follows:
 
 \begin{code}
 _++_ : {A : Set} → List A → List A → List A
@@ -40,9 +43,10 @@ _++_ : {A : Set} → List A → List A → List A
 infixr 5 _++_
 \end{code}
 
-`_++_` works with `List`s parametrised by arbitrary `Set`s. 
-We call this parameter a polymorphic parameter and `_++_` a polymorphic function.
-Polymorphic parameters have to be named explicitly in beginning of the declaration of the function by putting them into curly braces:
+The `_++_` operator works with `List`s parametrised by arbitrary `Set`s.
+We call its parameters polymorphic, and thus `_++_` a polymorphic function.
+Polymorphic parameters have to be named explicitly in beginning of the
+declaration of the function by putting them into curly braces:
 
     f : {A B C : Set} → ...
 
@@ -51,9 +55,8 @@ Polymorphic parameters have to be named explicitly in beginning of the declarati
 In Agda, polymorphic parameters are explicit, in Haskell they are implicit.
 
 Instead of curly braces we can use also round braces but then
-we have to give the set as a parameter at every function call.
-
-
+we have to give the set as a parameter at every function call, which
+may make it clearer but also more inconvenient to use.
 
 <!--
 | Exercises: `head` and `tail` on Lists
@@ -103,75 +106,51 @@ we have to give the set as a parameter at every function call.
 -->
 
 Exercises
-=========
+---------
 
-*   Define two functions which define the isomorphism between `List ⊤` and `ℕ`!
+1. Define two functions that define an isomorphism between `List ⊤` and `ℕ`.
+   That is, the following functions should be implemented:
 
+     `fromList : List ⊤ → ℕ`  
+     `toList   : ℕ → List ⊤`
+
+1. Show on a sheet of paper with equational reasoning that the `fromList`
+   function is a bijection and it preserves the `_+_` and `_++_`
+   operations (that is, `∀ a, b ∈ List ⊤ . fromList (a ++ b) = fromList a + fromList b` always holds).
+
+1. Define a `Maybe` set (a list with 0 or 1 elements) together with the
+   `head` and `tail` functions for the polymorphic `List` type, with the
+   help of `Maybe`.
+
+1. Define the following functions on lists:
+
+     `map  : {A B : Set} → (A → B)      → List A → List B -- regular map`  
+     `maps : {A B : Set} → List (A → B) → List A → List B -- pairwise map`
+
+1. Define the singleton list function:
+
+     `[_] : {A : Set} → A → List A`
+
+<!--
 \begin{code}
 fromList : List ⊤ → ℕ
-\end{code}
-
-<!--
-\begin{code}
 fromList []        = zero --
 fromList (tt ∷ xs) = suc (fromList xs) --
-\end{code}
--->
 
-\begin{code}
 toList   : ℕ → List ⊤
-\end{code}
-
-<!--
-\begin{code}
 toList zero    = [] --
 toList (suc n) = tt ∷ toList n --
-\end{code}
--->
 
-*   Show on a sheet of paper with equational reasoning that the `fromList` function is a bijection and it preserves the `_+_` and `_++_` operations (that is, `∀ a, b ∈ List ⊤ . fromList (a ++ b) = fromList a + fromList b`).
-
-*   Define a `Maybe` set (lists with 0 or 1 elements)
-    and `head` and `tail` functions for the polymorphic `List` type with the help of `Maybe`.
-
-
-
-Exercises
-=========
-
-Define the following functions on lists:
-
-\begin{code}
 map  : {A B : Set} → (A → B)      → List A → List B -- regular map
-\end{code}
-
-<!--
-\begin{code}
 map f []       = [] --
 map f (x ∷ xs) = f x ∷ map f xs --
-\end{code}
--->
 
-\begin{code}
 maps : {A B : Set} → List (A → B) → List A → List B -- pairwise map
-\end{code}
-
-<!--
-\begin{code}
 maps []       _        = [] --
 maps _        []       = [] --
 maps (f ∷ fs) (x ∷ xs) = f x ∷ (maps fs xs) --
-\end{code}
--->
 
-Define the singleton list function:
-
-\begin{code}
 [_] : {A : Set} → A → List A
-\end{code}
-
-<!--
-\begin{code}
 [ a ] = a ∷ [] --
 \end{code}
 -->
@@ -206,37 +185,41 @@ Define the singleton list function:
 | In the second case we let Agda guess the value of the first parameter.
 -->
 
-Polymorphic `id` function
-=========================
+Polymorphic identity function: `id`
+===================================
 
 <!--
 | If we tend to put an `_` in place of a parameter it probably means that it can be made implicit, that is, we could rely on Agda to guess the value. We can do this putting the parameter in curly braces:
 -->
+
+Similarly to the concatenation function above, a polymorphic identity
+function can be also given with the same notation, which is an example
+of generic polymorphic functions.
 
 \begin{code}
 id : {A : Set} → A → A
 id a = a
 \end{code}
 
-If we want, can specify the implicit parameter manually in curly braces:
+If we want we can specify the implicit (hidden) parameter manually in
+curly braces:
 
 \begin{code}
 aNumber = id {ℕ} (suc zero)
 \end{code}
 
-Exercise
-========
+Exercises
+---------
 
-Define `const : {A B : Set} → A → B → A`!
+1. Define the `const : {A B : Set} → A → B → A` function.
 
-Define `flip : {A B C : Set} → (A → B → C) → B → A → C`!
+1. Define the `flip : {A B C : Set} → (A → B → C) → B → A → C` function.
 
 
-
-`_×_`: Cartesian Product
+`_×_`: Cartesian product
 ========================
 
-Recall the definition of Cartesian product:
+Recall the definition of the product set:
 
 \begin{code}
 data _×_ (A B : Set) : Set where
@@ -247,28 +230,29 @@ infixr 2 _×_
 \end{code}
 
 Exercises
-=========
+---------
 
-Define a function which swaps the two elements!
+1. Define a function that swaps the two elements.
 
-Define the following functions:
+1. Define the following functions:
 
-\begin{code}
-proj₁ : {A B : Set} → A × B → A
-\end{code}
+     `proj₁ : {A B : Set} → A × B → A`  
+     `proj₂ : {A B : Set} → A × B → B`
 
 <!--
 \begin{code}
+proj₁ : {A B : Set} → A × B → A
 proj₁ (a , _) = a --
+
 proj₂ : {A B : Set} → A × B → B
 proj₂ (_ , b) = b --
 \end{code}
 -->
 
-`_⊎_`: Disjoint Union (Sum)
-===================================
+`_⊎_`: Disjoint union (sum)
+===========================
 
-Recall the definition
+Recall the definition of the sum set:
 
 \begin{code}
 data _⊎_ (A B : Set) : Set where
@@ -278,22 +262,19 @@ data _⊎_ (A B : Set) : Set where
 infixr 1 _⊎_
 \end{code}
 
-
 Exercises
-=========
+---------
 
-Define a function which swaps the two elements!
+1. Define a function that swaps the two elements.
 
-Define the eliminator function for disjoint union:
+1. Define the eliminator function for disjoint union:
 
-\begin{code}
-[_,_] : {A B C : Set} → (A → C) → (B → C) → (A ⊎ B → C)
-\end{code}
+     `[_,_] : {A B C : Set} → (A → C) → (B → C) → (A ⊎ B → C)`
 
 <!--
 \begin{code}
+[_,_] : {A B C : Set} → (A → C) → (B → C) → (A ⊎ B → C)
 [_,_] f g (inj₁ a) = f a --
 [_,_] f g (inj₂ b) = g b --
 \end{code}
 -->
-
