@@ -10,16 +10,18 @@ open import Data.Bool using (Bool; true; false)
 \end{code}
 
 The effect of this `open import` declaration is the same as if we copied the
-definition of `Bool` type here. Note that we enumerated the constructors of `Bool` too.
+definition of the `Bool` type here.  Note that we enumerated the constructors of
+`Bool` too.
 
-More about import declarations come later.
+More about import declarations will come later.
 
 
 Peano representation
 ============================
 
-We are looking for a representation natural numbers.
-The simplest choice is the *Peano representation* which corresponds to the unary numeral system:
+We are looking for a representation for the natural numbers.
+The simplest choice is the *Peano representation* which corresponds to the
+unary numeral system:
 
 term                    interpretation in decimal form
 ----------------------- --------------------------
@@ -33,7 +35,7 @@ term                    interpretation in decimal form
 Definition of `ℕ`
 ==============
 
-In Agda the definition
+In Agda, the definition of natural numbers is as follows.
 
 \begin{code}
 data ℕ : Set where
@@ -41,9 +43,9 @@ data ℕ : Set where
   suc  : ℕ → ℕ
 \end{code}
 
-yields the infinite set of judgements
+Note that this definition yields the infinite set of judgements.
 
-~~~~~~~~~~~~~~~~~ 
+~~~~~~~~~~~~~~~~~
 ℕ : Set
 zero : ℕ
 suc zero : ℕ
@@ -57,15 +59,18 @@ suc (suc (suc zero)) : ℕ
 -->
 
 
-Type-checking of expressions
+Type checking of expressions
 =======================
 
-With the Emacs command C-`c` C-`d` one can get Agda to type-check
+With the Emacs command C-`c` C-`d`, one can get Agda to type check
 a given expression (`d` stands for 'deduce').
 
-Example: Hit C-`c` C-`d` and enter `suc (suc zero)`. 
+Example: Hit C-`c` C-`d` and enter `suc (suc zero)`.
 
-Exercise: Try to type-check the following expressions:
+Exercises
+---------
+
+Deduce the type of the following expressions with Agda:
 
 -   `suc zero`
 -   `suc (zero)`
@@ -78,6 +83,8 @@ Exercise: Try to type-check the following expressions:
 Binary representation of `ℕ`
 ==============
 
+Consider the following definition of positive natural numbers, labelled as ℕ⁺:
+
 \begin{code}
 data ℕ⁺ : Set where
   one      :      ℕ⁺
@@ -85,7 +92,8 @@ data ℕ⁺ : Set where
   double+1 : ℕ⁺ → ℕ⁺
 \end{code}
 
-yields (without ordering)
+Note that this definition above yields the following judgements
+(without ordering):
 
 ~~~~~~~~~~~~~~~~~ 
 ℕ⁺ : Set
@@ -129,7 +137,8 @@ id (double+1 (double one)) : ℕ₂
 -->
 
 
-Soon we will prove in Agda that `ℕ` and `ℕ₂` are isomorphic with the following relation:
+Soon we will prove in Agda that `ℕ` and `ℕ₂` are isomorphic with the following
+relation:
 
 **ℕ**                   **ℕ₂**
 ----------------------- --------------------------
@@ -139,9 +148,13 @@ Soon we will prove in Agda that `ℕ` and `ℕ₂` are isomorphic with the follo
 `suc (suc (suc zero))`  `id (double+1 one)`
 ...                     ...
 
-*Exercise:* How 9 is represented in `ℕ₂`? Type-check the expression!
+Exercises
+---------
 
-*Question*: why didn't we use one `data` definition with 4 constructors `zero`, `one`, `double`, `double+1`?
+1. How 9 is represented in `ℕ₂`?  Type check that expression.
+
+1. Why did not we simply use one `data` definition with 4 constructors,
+   such as `zero`, `one`, `double`, and `double+1`?
 
 
 
@@ -150,15 +163,18 @@ Rationale behind different representations
 
 Each representation has its merit.
 
-*Exercise:* Guess which representation (`ℕ` or `ℕ₂`) is better for the following tasks!
+Exercise
+--------
 
- * Computing `n * 2`.
- * Computing `⌊n / 2⌋`.
- * Deciding whether the number is odd.
- * Computing `n + m`.
- * Computing `n * m`.
- * Proving that `n + m` = `m + n` for all `m` and `n`.
- * Storing the number.
+Determine which representation (`ℕ` or `ℕ₂`) is better for the following tasks.
+
+ * Compute `n * 2`.
+ * Compute `⌊n / 2⌋`.
+ * Decide whether the number is odd.
+ * Compute `n + m`.
+ * Compute `n * m`.
+ * Prove that `n + m` = `m + n` for all `m` and `n`.
+ * Store a number.
 
 *****************
 
@@ -167,9 +183,9 @@ and convert values between different representations.
 
 
 Exercise
-=========
+--------
 
- * Define `ℤ`!
+Define `ℤ`.
 
 (Several solutions are possible.)
 
@@ -185,7 +201,7 @@ data BinTree : Set where
 
 yields
 
-~~~~~~~~~~~~~~~~~ 
+~~~~~~~~~~~~~~~~~
 BinTree : Set
 leaf : BinTree
 node leaf leaf : BinTree
@@ -198,21 +214,26 @@ node (node leaf leaf) (node leaf leaf) : BinTree
 `BinTree` elements are good for representing binary trees (just the shapes without data).
 
 
-*Exercise:* define binary trees according to the following shapes!
+Exercise
+--------
+
+Define binary trees according to the following shapes.
 
 ![Binary tree shapes](dot/Binary_tree_shapes.gif)
 
 
 
 Exercises
-=========
+---------
 
-*   Define binary trees
+1.  Define binary trees
     -   with natural number data attached to the leafs
     -   with natural number data attached to the nodes
     -   with Booleans in the nodes and natural numbers in the leafs
-*   Define the lists (finite sequences) of natural numbers.
-*   Define the non-empty lists of natural numbers.
+
+1.  Define the lists (finite sequences) of natural numbers.
+
+1.  Define the non-empty lists of natural numbers.
 
 
 

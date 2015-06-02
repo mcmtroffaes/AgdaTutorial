@@ -3,8 +3,8 @@
 % 2011. 05. 03., 2013. 01.
 
 
-Imports
-========
+Import list
+===========
 
 \begin{code}
 module Sets.Propositions where
@@ -16,11 +16,11 @@ open import Data.Nat using (ℕ; zero; suc)
 Proofs as data
 ==============
 
-It is beneficial to represent proofs as ordinary data;
-we can manipulate them like natural numbers.  
+It is beneficial to represent proofs as ordinary data &mdash;
+we can manipulate them like natural numbers.
 The proofs of each proposition will have a distinct type.
 
-We represent the proofs of the **true proposition** by the type `⊤`.  
+We represent the proofs of the **true proposition** by the type `⊤`.
 The true proposition has a trivial proof: `tt` (trivially true).
 
 \begin{code}
@@ -28,15 +28,16 @@ data ⊤ : Set where
   tt : ⊤
 \end{code}
 
-We represent the proofs of the **false proposition** by the type `⊥`.  
-The false proposition has no proofs (it cannot be proven).
+We represent the proofs of the **false proposition** by the type `⊥`.
+False proposition have no proofs (thus they cannot be proven).
 
 \begin{code}
 data ⊥ : Set where
 \end{code}
 
-We represent the proofs of the **conjunction** of two propositions `A` and `B` by the type `A × B`.  
-`A × B` has proofs of form `a , b` where `a` is a proof of `A` and `b` is a proof of `B`.
+We represent the proofs of the **conjunction** of two propositions `A` and
+`B` by the type `A × B`.  `A × B` has proofs of form `a , b` where `a` is a
+proof of `A` and `b` is a proof of `B`.
 
 \begin{code}
 data _×_ (A B : Set) : Set where
@@ -46,8 +47,8 @@ infixr 4 _,_
 infixr 2 _×_
 \end{code}
 
-We represent the proofs of the **disjunction** of two propositions `A` and `B` by the type `A ⊎ B`.  
-`A ⊎ B` has two different kinds of proofs:
+We represent the proofs of the **disjunction** of two propositions `A` and
+`B` by the type `A ⊎ B`.  `A ⊎ B` has two different kinds of proofs:
 
 *   `inj₁ a`, where `a` is proof of `A`,
 *   `inj₂ b`, where `b` is proof of `B`.
@@ -74,7 +75,7 @@ Construct one proof for each proposition if possible:
 -   `⊥ ⊎ ⊥`
 -   `⊥ ⊎ ⊤ ⊎ ⊤ × (⊥ ⊎ ⊥) ⊎ ⊤`
 
-Example:
+For example:
 
 \begin{code}
 ⊤×⊤ : ⊤ × ⊤
@@ -85,18 +86,20 @@ Example:
 Remarks
 =======
 
-We represent implication, negation, universal and existential quantification later.
+We will discuss the representation of implication, negation, universal, and
+existential quantification later.
 
-`_⊎_` represents *constructive* disjunction,
-we represent classical disjunction later and compare them.
+Note that `_⊎_` represents a *constructive* disjunction.  We are going to
+formalize the classical disjunction that way and compare the obtained
+concepts as we proceed.
 
 
 
 `_≤_`: Less-or-equal predicate
 ==========
 
-We wish to represent proofs of propositions n ≤ m (n, m = 0, 1, ...).  
-For this we define a set indexed with two natural numbers:
+We wish to represent proofs of propositions n ≤ m (n, m = 0, 1, ...).  For this,
+we define a set indexed with two natural numbers:
 
 \begin{code}
 data  _≤_ : ℕ → ℕ → Set where
@@ -106,9 +109,9 @@ data  _≤_ : ℕ → ℕ → Set where
 infix 4 _≤_
 \end{code}
 
-This yields the statements
+This yields the following judgements:
 
-~~~~~~~~~~~~~~~~~ 
+~~~~~~~~~~~~~~~~~
 z≤n {0} : 0 ≤ 0
 z≤n {1} : 0 ≤ 1
 z≤n {2} : 0 ≤ 2
@@ -124,9 +127,9 @@ s≤s (s≤s (z≤n {2})) : 2 ≤ 4
 ...
 ~~~~~~~~~~~~~~~~~
 
-which means that the following propositions have proofs:
+that means that the following propositions have proofs:
 
-~~~~~~~~~~~~~~~~~ 
+~~~~~~~~~~~~~~~~~
 0 ≤ 0
 0 ≤ 1,  1 ≤ 1
 0 ≤ 2,  1 ≤ 2,  2 ≤ 2
@@ -135,86 +138,109 @@ which means that the following propositions have proofs:
 ~~~~~~~~~~~~~~~~~
 
 
-Notes
+Notes:
 
-*   The `z≤n` constructor yields the first column of statements.
-*   The `s≤s` constructor yields the successive columns of statements.
-*   `1 ≤ 0` is also a valid expression which denotes an empty set.
+*   The `z≤n` constructor yields the first column of judgements.
+*   The `s≤s` constructor yields the successive columns of judgements.
+*   `1 ≤ 0` is also a valid expression that denotes an empty set.
 
 
 Proving non-emptiness
-========
+=====================
 
-We can prove that a set is non-empty by giving an element  
-(remember the syntax of constant definition):
+We can prove that a set is non-empty if we can construct any of its elements
+(recall how constants may be defined):
 
 \begin{code}
-0≤1 : 1 ≤ 10
-0≤1 = s≤s z≤n
+1≤10 : 1 ≤ 10
+1≤10 = s≤s z≤n
 \end{code}
 
-*Exercise:* Prove that 3 ≤ 7!
+Exercise
+--------
 
+Prove that 3 ≤ 7.
 
 Proving emptiness
-================
+=================
 
-How can we prove that a set like `7 ≤ 3` is empty?
+How could we prove that a set like `7 ≤ 3` is empty?
 
-1.  If `7 ≤ 3` would be non-empty, all its elements would look like `s≤s x` where `x : 6 ≤ 2`.
+1.  If `7 ≤ 3` was non-empty, all its elements would look like `s≤s x` where `x : 6 ≤ 2`.
+
     *   `z≤n` yields an element in `0 ≤ n` and `0` ≠ `7`.
-1.  If `6 ≤ 2` would be non-empty, all its elements would look like `s≤s x` where `x : 5 ≤ 1`.
+
+1.  If `6 ≤ 2` was non-empty, all its elements would look like `s≤s x` where `x : 5 ≤ 1`.
+
     *   `z≤n` yields an element in `0 ≤ n` and `0` ≠ `6`.
-1.  If `5 ≤ 1` would be non-empty, all its elements would look like `s≤s x` where `x : 4 ≤ 0`.
+
+1.  If `5 ≤ 1` was non-empty, all its elements would look like `s≤s x` where `x : 4 ≤ 0`.
+
     *   `z≤n` yields an element in `0 ≤ n` and `0` ≠ `5`.
+
 1.  `4 ≤ 0` is empty.
+
     *   `z≤n` yields an element in `0 ≤ n` and `0` ≠ `4`.
     *   `s≤s` yields an element in `suc m ≤ suc n` and `suc n` ≠ `0`.
 
-Although we will discuss all the details later here we have a look at
-how can this chain of inference be given in Agda:*
+Although we will discuss all the details later, here we have a look at
+how this chain of inference could be given in Agda:*
 
 \begin{code}
 7≰3 : 7 ≤ 3 → ⊥
 7≰3 (s≤s (s≤s (s≤s ())))
 \end{code}
 
-*   `()` denotes a value in a trivially empty set.
+where `()` denotes a value in a trivially empty set.
 
-*Exercise:* prove that `4 ≤ 2` is empty!
+Exercise
+--------
 
-We can use an emptiness proof in another emptiness proof:
+Prove that `4 ≤ 2` is empty.
+
+Note that emptiness proofs can be used in other emptiness proofs:
 
 \begin{code}
 8≰4 : 8 ≤ 4 → ⊥
 8≰4 (s≤s x) = 7≰3 x
 \end{code}
 
-*   `x` is an arbitrary variable name.
+where `x` is an arbitrary variable name.
 
-*Question:* Guess what kind of code can be generated from emptiness proofs!
+Exercise
+--------
+
+Guess what kind of code can be generated from emptiness proofs.
 
 
 ***************************
 
-*`7 ≤ 3 → ⊥` denotes a function from `7 ≤ 3` to `⊥` so we prove that
-`7 ≤ 3` is empty by giving a function which maps `7 ≤ 3` to a trivially empty set.  
-During the function definition we show that `7 ≤ 3` has no element so the function is defined.  
-We discuss functions in detail later.
+*: `7 ≤ 3 → ⊥` denotes a function from `7 ≤ 3` to `⊥` so we are proving that
+`7 ≤ 3` is empty by giving a function that maps `7 ≤ 3` to a trivially empty
+set.  Here, we show that `7 ≤ 3` has no elements hence the function is defined.
+We are going to discuss functions in details later.
 
 
 Exercises
-=========
+---------
 
-*   Define an indexed set `_isDoubleOf_ : ℕ → ℕ → Set` such that `m isDoubleOf n` is non-empty iff `m` is the double of `n`!
-    *   Prove that `8 isDoubleOf 4` is non-empty!
-    *   Prove that `9 isDoubleOf 4` is empty!
-*   Define an indexed set `Odd : ℕ → Set` such that `odd n` is non-empty iff `n` is odd!
-    *   Prove that `Odd 9` is non-empty!
-    *   Prove that `Odd 8` is empty!
-*   Define `Even : ℕ → Set` and `Odd : ℕ → Set` mutually!
-*   Define equality `_≡_ : ℕ → ℕ → Set`!
-*   Define non-equality `_≠_ : ℕ → ℕ → Set`!
+1.  Define an indexed set `_isDoubleOf_ : ℕ → ℕ → Set` such that `m isDoubleOf n`
+    is non-empty iff (if and only if) `m` is the double of `n`.
+
+    *   Prove that `8 isDoubleOf 4` is non-empty.
+    *   Prove that `9 isDoubleOf 4` is empty.
+
+1.  Define an indexed set `Odd : ℕ → Set` such that `Odd n` is non-empty iff `n`
+    is odd.
+
+    *   Prove that `Odd 9` is non-empty.
+    *   Prove that `Odd 8` is empty.
+
+1.  Define `Even : ℕ → Set` and `Odd : ℕ → Set` mutually.
+
+1.  Define equality `_≡_ : ℕ → ℕ → Set`.
+
+1.  Define non-equality `_≠_ : ℕ → ℕ → Set`.
 
 <!--
 | Equality on `ℕ`
@@ -279,8 +305,10 @@ Exercises
 | \end{code}
 -->
 
-Alternative representation
+Alternative representation of `_≤_`
 ========
+
+Consider the following indexed type:
 
 \begin{code}
 data _≤′_ : ℕ → ℕ → Set where
@@ -290,9 +318,9 @@ data _≤′_ : ℕ → ℕ → Set where
 infix 4 _≤′_
 \end{code}
 
-yields
+that yields the following:
 
-~~~~~~~~~~~~~~~~~ 
+~~~~~~~~~~~~~~~~~
 ≤′-refl : 0 ≤ 0
 ≤′-step ≤′-refl : 0 ≤ 1
 ≤′-step (≤′-step ≤′-refl) : 0 ≤ 2
@@ -310,8 +338,8 @@ yields
 
 As with `ℕ` and `ℕ₂`,
 
-*   the structure of the `m ≤ n` and `m ≤′ n` set elements are different
-*   different representations are good for different tasks  
+*   the structure of the `m ≤ n` and `m ≤′ n` set elements are different,
+*   different representations are good for different tasks.
 
 <!--
 | Alternative Definition
@@ -414,7 +442,7 @@ All code on this slide is valid.
 
 Original definition:
 
-~~~~~~~~~~~ 
+~~~~~~~~~~~
 data  _≤_ : ℕ → ℕ → Set where
   z≤n : {n : ℕ} →                       zero  ≤ n
   s≤s : {m : ℕ} → {n : ℕ} →   m ≤ n  →  suc m ≤ suc n
@@ -422,15 +450,15 @@ data  _≤_ : ℕ → ℕ → Set where
 
 The arrows between typed variables are not needed (also in case of round parenthesis):
 
-~~~~~~~~~~~ 
+~~~~~~~~~~~
 data  _≤_ : ℕ → ℕ → Set where
   z≤n : {n : ℕ} →                     zero  ≤ n
   s≤s : {m : ℕ} {n : ℕ} →   m ≤ n  →  suc m ≤ suc n
 ~~~~~~~~~~~
 
-Typed variables with the same type can be contracted (also in case of round parenthesis):
+Typed variables with the same type can be merged (also in case of round parenthesis):
 
-~~~~~~~~~~~ 
+~~~~~~~~~~~
 data  _≤_ : ℕ → ℕ → Set where
   z≤n : {n : ℕ} →               zero  ≤ n
   s≤s : {m n : ℕ} →   m ≤ n  →  suc m ≤ suc n
@@ -438,7 +466,7 @@ data  _≤_ : ℕ → ℕ → Set where
 
 Inferable expressions can be replaced by an underscore:
 
-~~~~~~~~~~~ 
+~~~~~~~~~~~
 data  _≤_ : ℕ → ℕ → Set where
   z≤n : {n : _} →               zero  ≤ n
   s≤s : {m n : _} →   m ≤ n  →  suc m ≤ suc n
@@ -446,7 +474,7 @@ data  _≤_ : ℕ → ℕ → Set where
 
 Variables with inferred types can be introduced by `∀`:
 
-~~~~~~~~~~~ 
+~~~~~~~~~~~
 data  _≤_ : ℕ → ℕ → Set where
   z≤n : ∀ {n} →               zero  ≤ n
   s≤s : ∀ {m n} →   m ≤ n  →  suc m ≤ suc n
@@ -456,10 +484,9 @@ data  _≤_ : ℕ → ℕ → Set where
 `_+_≡_`: Addition predicate
 ==========
 
-We wish to give a definition which
-yields the infinite set of true propositions
+We wish to give a definition that yields an infinite set of true propositions:
 
-~~~~~~~~~~~~~~~~~ 
+~~~~~~~~~~~~~~~~~
 0 + 0 ≡ 0,  1 + 0 ≡ 1,  2 + 0 ≡ 2,  ...
 0 + 1 ≡ 1,  1 + 1 ≡ 2,  2 + 1 ≡ 3,  ...
 0 + 2 ≡ 2,  1 + 2 ≡ 3,  2 + 2 ≡ 4,  ...
@@ -468,16 +495,16 @@ yields the infinite set of true propositions
 
 The outline of the solution:
 
-~~~~~~~~~~~~~~~~~ 
-(n : ℕ)                        zero  + n ≡ n     -- yields the first column of statements
-(m : ℕ) (n : ℕ)  m + n ≡ k  →  suc m + n ≡ suc k -- yields the successive columns of statements
+~~~~~~~~~~~~~~~~~
+(n : ℕ)                        zero  + n ≡ n     -- yields the first column of judgements
+(m : ℕ) (n : ℕ)  m + n ≡ k  →  suc m + n ≡ suc k -- yields the successive columns of judgements
 ~~~~~~~~~~~~~~~~~
 
-Technical details of the solution  
-(nothing new but better to repeat):
+Technical details of the solution (nothing new but better to repeat!):
 
 *   We define the *set* `n + m ≡ k` for each `n : ℕ`, `m : ℕ` and `k : ℕ`.  
     (`2 + 2 ≡ 5` is a valid set too.)
+
 *   The set `n + m ≡ k` will be non-empty iff `n` + `m` = `k`.  
     (`2 + 2 ≡ 4` is non-empty, `2 + 2 ≡ 5` is empty.)
 
@@ -485,7 +512,7 @@ Technical details of the solution
 Definition of `_+_≡_`
 ==========
 
-`_+_≡_` is an indexed set with three natural number indices and with two constructors:*
+`_+_≡_` is an indexed set with three natural number indices and two constructors:*
 
 \begin{code}
 data _+_≡_ : ℕ → ℕ → ℕ → Set where
@@ -493,9 +520,9 @@ data _+_≡_ : ℕ → ℕ → ℕ → Set where
   sns : ∀ {m n k} → m + n ≡ k → suc m + n ≡ suc k
 \end{code}
 
-which yields the statements
+that yields the following judgements:
 
-~~~~~~~ 
+~~~~~~~
 znn : 0 + 0 ≡ 0
 znn : 0 + 1 ≡ 1
 znn : 0 + 2 ≡ 2
@@ -511,26 +538,37 @@ sns (sns znn) : 2 + 2 ≡ 4
 ...
 ~~~~~~~
 
-Notes
-
-*   Underscores in `_+_≡_` denote the space for the operands (mixfix notation).
-
+Note that the underscores in `_+_≡_` denote the space for the operands
+(i.e. mixfix notation).
 
 *******************
 
-*this is the same as
+*:  That is the same as follows:
 
-~~~~~~~ 
+~~~~~~~
 data _+_≡_ : ℕ → ℕ → ℕ → Set where
   znn : {n : ℕ} → zero + n ≡ n
-  sns : {m : ℕ} → {n : ℕ} → m + n ≡ k → suc m + n ≡ suc k
+  sns : {m : ℕ} → {n : ℕ} → {k : ℕ} → m + n ≡ k → suc m + n ≡ suc k
 ~~~~~~~
 
 Exercises
-========
+---------
 
-*   Prove that 5 + 5 = 10!
-*   Prove that 2 + 2 ≠ 5!
+1. Prove that 5 + 5 = 10.
+
+1. Prove that 2 + 2 ≠ 5.
+
+1. Define `_⊓_≡_ : ℕ → ℕ → ℕ → Set` such that `m ⊓ n ≡ k` iff `k` is the minimum of
+   `m` and `n`.
+
+    *   Prove that both `3 ⊓ 5 ≡ 3` and `5 ⊓ 3 ≡ 3` are non-empty.
+    *   Prove that `3 ⊓ 5 ≡ 5` is empty.
+
+1. Define `_⊔_≡_ : ℕ → ℕ → ℕ → Set` such that `m ⊔ n ≡ k` iff `k` is the maximum of
+   `m` and `n`.
+
+    *   Prove that `3 ⊔ 5 ≡ 5` is non-empty.
+    *   Prove that `3 ⊔ 5 ≡ 3` is empty.
 
 <!--
 \begin{code}
@@ -542,31 +580,19 @@ Exercises
 \end{code}
 -->
 
-Exercises
-=========
+Reusing definitions
+===================
 
-*   Define `_⊓_ : ℕ → ℕ → Set` such that `n ⊓ m ≡ k` iff `k` is the minimum of `n` and `m`!
-    *   Prove that `3 ⊓ 5 ≡ 3` is non-empty!
-    *   Prove that `3 ⊓ 5 ≡ 5` is empty!
-*   Define `_⊔_ : ℕ → ℕ → Set` such that `n ⊔ m ≡ k` iff `k` is the maximum of `n` and `m`!
-    *   Prove that `3 ⊔ 5 ≡ 5` is non-empty!
-    *   Prove that `3 ⊔ 5 ≡ 3` is empty!
-
-
-
-Definition reuse
-================
-
-Another definition of `_≤_`:
+Consider another definition of the `_≤_` type:
 
 \begin{code}
 data _≤″_ : ℕ → ℕ → Set where
   ≤+ : ∀ {m n k} → m + n ≡ k → m ≤″ k
 \end{code}
 
-which yields
+that yields the following:
 
-~~~~~~~~~ 
+~~~~~~~~~
 ≤+ znn : 0 ≤″ 0
 ≤+ znn : 0 ≤″ 1
 ≤+ znn : 0 ≤″ 2
@@ -582,32 +608,44 @@ which yields
 ...
 ~~~~~~~~~
 
-Notes
+Notes:
 
  * This representation of less-than-or-equal is similar to `_≤_`.
- * If we write `≤+ : ∀ {m n k} → m + n ≡ k → n ≤″ k` (use `n` instead of `m` at the end) we get a representation of less-than-or-equal similar to `_≤′_` on the previous slides.
+ * If we were to wrote `≤+ : ∀ {m n k} → m + n ≡ k → n ≤″ k` (that is, use
+   `n` instead of `m` at the end) we would get a representation of
+   less-than-or-equal similar to `_≤′_` on the previous slides.
 
 
 Exercises
-=========
+---------
 
-*   Define `_isDoubleOf_ : ℕ → ℕ → Set` on top of `_+_≡_`!
-    *   Prove that `8 isDoubleOf 4` is non-empty!
-    *   Prove that `9 isDoubleOf 4` is empty!
-*   Define `_*_≡_ : ℕ → ℕ → Set` with the help of `_+_≡_`!
-    *   Prove that `3 * 3 ≡ 9` is non-empty!
-    *   Prove that `3 * 3 ≡ 8` is empty!
-*   Define `_≈_ : ℕ → ℕ⁺ → Set` which represents the (canonical) isomorphism between `ℕ` and `ℕ⁺`!*
-    *   Prove that `5 ≈ double+1 (double one)` is non-empty!
-    *   Prove that `4 ≈ double+1 (double one)` is empty!
+1.  Define `_isDoubleOf_ : ℕ → ℕ → Set` atop `_+_≡_`.
+
+    *   Prove that `8 isDoubleOf 4` is non-empty.
+    *   Prove that `9 isDoubleOf 4` is empty.
+
+1.  Define `_*_≡_ : ℕ → ℕ → ℕ → Set` with the help of `_+_≡_`.
+
+    *   Prove that `3 * 3 ≡ 9` is non-empty.
+    *   Prove that `3 * 3 ≡ 8` is empty.
+
+1.  Define `_≈_ : ℕ → ℕ⁺ → Set` that represents the (canonical) isomorphism
+    between `ℕ` and `ℕ⁺`.*
+
+    *   Prove that `5 ≈ double+1 (double one)` is non-empty.
+    *   Prove that `4 ≈ double+1 (double one)` is empty.
+
+*Hint.*  Recall the definition of `ℕ⁺`, `one`, `double`, `double+1`:
+
+\begin{code}
+data ℕ⁺ : Set where
+  one      : ℕ⁺
+  double   : ℕ⁺ → ℕ⁺
+  double+1 : ℕ⁺ → ℕ⁺
+\end{code}
 
 <!--
 \begin{code}
-data ℕ⁺ : Set where  --
-  one    : ℕ⁺  --
-  double : ℕ⁺ → ℕ⁺ --
-  double+1 : ℕ⁺ → ℕ⁺ --
-
 module ℕ≈ℕ⁺ where --
 
   data _≈_ : ℕ → ℕ⁺ → Set where --
@@ -625,6 +663,5 @@ module ℕ≈ℕ⁺ where --
 
 *****************
 
-*There are lots of isomorphisms between `ℕ` and `ℕ⁺`, we mean here the most natural one.
-
-
+*: There are many isomorphisms between `ℕ` and `ℕ⁺`, here we are referring to the
+   most natural one.

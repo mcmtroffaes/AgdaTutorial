@@ -22,7 +22,7 @@ We can model the semigroup proposition as follows:
 \begin{code}
 record IsSemigroup {A : Set} (_∙_ : A → A → A) : Set where
   field
-    assoc         : ∀ x y z →  (x ∙ y) ∙ z  ≡  x ∙ (y ∙ z)
+    assoc         : ∀ x y z →  ((x ∙ y) ∙ z)  ≡  (x ∙ (y ∙ z))
 \end{code}
 
 
@@ -91,7 +91,7 @@ Monoid property
 record IsMonoid {A : Set} (_∙_ : A → A → A) (ε : A) : Set where
   field
     isSemigroup : IsSemigroup _∙_
-    identity    : (∀ x → ε ∙ x ≡ x)  ×  (∀ x → x ∙ ε ≡ x)
+    identity    : (∀ x → (ε ∙ x) ≡ x)  ×  (∀ x → (x ∙ ε) ≡ x)
 
   open IsSemigroup isSemigroup public
 \end{code}
@@ -157,7 +157,7 @@ Thus we can write
 \begin{code}
 record IsSemigroup′ {A : Set} (_∙_ : Op₂ A) : Set where
   field
-    assoc         : ∀ x y z →  (x ∙ y) ∙ z  ≡  x ∙ (y ∙ z)
+    assoc         : ∀ x y z →  ((x ∙ y) ∙ z)  ≡  (x ∙ (y ∙ z))
 \end{code}
 
 
@@ -181,7 +181,7 @@ We can name functions properties like
 
 \begin{code}
 Associative : {A : Set} → Op₂ A → Set
-Associative _∙_ = ∀ x y z →  (x ∙ y) ∙ z  ≡  x ∙ (y ∙ z)
+Associative _∙_ = ∀ x y z →  ((x ∙ y) ∙ z)  ≡  (x ∙ (y ∙ z))
 \end{code}
 
 After this definition we can write
@@ -204,7 +204,7 @@ Commutative : {A : Set} → Op₂ A → Set _
 
 <!--
 \begin{code}
-Commutative _∙_ = ∀ x y →  x ∙ y  ≡  y ∙ x
+Commutative _∙_ = ∀ x y →  (x ∙ y)  ≡  (y ∙ x)
 \end{code}
 -->
 
@@ -216,7 +216,7 @@ LeftIdentity : {A : Set} → A → Op₂ A → Set _
 
 <!--
 \begin{code}
-LeftIdentity e _∙_ = ∀ x →  e ∙ x  ≡  x
+LeftIdentity e _∙_ = ∀ x →  (e ∙ x)  ≡  x
 \end{code}
 -->
 
@@ -226,7 +226,7 @@ RightIdentity : {A : Set} → A → Op₂ A → Set _
 
 <!--
 \begin{code}
-RightIdentity e _∙_ = ∀ x →  x ∙ e  ≡  x
+RightIdentity e _∙_ = ∀ x →  (x ∙ e)  ≡  x
 \end{code}
 -->
 

@@ -3,7 +3,7 @@ Usage
 
 An online HTML version can be found at
 
-http://people.inf.elte.hu/divip/AgdaTutorial/Index.html
+http://people.inf.elte.hu/pgj/agda/tutorial/
 
 
 Local Builds

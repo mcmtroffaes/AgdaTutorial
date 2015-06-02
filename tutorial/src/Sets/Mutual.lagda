@@ -3,49 +3,58 @@
 \begin{code}
 module Sets.Mutual where
 
-open import Data.Bool using (Bool; true; false)
-open import Data.Nat using (ℕ; zero; suc)
+open import Sets.Enumerated using (Bool; true; false)
+open import Syntax.Decimal_Naturals using (ℕ; zero; suc)
 \end{code}
 
 
 Mutual definitions
 =========
 
-To allow mutual definitions one should declare any set before using it:
+In order to allow mutual definitions, one should declare any `Set` before
+using it.  Those are called "forward declarations" &mdash; they are not unique
+to Agda.
+
+Consider the following example for this:
 
 \begin{code}
+-- forward declarations
 data L : Set
 data M : Set
 
+-- actual declarations
 data L where
   nil : L
   _∷_ : ℕ → M → L
 
 data M where
-  _∷_ : Bool → L → M
+  _TT∷_ : Bool → L → M
 \end{code}
 
-Note that `: Set` is missing in the definitions of sets declared before.
+Note that `: Set` is missing from the definitions of the forward-declared
+sets.
 
-*Exercise*: What are the elements of `L` and `M`?
+Exercises
+---------
 
+#. What are the elements of `L` and `M`?
 
+#. Define trees where each node can have arbitrary (finite) number of children
+   (such as 0, 1, 2, and so on).
 
+#. Define a language by the following grammar in Agda:
 
-Exercise
-=========
+     $E \to B$  
+     $E \to I$  
+     $I \to I + I$  
+     $I \to I - I$  
+     $I \to I * I$  
+     $I \to z$  
+     $I \to s I$  
+     $B \to t$  
+     $B \to f$  
+     $B \to E = E$  
+     $B \to E ≠ E$  
 
-*   Define trees where each node can have any finite number of children
-    (0, 1, 2, ...).
-
-Exercise
-=========
-
-
-Define a small grammar!*
-
--------
-
-*highly underspecified exercise
-
-
+#. As a constant, give an element of the language defined in the previous
+   exercise that contains the application of every rule at least once.
