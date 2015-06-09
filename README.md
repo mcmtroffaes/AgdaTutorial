@@ -25,8 +25,7 @@ Local Builds
 
 4.  Generate the html view of the tutorial.
 
-        cabal exec agdapandoc -- -i ../agda-stdlib/src -i tutorial/src --html tutorial/src/Index.lagda --css=Agda.css
-
+        AGDAPANDOC="cabal exec agdapandoc --" AGDASTDLIB=../agda-stdlib/ make
 
 Development
 -----------
